@@ -24,10 +24,6 @@ path {
             height: -webkit-fill-available;
             max-height: -webkit-fill-available;
         }
-
-        .toggle__box {
-            display: none;
-        }
     }
 }
 
@@ -216,37 +212,16 @@ path {
     }
 }
 
-
-.contents {
-    position: relative;
-    // font-size: 30px;
-
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 0 60px;
-}
-
-
-
-
-
-
 .toggle {
     &__box {
         display: flex;
         width: 62px;
         position: absolute;
         right: 40px;
-        transform: translateX(0);
         @include get-color(background-color, color-toggle);
         border-radius: 14px;
-        opacity: 1;
+        opacity: 0;
         transition: 0.3s;
-
-        &.show {
-            transform: translateX(150px);
-            opacity: 0;
-        }
     }
 
     &__item {
@@ -498,18 +473,5 @@ $colorName in $colorNames {
     .font-#{colorName} {
         color: $colorName;
         // @include get-color(color, color-#{$colorName});
-    }
-}
-
-
-.contents {
-    height: 500vh;
-}
-
-.about {
-    min-height: 100vh;
-
-    @include ios {
-        min-height: -webkit-fill-available;
     }
 }

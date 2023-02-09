@@ -244,7 +244,6 @@ a:focus {
 .contents {
 	position: relative;
 	padding: 20px;
-	overflow-y: auto;
 }
 
 body {
@@ -283,9 +282,6 @@ path {
 		height: -webkit-fill-available;
 		max-height: -webkit-fill-available;
 	}
-}
-.wrap.loading .toggle__box {
-	display: none;
 }
 
 .full-box {
@@ -453,32 +449,20 @@ path {
 		transform: translateY(0px);
 	}
 }
-.contents {
-	position: relative;
-	max-width: 1600px;
-	margin: 0 auto;
-	padding: 0 60px;
-}
-
 .toggle__box {
 	display: flex;
 	width: 62px;
 	position: absolute;
 	right: 40px;
-	transform: translateX(0);
 	background-color: #9375b5;
 	border-radius: 14px;
-	opacity: 1;
+	opacity: 0;
 	transition: 0.3s;
 }
 .light-theme .toggle__box {
 	background-color: #554469;
 }
 
-.toggle__box.show {
-	transform: translateX(150px);
-	opacity: 0;
-}
 .toggle__item {
 	display: none;
 }
@@ -779,14 +763,67 @@ path {
 /*********************/
 /*********************/
 .contents {
-	height: 500vh;
+	position: relative;
+	max-width: 1600px;
+	margin: 100px auto 0;
+	padding: 40px 60px 0;
+	height: 1500vh;
 }
 
 .about {
-	min-height: 100vh;
+	padding-top: 80px;
+}
+.about__intro {
+	height: calc(100vh - 80px);
+	display: flex;
+	align-items: center;
 }
 @supports (-webkit-touch-callout: none) {
-	.about {
+	.about__intro {
 		min-height: -webkit-fill-available;
 	}
+}
+.about__img {
+	position: relative;
+	flex: 1;
+}
+.about .avata {
+	display: block;
+	width: 85%;
+	max-width: 400px;
+	margin: 0 auto;
+	border-radius: 50%;
+}
+.about .memoji {
+	width: 100%;
+	max-width: 420px;
+	height: 100%;
+	max-height: 420px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: url("../images/img-about.png") no-repeat center/contain;
+}
+.about__text {
+	flex: 1;
+}
+.about__text--tit {
+	margin-bottom: 40px;
+	font-size: 46px;
+	line-height: 1.7;
+	font-weight: 600;
+}
+.about__text--item + .about__text--item {
+	margin-top: 30px;
+}
+
+.footer {
+	padding: 100px 0 20px;
+	font-size: 12px;
+	text-align: center;
+	color: #AFC9D3;
+}
+.light-theme .footer {
+	color: #8796B0;
 }

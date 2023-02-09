@@ -1,0 +1,77 @@
+.contents {
+    position: relative;
+    // font-size: 30px;
+
+    max-width: 1600px;
+    margin: 100px auto 0;
+    padding: 40px 60px 0;
+
+    height: 1500vh;
+}
+
+.about {
+    padding-top: 80px;
+
+    &__intro {
+        height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+
+        @include ios {
+            min-height: -webkit-fill-available;
+        }
+    }
+
+    &__img {
+        position: relative;
+        flex: 1;
+    }
+
+    .avata {
+        display: block;
+        width: 85%;
+        max-width: 400px;
+        margin: 0 auto;
+        border-radius: 50%;
+
+
+
+        // position: fixed;
+        // top: 100px;
+        // width: 400px;
+    }
+
+
+    .memoji {
+        $size: 420px;
+        width: 100%;
+        max-width: $size;
+        height: 100%;
+        max-height: $size;
+        @include positionCenter;
+        background: url('#{$path-image}/img-about.png') no-repeat center / contain;
+    }
+
+    &__text {
+        flex: 1;
+
+        &--tit {
+            margin-bottom: 40px;
+            font-size: 46px;
+            line-height: 1.7;
+            font-weight: 600;
+        }
+
+        &--item+&--item {
+            margin-top: 30px;
+        }
+    }
+}
+
+
+.footer {
+    padding: 100px 0 20px;
+    font-size: 12px;
+    text-align: center;
+    @include get-color(color, color-lightblue);
+}
