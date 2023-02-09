@@ -1,0 +1,515 @@
+body {
+    width: 100%;
+    height: 100%;
+    @include get-color(color, color-font);
+    @include get-color(background-color, color-bg);
+    overflow-x: hidden;
+    transition: color, background 0.2s;
+}
+
+
+path {
+    @include get-color(stroke, color-font);
+}
+
+.wrap {
+    position: relative;
+
+    &.loading {
+        height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
+
+        @include ios {
+            height: -webkit-fill-available;
+            max-height: -webkit-fill-available;
+        }
+
+        .toggle__box {
+            display: none;
+        }
+    }
+}
+
+.full-box {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    @include flexCenter(center);
+
+    @include ios {
+        height: -webkit-fill-available;
+    }
+}
+
+.header {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    @include flexCenter(space-between);
+    padding: 10px 40px;
+    transition: backdrop-filter 0.4s;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px) opacity(1);
+    z-index: $header;
+    overflow: hidden;
+
+    @include ios {
+        height: -webkit-fill-available;
+    }
+
+    @at-root .light-theme & {
+        background-color: rgba(155, 155, 155, 0.1);
+    }
+}
+
+.top-obj {
+    position: relative;
+    transform: rotate(-24deg);
+}
+
+.scroll-top {
+    cursor: pointer;
+}
+
+.logo {
+    @include positionCenter;
+
+    &__k {
+        stroke-dasharray: 125px;
+        stroke-dashoffset: 0;
+    }
+
+    &__elly {
+        stroke-dasharray: 1412px;
+        stroke-dashoffset: 0;
+    }
+
+    &__eye-l {
+        stroke-dasharray: 18px;
+        stroke-dashoffset: -18px;
+        animation: eye-l 0.3s cubic-bezier(0, 0, 0.04, 3) 4.5s forwards;
+
+        &.action {
+            stroke-dashoffset: 0;
+            animation: left_eye 3s 2s infinite;
+        }
+    }
+
+    &__eye-r {
+        stroke-dasharray: 15px;
+        stroke-dashoffset: -15px;
+        animation: eye-r 0.3s cubic-bezier(0, 0, 0.04, 2.21) 5s forwards;
+
+        &.action {
+            stroke-dashoffset: 0;
+            animation: right_eye 3s 2s infinite;
+        }
+    }
+}
+
+.loading {
+    .logo {
+        &__k {
+            stroke-dashoffset: -125px;
+            animation: k 0.25s cubic-bezier(0, 0, 0.65, 0.42) 1s forwards;
+        }
+
+        &__elly {
+            stroke-dashoffset: -1412px;
+            animation: elly 2.5s cubic-bezier(0, 0, 0.75, 0.45) 1.5s forwards;
+        }
+    }
+}
+
+@keyframes k {
+    from {
+        stroke-dashoffset: 125px;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes elly {
+    from {
+        stroke-dashoffset: 1412px;
+    }
+
+    to {
+        stroke-dashoffset: 0px;
+    }
+}
+
+@keyframes eye-l {
+    from {
+        stroke-dashoffset: 18px;
+    }
+
+    to {
+        stroke-dashoffset: 0px;
+    }
+}
+
+@keyframes eye-r {
+    from {
+        stroke-dashoffset: 15px;
+    }
+
+    to {
+        stroke-dashoffset: 0px;
+    }
+}
+
+@keyframes left_eye {
+    0% {
+        transform: translateY(0px);
+    }
+
+    10% {
+        transform: translateY(-4px);
+    }
+
+    20% {
+        transform: translateY(2px);
+    }
+
+    30% {
+        transform: translateY(-1px);
+    }
+
+    35% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes right_eye {
+    0% {
+        transform: translateY(0px);
+    }
+
+    20% {
+        transform: translateY(-4px);
+    }
+
+    30% {
+        transform: translateY(2px);
+    }
+
+    40% {
+        transform: translateY(-1px);
+    }
+
+    45% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+
+.contents {
+    position: relative;
+    // font-size: 30px;
+
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+
+
+
+
+
+.toggle {
+    &__box {
+        display: flex;
+        width: 62px;
+        position: absolute;
+        right: 40px;
+        transform: translateX(0);
+        @include get-color(background-color, color-toggle);
+        border-radius: 14px;
+        opacity: 1;
+        transition: 0.3s;
+
+        &.show {
+            transform: translateX(150px);
+            opacity: 0;
+        }
+    }
+
+    &__item {
+        display: none;
+
+        &:checked+.toggle__btn::after {
+            transform: translate(38px, -50%);
+        }
+    }
+
+    &__btn {
+        width: 100%;
+        height: 26px;
+        position: relative;
+        z-index: 100;
+
+        &::after {
+            @include pseudo('', 20px, 20px);
+            position: absolute;
+            top: 50%;
+            transform: translate(4px, -50%);
+            background-color: #ffffff;
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+    }
+
+    &__icon {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        @include flexCenter(space-around);
+
+        .item {
+            $size: 20px;
+            width: $size;
+            height: $size;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+
+        &--dark {
+            background-image: url('#{$path-image}/toggle-icon_dark.svg');
+        }
+
+        &--light {
+            background-image: url('#{$path-image}/toggle-icon_light.svg');
+        }
+    }
+}
+
+.scroll {
+    height: 86px;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: 0.2s;
+
+    &.show {
+        opacity: 1;
+    }
+
+    &__text {
+        margin-bottom: 14px;
+        font-size: 14px;
+        font-weight: 300;
+        letter-spacing: 1.6px;
+    }
+
+    &__line {
+        width: 1px;
+        height: 50px;
+        background: #fff;
+        animation: line 1.25s cubic-bezier(.165, .84, .44, 1) 0s infinite normal;
+
+    }
+}
+
+@keyframes line {
+    0% {
+        -webkit-transform: translate3d(0, 50px, 0);
+        transform: translate3d(0, 50px, 0);
+        opacity: 0
+    }
+
+    15%,
+    85% {
+        opacity: 1
+    }
+
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        opacity: 0
+    }
+}
+
+
+
+
+
+
+
+
+//   }
+
+//   
+// 
+// .font-red {
+//     @include get-color(color, color-red);
+// }
+// 
+// .font-purple {
+//     @include get-color(color, color-purple);
+// }
+// 
+// .font-green {
+//     @include get-color(color, color-green);
+// }
+// 
+// .font-orange {
+//     @include get-color(color, color-orange);
+// }
+// 
+// .font-mint {
+//     @include get-color(color, color-mint);
+// }
+// 
+// .font-blue {
+//     @include get-color(color, color-blue);
+// }
+// 
+// .font-lightblue {
+//     @include get-color(color, color-lightblue);
+// }
+
+
+
+.btn {
+    padding: 10px 30px;
+    border-radius: 10px;
+    display: inline-block;
+    font-size: 18px;
+    border: 2px solid;
+
+    &-red {
+        @include get-color(background-color, color-red);
+        @include get-color(border-color, color-red);
+    }
+
+    &-red-2 {
+        @include get-color(background-color, color-button);
+        @include get-color(color, color-red);
+        @include get-color(border-color, color-red);
+    }
+
+    &-purple {
+        @include get-color(background-color, color-purple);
+        @include get-color(border-color, color-purple);
+    }
+
+    &-purple-2 {
+        @include get-color(background-color, color-button);
+        @include get-color(color, color-purple);
+        @include get-color(border-color, color-purple);
+    }
+
+    &-green {
+        @include get-color(background-color, color-green);
+        @include get-color(border-color, color-green);
+    }
+
+    &-green-2 {
+        @include get-color(background-color, color-button);
+        @include get-color(color, color-green);
+        @include get-color(border-color, color-green);
+    }
+
+    &-orange {
+        @include get-color(background-color, color-orange);
+        @include get-color(border-color, color-orange);
+    }
+
+    &-orange-2 {
+        @include get-color(background-color, color-button);
+        @include get-color(color, color-orange);
+        @include get-color(border-color, color-orange);
+    }
+
+    &-mint {
+        @include get-color(background-color, color-mint);
+        @include get-color(border-color, color-mint);
+    }
+
+    &-mint-2 {
+        @include get-color(background-color, color-button);
+        @include get-color(color, color-mint);
+        @include get-color(border-color, color-mint);
+    }
+
+    &-blue {
+        @include get-color(background-color, color-blue);
+        @include get-color(border-color, color-blue);
+    }
+
+    &-blue-2 {
+        @include get-color(background-color, color-button);
+        @include get-color(color, color-blue);
+        @include get-color(border-color, color-blue);
+    }
+
+    &-lightblue {
+        @include get-color(background-color, color-lightblue);
+        @include get-color(border-color, color-lightblue);
+    }
+
+    &-lightblue-2 {
+        @include get-color(background-color, color-button);
+        @include get-color(color, color-lightblue);
+        @include get-color(border-color, color-lightblue);
+    }
+
+}
+
+/*********************/
+
+
+/*********************/
+
+$colorNames: (
+    red,
+    purple,
+    green,
+    orange,
+    mint,
+    blue,
+    lightblue
+);
+
+
+@each $font-color,
+$colorName in $colorNames {
+    .font-#{colorName} {
+        color: $colorName;
+        // @include get-color(color, color-#{$colorName});
+    }
+}
+
+
+.contents {
+    height: 500vh;
+}
+
+.about {
+    min-height: 100vh;
+
+    @include ios {
+        min-height: -webkit-fill-available;
+    }
+}

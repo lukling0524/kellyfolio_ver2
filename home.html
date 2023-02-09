@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kellyfolio | 포트폴리오</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
+
+
+<body>
+    <div class="wrap loading">
+        <!-- <div class="wrap "> -->
+        <div id="obj-box" class="full-box">
+            <img class="top-obj" src="./images/bg-intro_obj.png" alt="배경이미지">
+        </div>
+
+        <header id="header" class="header">
+            <h1 class="scroll-top">
+                <svg id="logo" class="logo " width="312.38" height="244.039" viewBox="0 0 312.38 244.039">
+                    <g transform="translate(940.297 -1371.172)">
+                        <path class="logo__k" d="M-920.1,1376.4c2,42.7-2,82-14,123.3" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="8" />
+                        <path class="logo__elly" d="M-870.1,1391c-4.7,17.3-28,49.3-47.3,53.3,5.3,7.3,30,36,36.7,42,16.7,14.7,35.3-3.3,45.3-18,6.7-9.3,14.7-30-2-32.7-10-1.3-17.3,7.3-20.7,16-8.7,24,.7,58.7,31.3,54,28.7-4,48-32,57.3-57.3,5.3-12.7,12.7-41.3,6-54.7-7.3-14.7-14,.7-16,10-4.7,16-2.7,34-2.7,50.7,0,15.3-2,37.3,9.3,49.3,18.7,22,44-40.7,47.3-54,3.2-12.5,11.3-54.7,8.7-58.7-6.7-10-18,8-20,14.7-6.7,22-2,54.7,4.7,76,11.3,36.7,38-32.7,40.7-45.3a69.91,69.91,0,0,0,1.3-12c-8,16-12,33.3-8,52,7.2,18.8,15.2,16.8,28.7,17.3,21.4-.5,28-32,33.3-53.3,6,32.7,3.6,71.3-6,104-9.3,26-18.7,60.7-50,64.7-22,2.7-46.7,2.7-61.3-17.3-7.3-10-11.3-33.3,0-42" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="8" />
+                        <path class="logo__eye-l" d="M-714.8,1543v18" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="8" />
+                        <path class="logo__eye-r" d="M-689.5,1540.4c0,5.3-.7,10,.7,14.7" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="8" />
+                    </g>
+                </svg>
+            </h1>
+
+            <div id="toggle_btn" class="toggle__box">
+                <input type="checkbox" id="theme-toggle" class="toggle__item" checked>
+                <label for="theme-toggle" class="toggle__btn text-hide">테마 토글 버튼</label>
+                <div class="toggle__icon">
+                    <div class="item toggle__icon--dark text-hide">다크모드 아이콘</div>
+                    <div class="item toggle__icon--light text-hide">라이트모드 아이콘</div>
+                </div>
+            </div>
+
+            <div class="scroll">
+                <p class="scroll__text">SCROLL</p>
+                <div class="scroll__line"></div>
+            </div>
+
+        </header>
+
+        <div class="contents">
+            <div class="about">
+                <h2 class="font-red">안녕하세요, 저는 움직이는 화면을 그리는 UI개발자 김경화 입니다.</h2>
+
+                <div>
+                    <p class="font-purple"> 저는 동적 웹사이트 및 사용자가 만족할수 있는 서비스를 만드는 것에 열정을 가진 3년차 웹 퍼블리셔 입니다.</p>
+
+                    <p class="font-orange">
+                        시멘틱한 마크업, 컴포넌트 단위의 스타일시트 작성, 자바스크립트로 인터렉션 구현은 물론 디자이너 및 개발팀과의 커뮤니케이션을 통하여 전달받은 디자인을 완벽하게 웹 페이지로 전환할 수 있습니다.
+                        <br>
+                        저는 복잡한 문제를 파악하고 해결하는 재능이 있고, 제 기술과 지식을 지속적으로 향상시키는 추진력이 있습니다.
+                        <br>
+                        작업의 효율성을 높이기 위해 디자인 팀과 기획 팀 모두와 협력하는 데 탁월하며, 가능한 한 가장 직관적이고 효율적인 웹 경험을 만들기 위해 늘 사용자의 요구를 이해하고 싶습니다.
+                    </p>
+                    <p class="font-lightblue "> 저는 평생 배우는 사람이고 제 기술을 향상시킬 새롭고 혁신적인 방법을 항상 찾고 있습니다.
+                        <br>
+                        꾸준히 성장하고 발전하며 함께 일하고싶은 동료가 되기를 바랍니다.
+                    </p>
+
+
+                </div>
+            </div>
+
+
+        </div>
+        <footer>
+
+        </footer>
+    </div>
+    <script>
+
+        const $html = document.querySelector('html'),
+            $wrap = document.querySelector('.wrap'),
+            $scrollTop = document.querySelector('.scroll-top'),
+            $logo = document.getElementById('logo'),
+            $eye_l = document.querySelector('.logo__eye-l'),
+            $eye_r = document.querySelector('.logo__eye-r'),
+            $scrollText = document.querySelector('.scroll'),
+            $toggleBox = document.querySelector('.toggle__box');
+
+
+        // intro SVG line animation 
+        setTimeout(function () {
+            $eye_l.classList.add('action');
+            $eye_r.classList.add('action');
+        }, 6000)
+
+        setTimeout(function () {
+            $wrap.classList.remove('loading');
+            $scrollText.classList.add('show');
+        }, 6600)
+
+
+        $scrollTop.addEventListener('click', function () {
+            window.scroll({ top: 0, behavior: 'smooth' });
+        });
+
+
+        // theme toggle
+        const $toggleBtn = document.querySelector('.toggle__item');
+
+        $toggleBtn.addEventListener('click', function () {
+            $html.classList.toggle('light-theme');
+        })
+
+
+        // scroll magic
+        const $height = 80;
+
+
+
+        // scroll magin 초기화
+        const controller = new ScrollMagic.Controller({
+            // globalSceneOptions: {
+            //     duration: '50%'
+            // }
+        });
+
+
+        // 로고 포지션 이동
+        const tween_logo = TweenMax.fromTo('#logo', 3,
+            { left: '50%' },
+            {
+                width: 60,
+                height: 'auto',
+                left: 80,
+            });
+
+        new ScrollMagic.Scene({
+            duration: '50%', // 고정
+            triggerHook: 0,
+        })
+            .setTween(tween_logo)
+            .addTo(controller)
+        // .addIndicators({
+        //     indent: 0,
+        //     name: "LOGO",
+        //     colorStart: '#ffa500',
+        //     colorEnd: '#ffa500',
+        //     colorTrigger: '#ffa500',
+        // });
+
+
+        // 스크롤 메세지 display
+        const tween_scrollMSG = TweenMax.fromTo('.scroll', 3, { opacity: 1 }, { opacity: 0 });
+
+
+        new ScrollMagic.Scene({
+            duration: '50%', // 고정
+            triggerHook: 0,
+            offset: 100,
+        })
+            .setTween(tween_scrollMSG)
+            .addTo(controller)
+            .addIndicators({
+                indent: 100,
+                name: "스크롤 메세지",
+                colorStart: 'red',
+                colorEnd: 'red',
+                colorTrigger: 'red',
+            });
+
+
+
+        // header 영역 변경
+        const tween_header = TweenMax.fromTo('#header', 3, { height: '100vh' }, { height: $height, });
+
+        // var timeline = new TimelineMax();
+        // timeline.add(tween_header).add(tween_obj);
+
+        new ScrollMagic.Scene({
+            duration: '50%', // 고정
+            triggerHook: 0,
+        })
+            .setTween(tween_header)
+            .addTo(controller)
+        // .addIndicators({
+        //     indent: 100,
+        //     name: "블러 헤더 영역",
+        // });
+
+        // intro obj 포지션 이동
+        const tween_obj = TweenMax.to('.top-obj', 100, { ease: Back.easeOut, y: '-50%' });
+        new ScrollMagic.Scene({
+            duration: '100%',
+            triggerElement: ".about",
+            triggerHook: 0,
+            // offset: '-200%',
+        })
+            .setTween(tween_obj)
+            .addTo(controller)
+            .addIndicators({
+                indent: 200,
+                name: "intro obj",
+            });
+
+
+
+        // 테마 변경 토글버튼 display
+
+        new ScrollMagic.Scene({
+            duration: '50%', // 고정
+            triggerElement: "#obj-box",
+            triggerHook: 0,
+        })
+            .setClassToggle(".toggle__box", "show")
+            .addTo(controller)
+            // .addIndicators({
+            //     indent: 300,
+            //     name: "toggle display",
+            //     colorStart: 'green',
+            //     colorEnd: 'green',
+            //     colorTrigger: 'green',
+            // });
+
+
+
+    </script>
+</body>
+
+</html>

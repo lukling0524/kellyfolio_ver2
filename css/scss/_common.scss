@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+/* =================================
+
+common.css includes
+
+|
+|– base/
+|   |– _common.scss
+|   |– _font.scss
+|   |– _reset.scss
+|
+
+ ===================================*/
+
+@import 'abstracts/mediaQueries',
+'abstracts/mixin',
+'abstracts/variables';
+
+@import 'base/reset';

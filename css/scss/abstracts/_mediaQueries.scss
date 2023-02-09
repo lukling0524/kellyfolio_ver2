@@ -1,0 +1,19 @@
+// -------
+// media query
+// -------
+
+
+// Break Point 
+$break-point: 1459px;
+
+
+
+@mixin res {
+    @media (max-width: $break-point) {
+        @content;
+    }
+}
+
+@mixin res-laptop {
+    @media (max-width: 1610px) {}
+}
