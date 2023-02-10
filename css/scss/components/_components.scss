@@ -1,0 +1,75 @@
+.svg-color {
+    @include get-color(stroke, color-font);
+}
+
+.section-title {
+    font-size: 46px;
+    font-weight: 600;
+}
+
+.font-accent {
+    @include get-color(color, color-mint);
+}
+
+.btn {
+    position: relative;
+    display: inline-block;
+    padding: 14px 58px 14px 34px;
+    font-weight: 800;
+    @include get-color(color, color-bg);
+    border-radius: 10px;
+    @include get-color(background-color, color-font);
+    transition: background-color 0.3s;
+
+    &:hover {
+        @include get-color(background-color, color-mint);
+    }
+
+    .ico-link {
+        $size: 34px;
+
+        display: block;
+        width: $size;
+        height: $size;
+        position: absolute;
+        top: 14px;
+        right: 20px;
+
+        &__arrow {
+            transition: 0.2s;
+        }
+
+        .svg-color {
+            @include get-color(stroke, color-bg);
+            @include get-color(fill, color-bg);
+        }
+    }
+
+    &:hover .ico-link__arrow {
+        animation: arrow 1s infinite both;
+    }
+}
+
+@keyframes arrow {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    30% {
+        transform: translate(4px, -4px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+
+}
+
+// 
+// .light-theme .ico-link {
+//     fill: #fff;
+// 
+//     g {
+//         stroke: #fff;
+//     }
+// }

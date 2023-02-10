@@ -63,7 +63,7 @@ fieldset {
 span {
     font-size: inherit;
     font-weight: inherit;
-    vertical-align: text-bottom;
+    vertical-align: unset;
 }
 
 ul,
@@ -197,13 +197,14 @@ body {
     min-height: 100%;
     font-family: 'Noto Sans KR', sans-serif;
     text-align: left;
-    font-size: 18px;
-    line-height: 1.6;
-    color: #fff;
+    font-size: 19px;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     word-break: keep-all;
-    // overflow: hidden;
-    background-color: #fff;
+    @include get-color(color, color-font);
+    @include get-color(background-color, color-bg);
+    overflow-x: hidden;
+    transition: color, background 0.2s;
 }
 
 a:focus {

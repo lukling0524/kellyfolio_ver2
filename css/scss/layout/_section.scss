@@ -1,12 +1,8 @@
 .contents {
     position: relative;
-    // font-size: 30px;
-
     max-width: 1600px;
-    margin: 100px auto 0;
-    padding: 40px 60px 0;
-
-    height: 1500vh;
+    margin: 0 auto 0;
+    padding: 0 60px 0;
 }
 
 .about {
@@ -32,13 +28,7 @@
         width: 85%;
         max-width: 400px;
         margin: 0 auto;
-        border-radius: 50%;
-
-
-
-        // position: fixed;
-        // top: 100px;
-        // width: 400px;
+        // border-radius: 50%;
     }
 
 
@@ -52,19 +42,48 @@
         background: url('#{$path-image}/img-about.png') no-repeat center / contain;
     }
 
-    &__text {
+    &__title {
+        position: relative;
         flex: 1;
 
-        &--tit {
-            margin-bottom: 40px;
-            font-size: 46px;
-            line-height: 1.7;
-            font-weight: 600;
+        .ico-accent {
+            position: absolute;
+            top: -6px;
+            left: -12px;
+            ;
         }
+
+        .section-title {
+            margin-bottom: 40px;
+        }
+    }
+
+    &__text {
+        max-width: 884px;
+        margin: 0 auto;
+
+
 
         &--item+&--item {
             margin-top: 30px;
         }
+    }
+}
+
+
+.process {
+    margin-top: 140px;
+
+    .section-title {
+        text-align: center;
+    }
+
+    &__item {
+        &::before {
+            @include pseudo('', 10px, 10px);
+            @include get-color(background-color, color-mint);
+        }
+
     }
 }
 
