@@ -28,40 +28,42 @@
     .avata {
         display: block;
         width: 85%;
-        max-width: 400px;
+        max-width: 398px;
         margin: 0 auto;
-        border-radius: 50%;
+        // border-radius: 50%;
     }
 
 
     .memoji {
-        $size: 100px;
+        $size: 70px;
+
         width: 100%;
         max-width: $size;
         height: 100%;
         max-height: $size;
         position: absolute;
         background: url('#{$path-image}/img-about.png') no-repeat center / contain;
+        opacity: 0.6;
 
-        &__1 {
-            top: 30%;
-            left: 0%;
-        }
-
-        &__2 {
-            top: 40%;
-            right: 10%;
-        }
-
-        &__3 {
-            top: 50%;
-            left: 30%;
-        }
-
-        &__4 {
-            top: 60%;
-            right: 10%;
-        }
+        //         &__1 {
+        //             top: 30%;
+        //             left: 0%;
+        //         }
+        // 
+        //         &__2 {
+        //             top: 40%;
+        //             right: 10%;
+        //         }
+        // 
+        //         &__3 {
+        //             top: 50%;
+        //             left: 30%;
+        //         }
+        // 
+        //         &__4 {
+        //             top: 60%;
+        //             right: 10%;
+        //         }
     }
 
     &__title {
@@ -83,8 +85,6 @@
     &__text {
         max-width: 884px;
         margin: 0 auto;
-
-
 
         &--item+&--item {
             margin-top: 30px;
