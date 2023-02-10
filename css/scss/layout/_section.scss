@@ -6,10 +6,12 @@
 }
 
 .about {
-    padding-top: 80px;
+    $header : 80px;
+    position: relative;
+    padding-top: $header;
 
     &__intro {
-        height: calc(100vh - 80px);
+        height: calc(100vh + $header);
         display: flex;
         align-items: center;
 
@@ -28,18 +30,38 @@
         width: 85%;
         max-width: 400px;
         margin: 0 auto;
-        // border-radius: 50%;
+        border-radius: 50%;
     }
 
 
     .memoji {
-        $size: 420px;
+        $size: 100px;
         width: 100%;
         max-width: $size;
         height: 100%;
         max-height: $size;
-        @include positionCenter;
+        position: absolute;
         background: url('#{$path-image}/img-about.png') no-repeat center / contain;
+
+        &__1 {
+            top: 30%;
+            left: 0%;
+        }
+
+        &__2 {
+            top: 40%;
+            right: 10%;
+        }
+
+        &__3 {
+            top: 50%;
+            left: 30%;
+        }
+
+        &__4 {
+            top: 60%;
+            right: 10%;
+        }
     }
 
     &__title {

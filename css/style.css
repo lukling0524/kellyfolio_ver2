@@ -631,10 +631,11 @@ a:focus {
 }
 
 .about {
+	position: relative;
 	padding-top: 80px;
 }
 .about__intro {
-	height: calc(100vh - 80px);
+	height: calc(100vh + 80px);
 	display: flex;
 	align-items: center;
 }
@@ -652,17 +653,31 @@ a:focus {
 	width: 85%;
 	max-width: 400px;
 	margin: 0 auto;
+	border-radius: 50%;
 }
 .about .memoji {
 	width: 100%;
-	max-width: 420px;
+	max-width: 100px;
 	height: 100%;
-	max-height: 420px;
+	max-height: 100px;
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 	background: url("../images/img-about.png") no-repeat center/contain;
+}
+.about .memoji__1 {
+	top: 30%;
+	left: 0%;
+}
+.about .memoji__2 {
+	top: 40%;
+	right: 10%;
+}
+.about .memoji__3 {
+	top: 50%;
+	left: 30%;
+}
+.about .memoji__4 {
+	top: 60%;
+	right: 10%;
 }
 .about__title {
 	position: relative;
