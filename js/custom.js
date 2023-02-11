@@ -13,49 +13,47 @@ const $html = document.querySelector('html'),
 /**
 * 초기화면 로딩시
 */
-setTimeout(function () {
-    $wrap.classList.remove('loading');
-    $scrollText.classList.add('show');
-}, 6600)
+// setTimeout(function () {
+//     $wrap.classList.remove('loading');
+//     $scrollText.classList.add('show');
+// }, 6600)
 
 
 /**
  * LOGO 눈 path 상하 움직임 animation 
  */
-setTimeout(function () {
-    $eye_l.classList.add('action');
-    $eye_r.classList.add('action');
-}, 6000)
+// setTimeout(function () {
+//     $eye_l.classList.add('action');
+//     $eye_r.classList.add('action');
+// }, 6000)
 
 
 /**
  * 로고 클릭 시, 새로고침 시 scrollY = 0
  */
-$scrollTop.addEventListener('click', function () {
-    window.scroll({ top: 0, behavior: 'smooth' });
-});
+// $scrollTop.addEventListener('click', function () {
+//     window.scroll({ top: 0, behavior: 'smooth' });
+// });
 
 window.onbeforeunload = function () {
     window.scrollTo(0, 0);
-
-    console.log(`리로드`);
 };
 
 
 /**
  * 라이트모드-다크모드 토글 버튼
  */
-const $toggleBtn = document.querySelector('.toggle__item'),
-    $themeIcons = document.querySelectorAll('.toggle__icon .item');
-
-$toggleBtn.addEventListener('click', function () {
-    $html.classList.toggle('light-theme');
-
-    for (let i = 0; i < $themeIcons.length; i++) {
-        $themeIcons[i].classList.toggle('on');
-
-    }
-})
+// const $toggleBtn = document.querySelector('.toggle__item'),
+//     $themeIcons = document.querySelectorAll('.toggle__icon .item');
+// 
+// $toggleBtn.addEventListener('click', function () {
+//     $html.classList.toggle('light-theme');
+// 
+//     for (let i = 0; i < $themeIcons.length; i++) {
+//         $themeIcons[i].classList.toggle('on');
+// 
+//     }
+// })
 
 
 
@@ -275,7 +273,7 @@ new ScrollMagic.Scene({
 
 
 // 이메일 텍스트 slide left
-const $tween_email = TweenMax.fromTo('.contact__wrap', 3, { opacity: 0, x: -100 }, { opacity: 1, x: 0, ease: Elastic.easeOut.config(1, 0.3) });
+const $tween_email = TweenMax.fromTo('.contact__email', 3, { opacity: 0, x: -100 }, { opacity: 1, x: 0, ease: Elastic.easeOut.config(1, 0.3) });
 new ScrollMagic.Scene({
     // duration: 500,
     triggerElement: '.contact .section-title',
@@ -284,10 +282,48 @@ new ScrollMagic.Scene({
 })
     .setTween($tween_email)
     .addTo($controller)
-    // .addIndicators({
-    //     indent: 0,
-    //     name: '이메일 타이틀',
-    //     colorStart: 'yellow',
-    //     colorEnd: 'yellow',
-    //     colorTrigger: 'yellow',
-    // });
+// .addIndicators({
+//     indent: 0,
+//     name: '이메일 타이틀',
+//     colorStart: 'yellow',
+//     colorEnd: 'yellow',
+//     colorTrigger: 'yellow',
+// });
+
+
+const box = document.querySelector('.contact__wrap');
+const items = document.querySelectorAll('.contact__icon');
+
+const width = box.offsetWidth - items[0].offsetWidth;
+const height = box.offsetHeight - items[0].offsetHeight;
+
+for (let i = 0; i < items.length; i++) {
+    let x = Math.random() * width;
+    let y = Math.random() * height;
+    let vx = (Math.random() * 2) - (Math.random() * 2);
+    let vy = (Math.random() * 2) - (Math.random() * 2);
+    let speed = Math.round(Math.random() * 80);
+
+    items[i].style.left = `${x}px`;
+    items[i].style.top = `${y}px`;
+
+    setInterval(() => {
+        x += vx;
+        y += vy;
+
+        if (x <= 0 || x >= width) {
+            vx = -vx;
+        }
+        if (y <= 0 || y >= height) {
+            vy = -vy;
+        }
+
+        items[i].style.left = `${x}px`;
+        items[i].style.top = `${y}px`;
+    }, speed);
+}
+
+window.addEventListener("resize", function () {
+    width = box.innerWidth;
+    height = box.innerHeight;
+});

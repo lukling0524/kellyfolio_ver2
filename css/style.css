@@ -808,32 +808,51 @@ a:focus {
 .contact {
 	padding-top: 100px;
 }
+.contact__wrap {
+	position: relative;
+	padding: 40px 0;
+}
+.contact__icon {
+	width: 36px;
+	height: 36px;
+	position: absolute;
+	left: 50%;
+	background: url("../images/ico-interest.svg") no-repeat center/contain;
+	opacity: 0.8;
+	z-index: -1;
+}
+.contact__icon:first-of-type {
+	transform: scale(0.8);
+}
+.contact__icon:last-of-type {
+	transform: scale(1.2);
+}
 .contact .section-title {
 	text-align: center;
 }
-.contact__wrap {
+.contact__email {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	gap: 46px;
 	padding: 150px 0;
 }
-.contact__icon {
+.contact__email--icon {
 	width: 100px;
 	height: 100px;
 	background: url("../images/ico-envelope.svg") no-repeat center/contain;
 	animation: heartbeat 2s ease-in-out infinite both;
 }
-.contact__email {
+.contact__email--address {
 	font-size: 60px;
 	font-family: "Open Sans", sans-serif;
 	transition: 0.3s;
 }
-.contact__email:hover {
+.contact__email--address:hover {
 	transform: scale(1.1);
 	color: #89DDFF;
 }
-.light-theme .contact__email:hover {
+.light-theme .contact__email--address:hover {
 	color: #39ADB5;
 }
 

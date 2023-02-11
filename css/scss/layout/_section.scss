@@ -224,35 +224,63 @@
 .contact {
     padding-top: 100px;
 
+    &__wrap {
+        position: relative;
+        padding: 40px 0;
+    }
+
+    &__icon {
+        $size: 36px;
+
+        width: $size;
+        height: $size;
+        position: absolute;
+        left: 50%;
+        background: url('#{$path-image}/ico-interest.svg') no-repeat center / contain;
+        opacity: 0.8;
+        z-index: -1;
+
+        &:first-of-type {
+            transform: scale(0.8);
+        }
+
+        &:last-of-type {
+            transform: scale(1.2);
+        }
+    }
+
     .section-title {
         text-align: center;
     }
 
-    &__wrap {
+    &__email {
         @include flexCenter(center);
         gap: 46px;
         padding: 150px 0;
-    }
 
-    &__icon {
-        $size: 100px;
+        &--icon {
+            $size: 100px;
 
-        width: $size;
-        height: $size;
-        background: url('#{$path-image}/ico-envelope.svg') no-repeat center / contain;
-        animation: heartbeat 2s ease-in-out infinite both;
-    }
+            width: $size;
+            height: $size;
+            background: url('#{$path-image}/ico-envelope.svg') no-repeat center / contain;
+            animation: heartbeat 2s ease-in-out infinite both;
+        }
 
-    &__email {
-        font-size: 60px;
-        font-family: 'Open Sans', sans-serif;
-        transition: 0.3s;
+        &--address {
+            font-size: 60px;
+            font-family: 'Open Sans', sans-serif;
+            transition: 0.3s;
 
-        &:hover {
-            transform: scale(1.1);
-            @include get-color(color, color-mint);
+            &:hover {
+                transform: scale(1.1);
+                @include get-color(color, color-mint);
+            }
         }
     }
+
+
+
 }
 
 @keyframes heartbeat {
