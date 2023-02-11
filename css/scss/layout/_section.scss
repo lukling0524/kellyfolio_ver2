@@ -81,7 +81,7 @@
     padding-top: 250px;
 
     .random-icon {
-        $size: 26px;
+        $size: 100px;
 
         width: 100%;
         max-width: $size;
@@ -110,6 +110,7 @@
     }
 
     &__wrap {
+        position: relative;
         flex: 3;
         margin-top: 220px;
     }

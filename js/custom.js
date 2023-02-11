@@ -223,6 +223,9 @@ new ScrollMagic.Scene({
 //     video.currentTime = scrollpos;
 // }, 233.1);
 
+
+
+
 //how to work 섹션 pinned 모션
 const tween_work = TweenMax.fromTo(
     '#toggle_btn', 1, { opacity: 0 }, { opacity: 1 });
@@ -243,12 +246,14 @@ new ScrollMagic.Scene({
     });
 
 
+
+//랜덤아이콘  
 const $iconSection = document.querySelector('.howtowork');
 
 let $posX = [],
     $posY = [];
 
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 6; i++) {
     $iconSection.insertAdjacentHTML('afterbegin', `<div class="random-icon text-hide">배경 랜덤 아이콘</div>`);
 
     $posX.push(Math.floor(Math.random() * 100));
@@ -258,32 +263,35 @@ for (let i = 0; i < 20; i++) {
 
 const $randomIcon = document.querySelectorAll('.random-icon');
 
+$randomIcon.forEach((icon, idx) => {
+    icon.style.cssText = `
+        top : ${$posY[idx]}%;
+        left : ${$posX[idx]}%;
+        background-image : url(../images/ico-random_${idx}.svg);
+    `
 
-// $randomIcon.forEach((icon, idx) => {
-//     // icon.setAttribute('style', `background-image : url(../images/ico-random_${idx}.svg)`)
-// 
-//     icon.style.cssText = `
-//         top : ${$posY};
-//         left : ${$posX};
-//         background-image : url(../images/ico-random_${idx}.svg);
-//     `
-// 
-//  
-// });
+    var timeline = new TimelineMax();
 
+    const tween_icons1 = TweenMax.to('.random-icon:nth-child(odd)', 6, { rotation: 360 });
+    const tween_icons2 = TweenMax.to('.random-icon:nth-child(even)', 6, { rotation: -360 });
 
+    timeline.add(tween_icons1).add(tween_icons2);
 
-for (let i = 0; i < $randomIcon.length; i++) {
+    new ScrollMagic.Scene({
+        duration: 2000,
+        triggerElement: '.random-icon:nth-child(' + (idx + 1) + ')',
+        triggerHook: 0.5,
+        offset: -100,
+    })
+        .setClassToggle('.random-icon:nth-child(' + (idx + 1) + ')', 'is-active')
+        .setTween(timeline)
+        .addTo(controller)
+        .addIndicators({
+            indent: 100,
+            name: "아이콘 애니",
+            colorStart: 'green',
+            colorEnd: 'green',
+            colorTrigger: 'green',
+        });
+});
 
-
-    // $randomIcon[i].style.cssText = `
-    //     top : ${$posY[i]};
-    //     left : ${$posX[i]};
-    //     background-image : url(../images/ico-random_${i}.svg);
-    // `
-
-    $randomIcon[i].setAttribute('style', 'top : ' + $posY[i] + '%;left : ' + $posX[i] + '%; background-image : url(../images/ico-random_' + i + '.svg)');
-
-
-    console.log($posY[i]);
-}

@@ -692,9 +692,9 @@ a:focus {
 }
 .howtowork .random-icon {
 	width: 100%;
-	max-width: 26px;
+	max-width: 100px;
 	height: 100%;
-	max-height: 26px;
+	max-height: 100px;
 	position: absolute;
 	background: url("../images/ico-random_6.svg") no-repeat center/contain;
 	opacity: 0.6;
@@ -710,6 +710,7 @@ a:focus {
 	width: auto;
 }
 .howtowork__wrap {
+	position: relative;
 	flex: 3;
 	margin-top: 220px;
 }
