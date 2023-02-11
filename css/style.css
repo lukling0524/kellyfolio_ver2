@@ -5,22 +5,15 @@ style.css includes
 
 |
 |– base/
-|   |– _common.scss
 |   |– _reset.scss
 |
-
- ===================================*/
-/* =================================
-
-common.css includes
-
+|– components/
+|   |– _components.scss
 |
-|– base/
-|   |– _common.scss
-|   |– _font.scss
-|   |– _reset.scss
+|– layout/
+|   |– _loading.scss
+|   |– _section.scss
 |
-
  ===================================*/
 /* ==========================================================
 =============================================================
@@ -118,7 +111,7 @@ button {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-family: "Noto Sans KR", sans-serif;
+	font-family: "Noto Sans KR", "맑은 고딕", "Malgun Gothic", sans-serif;
 	font-size: 100%;
 	line-height: 1.6;
 	outline: none !important;
@@ -217,7 +210,7 @@ body {
 	width: 100%;
 	height: 100%;
 	min-height: 100%;
-	font-family: "Noto Sans KR", sans-serif;
+	font-family: "Noto Sans KR", "맑은 고딕", "Malgun Gothic", sans-serif;
 	text-align: left;
 	font-size: 19px;
 	line-height: 1.7;
@@ -260,6 +253,13 @@ a:focus {
 }
 .light-theme .svg-color {
 	stroke: #222222;
+}
+
+.svg-color__fill {
+	fill: #FFFFFF;
+}
+.light-theme .svg-color__fill {
+	fill: #222222;
 }
 
 .section-title {
@@ -683,21 +683,97 @@ a:focus {
 	margin-top: 30px;
 }
 
-.process {
-	margin-top: 140px;
+.howtowork {
+	position: relative;
+	width: 100%;
+	display: flex;
+	align-items: flex-start;
+	padding-top: 250px;
 }
-.process .section-title {
+.howtowork .random-icon {
+	width: 100%;
+	max-width: 26px;
+	height: 100%;
+	max-height: 26px;
+	position: absolute;
+	background: url("../images/ico-random_6.svg") no-repeat center/contain;
+	opacity: 0.6;
+}
+.howtowork .section-title {
+	flex: 2;
 	text-align: center;
 }
-.process__item::before {
+.howtowork .scrollmagic-pin-spacer {
+	flex: 2;
+}
+.howtowork .scrollmagic-pin-spacer .section-title {
+	width: auto;
+}
+.howtowork__wrap {
+	flex: 3;
+	margin-top: 220px;
+}
+.howtowork__item + .howtowork__item {
+	margin-top: 100px;
+}
+.howtowork__main {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.howtowork__main--tit {
+	font-size: 22px;
+	font-weight: 600;
+}
+.howtowork__icon {
+	width: 40px;
+	height: 40px;
+}
+.howtowork__icon svg {
+	width: 100%;
+	height: 100%;
+}
+.howtowork__sub {
+	margin-top: 14px;
+	margin-left: 70px;
+}
+.howtowork__list {
+	position: relative;
+}
+.howtowork__list + .howtowork__list {
+	margin-top: 8px;
+}
+.howtowork__list::before {
 	content: "";
 	display: block;
-	width: 10px;
-	height: 10px;
+	width: 6px;
+	height: 6px;
+	position: absolute;
+	top: 13px;
+	left: -17px;
+	border-radius: 50%;
 	background-color: #89DDFF;
 }
-.light-theme .process__item::before {
+.light-theme .howtowork__list::before {
 	background-color: #39ADB5;
+}
+
+.process .section-title {
+	margin-top: 140px;
+	margin-bottom: 80px;
+}
+
+.project .section-title {
+	margin-top: 140px;
+	margin-bottom: 80px;
+}
+
+.contact .envelope__heart {
+	fill: #E86E75;
+	transform: scale(1.2) translate(1178.24, 1670.43);
+}
+.light-theme .contact .envelope__heart {
+	fill: #E53936;
 }
 
 .footer {

@@ -44,26 +44,6 @@
         position: absolute;
         background: url('#{$path-image}/img-about.png') no-repeat center / contain;
         opacity: 0.6;
-
-        //         &__1 {
-        //             top: 30%;
-        //             left: 0%;
-        //         }
-        // 
-        //         &__2 {
-        //             top: 40%;
-        //             right: 10%;
-        //         }
-        // 
-        //         &__3 {
-        //             top: 50%;
-        //             left: 30%;
-        //         }
-        // 
-        //         &__4 {
-        //             top: 60%;
-        //             right: 10%;
-        //         }
     }
 
     &__title {
@@ -93,22 +73,122 @@
 }
 
 
-.process {
-    margin-top: 140px;
+.howtowork {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 250px;
+
+    .random-icon {
+        $size: 26px;
+
+        width: 100%;
+        max-width: $size;
+        height: 100%;
+        max-height: $size;
+        position: absolute;
+        background: url('#{$path-image}/ico-random_6.svg') no-repeat center / contain;
+        opacity: 0.6;
+    }
+
 
     .section-title {
+        //     margin-bottom: 80px;
+        flex: 2;
         text-align: center;
     }
 
-    &__item {
+
+
+    .scrollmagic-pin-spacer {
+        flex: 2;
+
+        .section-title {
+            width: auto;
+        }
+    }
+
+    &__wrap {
+        flex: 3;
+        margin-top: 220px;
+    }
+
+    &__item+&__item {
+        margin-top: 100px;
+    }
+
+    &__main {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        &--tit {
+            font-size: 22px;
+            font-weight: 600;
+        }
+    }
+
+    &__icon {
+        $size: 40px;
+
+        width: $size;
+        height: $size;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__sub {
+        margin-top: 14px;
+        margin-left: 70px;
+    }
+
+    &__list {
+        position: relative;
+
+        &+& {
+            margin-top: 8px;
+        }
+
         &::before {
-            @include pseudo('', 10px, 10px);
+            $size: 6px;
+            @include pseudo('', $size, $size);
+            position: absolute;
+            top: 13px;
+            left: -17px;
+            border-radius: 50%;
             @include get-color(background-color, color-mint);
         }
 
     }
 }
 
+.process {
+    .section-title {
+        margin-top: 140px;
+        margin-bottom: 80px;
+    }
+
+}
+
+.project {
+    .section-title {
+        margin-top: 140px;
+        margin-bottom: 80px;
+    }
+
+}
+
+
+.contact {
+    .envelope__heart {
+        @include get-color(fill, color-red);
+        transform: scale(1.2) translate(1178.24, 1670.43);
+    }
+}
 
 .footer {
     padding: 100px 0 20px;

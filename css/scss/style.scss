@@ -4,17 +4,23 @@ style.css includes
 
 |
 |– base/
-|   |– _common.scss
 |   |– _reset.scss
 |
-
+|– components/
+|   |– _components.scss
+|
+|– layout/
+|   |– _loading.scss
+|   |– _section.scss
+|
  ===================================*/
+@charset 'utf-8';
 
 @import 'abstracts/mediaQueries',
 'abstracts/mixin',
 'abstracts/variables';
 
-@import 'common',
+@import 'base/reset',
 'components/components',
 'layout/loading',
 'layout/section';

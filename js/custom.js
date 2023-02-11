@@ -22,18 +22,18 @@ const $html = document.querySelector('html'),
 /**
  * LOGO 눈 path 상하 움직임 animation 
  */
-setTimeout(function () {
-    $eye_l.classList.add('action');
-    $eye_r.classList.add('action');
-}, 6000)
+// setTimeout(function () {
+//     $eye_l.classList.add('action');
+//     $eye_r.classList.add('action');
+// }, 6000)
 
 
 /**
  * 로고 클릭 시, 새로고침 시 scrollY = 0
  */
-$scrollTop.addEventListener('click', function () {
-    window.scroll({ top: 0, behavior: 'smooth' });
-});
+// $scrollTop.addEventListener('click', function () {
+//     window.scroll({ top: 0, behavior: 'smooth' });
+// });
 
 window.onbeforeunload = function () {
     window.scrollTo(0, 0);
@@ -43,17 +43,17 @@ window.onbeforeunload = function () {
 /**
  * 라이트모드-다크모드 토글 버튼
  */
-const $toggleBtn = document.querySelector('.toggle__item'),
-    $themeIcons = document.querySelectorAll('.toggle__icon .item');
-
-$toggleBtn.addEventListener('click', function () {
-    $html.classList.toggle('light-theme');
-
-    for (let i = 0; i < $themeIcons.length; i++) {
-        $themeIcons[i].classList.toggle('on');
-
-    }
-})
+// const $toggleBtn = document.querySelector('.toggle__item'),
+//     $themeIcons = document.querySelectorAll('.toggle__icon .item');
+// 
+// $toggleBtn.addEventListener('click', function () {
+//     $html.classList.toggle('light-theme');
+// 
+//     for (let i = 0; i < $themeIcons.length; i++) {
+//         $themeIcons[i].classList.toggle('on');
+// 
+//     }
+// })
 
 
 
@@ -186,39 +186,104 @@ new ScrollMagic.Scene({
 
 
 // About section 아바타 비디오 scroll 모션
-const video = document.querySelector('.avata');
+// const video = document.querySelector('.avata');
+// 
+// let videoScroll = new ScrollMagic.Scene({
+//     duration: 4000,
+//     triggerElement: ".about",
+//     triggerHook: 0,
+//     offset: 100,
+// })
+//     .setPin(".about")
+//     .addTo(controller)
+//     .addIndicators({
+//         indent: 50,
+//         name: "비디오 비디오",
+//         colorStart: 'black',
+//         colorEnd: 'black',
+//         colorTrigger: 'black',
+//     });
+// 
+// 
+// //Video Animation
+// let accelamount = 0.1;
+// let scrollpos = 0;
+// let delay = 0;
+// 
+// videoScroll.on('update', e => {
+//     if (e.scrollPos > e.startPos) {
+//         scrollpos = e.scrollPos / 1000;
+// 
+//         console.log('active');
+//     }
+// });
+// 
+// setInterval(() => {
+//     delay += (scrollpos - delay) * accelamount;
+//     video.currentTime = scrollpos;
+// }, 233.1);
 
-let videoScroll = new ScrollMagic.Scene({
-    duration: 4000,
-    triggerElement: ".about",
+//how to work 섹션 pinned 모션
+const tween_work = TweenMax.fromTo(
+    '#toggle_btn', 1, { opacity: 0 }, { opacity: 1 });
+
+new ScrollMagic.Scene({
+    duration: 900,
+    triggerElement: ".howtowork",
     triggerHook: 0,
-    offset: 100,
 })
-    .setPin(".about")
+    .setPin(".howtowork .section-title")
     .addTo(controller)
     .addIndicators({
         indent: 50,
-        name: "비디오 비디오",
-        colorStart: 'black',
-        colorEnd: 'black',
-        colorTrigger: 'black',
+        name: "이렇게 일합니다",
+        colorStart: 'red',
+        colorEnd: 'red',
+        colorTrigger: 'red',
     });
 
 
-//Video Animation
-let accelamount = 0.1;
-let scrollpos = 0;
-let delay = 0;
+const $iconSection = document.querySelector('.howtowork');
 
-videoScroll.on('update', e => {
-    if (e.scrollPos > e.startPos) {
-        scrollpos = e.scrollPos / 1000;
+let $posX = [],
+    $posY = [];
 
-        console.log('active');
-    }
-});
+for (let i = 0; i < 20; i++) {
+    $iconSection.insertAdjacentHTML('afterbegin', `<div class="random-icon text-hide">배경 랜덤 아이콘</div>`);
 
-setInterval(() => {
-    delay += (scrollpos - delay) * accelamount;
-    video.currentTime = scrollpos;
-}, 233.1);
+    $posX.push(Math.floor(Math.random() * 100));
+    $posY.push(Math.floor(Math.random() * 100));
+}
+
+
+const $randomIcon = document.querySelectorAll('.random-icon');
+
+
+// $randomIcon.forEach((icon, idx) => {
+//     // icon.setAttribute('style', `background-image : url(../images/ico-random_${idx}.svg)`)
+// 
+//     icon.style.cssText = `
+//         top : ${$posY};
+//         left : ${$posX};
+//         background-image : url(../images/ico-random_${idx}.svg);
+//     `
+// 
+//  
+// });
+
+
+
+for (let i = 0; i < $randomIcon.length; i++) {
+
+
+    // $randomIcon[i].style.cssText = `
+    //     top : ${$posY[i]};
+    //     left : ${$posX[i]};
+    //     background-image : url(../images/ico-random_${i}.svg);
+    // `
+
+    $randomIcon[i].setAttribute('style', 'top : ' + $posY[i] + '%;left : ' + $posX[i] + '%; background-image : url(../images/ico-random_' + i + '.svg)');
+
+
+    console.log($posY[i]);
+}

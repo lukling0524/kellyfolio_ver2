@@ -1,5 +1,9 @@
 .svg-color {
     @include get-color(stroke, color-font);
+
+    &__fill {
+        @include get-color(fill, color-font);
+    }
 }
 
 .section-title {
@@ -64,12 +68,3 @@
     }
 
 }
-
-// 
-// .light-theme .ico-link {
-//     fill: #fff;
-// 
-//     g {
-//         stroke: #fff;
-//     }
-// }
