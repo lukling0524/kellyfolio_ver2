@@ -292,7 +292,7 @@
     &__line {
         width: 1px;
         height: 50px;
-        background: #fff;
+        @include get-color(background-color, color-font);
         animation: line 1.25s cubic-bezier(.165, .84, .44, 1) 0s infinite normal;
 
     }

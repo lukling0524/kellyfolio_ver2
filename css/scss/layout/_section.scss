@@ -20,7 +20,7 @@
         }
     }
 
-    &__img {
+    &__visual {
         position: relative;
         flex: 1;
     }
@@ -30,32 +30,25 @@
         width: 85%;
         max-width: 398px;
         margin: 0 auto;
-        // border-radius: 50%;
+        border-radius: 50%;
     }
 
 
-    .memoji {
-        $size: 70px;
-
-        width: 100%;
-        max-width: $size;
-        height: 100%;
-        max-height: $size;
-        position: absolute;
-        background: url('#{$path-image}/img-about.png') no-repeat center / contain;
-        opacity: 0.6;
-    }
+    //     .memoji {
+    //         $size: 70px;
+    // 
+    //         width: 100%;
+    //         max-width: $size;
+    //         height: 100%;
+    //         max-height: $size;
+    //         position: absolute;
+    //         background: url('#{$path-image}/img-about.png') no-repeat center / contain;
+    //         opacity: 0.6;
+    //     }
 
     &__title {
         position: relative;
         flex: 1;
-
-        .ico-accent {
-            position: absolute;
-            top: -6px;
-            left: -12px;
-            ;
-        }
 
         .section-title {
             margin-bottom: 40px;
@@ -63,8 +56,11 @@
     }
 
     &__text {
-        max-width: 884px;
-        margin: 0 auto;
+        @include flexCenter(center);
+
+        &--box {
+            display: inline-block;
+        }
 
         &--item+&--item {
             margin-top: 30px;
@@ -80,26 +76,54 @@
     align-items: flex-start;
     padding-top: 250px;
 
-    .random-icon {
-        $size: 100px;
-
-        width: 100%;
-        max-width: $size;
-        height: 100%;
-        max-height: $size;
-        position: absolute;
-        background: url('#{$path-image}/ico-random_6.svg') no-repeat center / contain;
-        opacity: 0.6;
-    }
+    //     .random-icon {
+    //         $size: 100px;
+    // 
+    //         width: 100%;
+    //         max-width: $size;
+    //         height: 100%;
+    //         max-height: $size;
+    //         position: absolute;
+    //         background: url('#{$path-image}/ico-random_6.svg') no-repeat center / contain;
+    //         opacity: 0.6;
+    //     }
 
 
     .section-title {
-        //     margin-bottom: 80px;
+        position: relative;
         flex: 2;
         text-align: center;
+
+        &::after {
+            $size: 60px;
+
+            @include pseudo('', $size, $size);
+            position: absolute;
+            top: -52px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: url('#{$path-image}/ico-bulb.svg') no-repeat center / cover;
+            opacity: 0.4;
+        }
+
+        &.is-active::after {
+            opacity: 1;
+            animation: flick 1.5s linear infinite both;
+
+            @keyframes flick {
+
+                0%,
+                100% {
+                    opacity: 1;
+                }
+
+                20% {
+                    opacity: 0.4;
+                }
+            }
+
+        }
     }
-
-
 
     .scrollmagic-pin-spacer {
         flex: 2;
@@ -135,10 +159,23 @@
 
         width: $size;
         height: $size;
+        background-repeat: no-repeat;
+        background-size: cover;
 
-        svg {
-            width: 100%;
-            height: 100%;
+        &--pencil {
+            background-image: url('#{$path-image}/ico-pencil.svg')
+        }
+
+        &--keyboard {
+            background-image: url('#{$path-image}/ico-keyboard.svg')
+        }
+
+        &--user {
+            background-image: url('#{$path-image}/ico-user.svg')
+        }
+
+        &--chat {
+            background-image: url('#{$path-image}/ico-chat.svg')
         }
     }
 
@@ -185,14 +222,71 @@
 
 
 .contact {
-    .envelope__heart {
-        @include get-color(fill, color-red);
-        transform: scale(1.2) translate(1178.24, 1670.43);
+    padding-top: 100px;
+
+    .section-title {
+        text-align: center;
+    }
+
+    &__wrap {
+        @include flexCenter(center);
+        gap: 46px;
+        padding: 150px 0;
+    }
+
+    &__icon {
+        $size: 100px;
+
+        width: $size;
+        height: $size;
+        background: url('#{$path-image}/ico-envelope.svg') no-repeat center / contain;
+        animation: heartbeat 2s ease-in-out infinite both;
+    }
+
+    &__email {
+        font-size: 60px;
+        font-family: 'Open Sans', sans-serif;
+        transition: 0.3s;
+
+        &:hover {
+            transform: scale(1.1);
+            @include get-color(color, color-mint);
+        }
     }
 }
 
+@keyframes heartbeat {
+    from {
+        transform: scale(0.99);
+        transform-origin: center center;
+        animation-timing-function: ease-out;
+    }
+
+    20% {
+        transform: scale(0.93);
+        animation-timing-function: ease-in;
+    }
+
+    47% {
+        transform: scale(0.99);
+        animation-timing-function: ease-out;
+    }
+
+    73% {
+        transform: scale(0.91);
+        animation-timing-function: ease-in;
+    }
+
+    85% {
+        transform: scale(0.98);
+        animation-timing-function: ease-out;
+    }
+}
+
+
+
 .footer {
-    padding: 100px 0 20px;
+    padding: 40px 0 20px;
     font-size: 12px;
     text-align: center;
     @include get-color(color, color-lightblue);
