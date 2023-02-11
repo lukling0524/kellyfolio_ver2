@@ -283,7 +283,7 @@ a:focus {
 	color: #1A2744;
 	border-radius: 10px;
 	background-color: #FFFFFF;
-	transition: background-color 0.3s;
+	overflow: hidden;
 }
 .light-theme .btn {
 	color: #FAFAFA;
@@ -293,13 +293,28 @@ a:focus {
 	background-color: #222222;
 }
 
-.btn:hover {
+.btn::before {
+	content: "";
+	display: block;
+	width: 0;
+	height: 100%;
 	background-color: #89DDFF;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: 0.3s;
 }
-.light-theme .btn:hover {
+.light-theme .btn::before {
 	background-color: #39ADB5;
 }
 
+.btn:hover::before {
+	width: 100%;
+}
+.btn__text {
+	position: relative;
+	z-index: 10;
+}
 .btn .ico-link {
 	display: block;
 	width: 34px;

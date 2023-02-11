@@ -65,24 +65,29 @@ $toggleBtn.addEventListener('click', function () {
 
 // 변수선언
 const $height = 80,
-    $introPageDuration = 0.05;
+    $introPageDuration = 1.5,
+    $ease = 'ease : Expo.easeOut',
+    $introSetting = {
+        duration: '20%',
+        triggerHook: 0,
+        offset: 10,
+    };
 
 
 // scroll magin 초기 선언
-const controller = new ScrollMagic.Controller({});
+const $controller = new ScrollMagic.Controller({});
 
 // 스크롤 메세지 display
-const tween_scrollMSG = TweenMax.to('.scroll', $introPageDuration, { opacity: 0 });
+const $tween_scrollMSG = TweenMax.to('.scroll', 0.1, { opacity: 0 });
 
 new ScrollMagic.Scene({
-    // duration: '20%',
     triggerHook: 0,
     offset: 10,
 })
-    .setTween(tween_scrollMSG)
-    .addTo(controller)
+    .setTween($tween_scrollMSG)
+    .addTo($controller)
 // .addIndicators({
-//     indent: 100,
+//     indent: 500,
 //     name: '스크롤 메세지',
 //     colorStart: 'red',
 //     colorEnd: 'red',
@@ -90,24 +95,20 @@ new ScrollMagic.Scene({
 // });
 
 
-
-
 // 로고 포지션 이동
-const tween_logo =
-    TweenMax.fromTo('#logo', 0.1, {
+const $tween_logo =
+    TweenMax.fromTo('#logo', $introPageDuration, {
         left: '50%',
     }, {
         width: 60,
         height: 'auto',
         left: 80,
+        $ease,
     });
 
-new ScrollMagic.Scene({
-    triggerHook: 0,
-    offset: 10,
-})
-    .setTween(tween_logo)
-    .addTo(controller)
+new ScrollMagic.Scene($introSetting)
+    .setTween($tween_logo)
+    .addTo($controller)
 // .addIndicators({
 //     indent: 0,
 //     name: 'LOGO',
@@ -117,59 +118,50 @@ new ScrollMagic.Scene({
 // });
 
 
-
 // header (블러영역) 높이 변경
-const tween_header = TweenMax.fromTo('#header', $introPageDuration, { height: '100vh' }, { height: $height });
+const $tween_header = TweenMax.fromTo('#header', $introPageDuration, { height: '100vh' }, { height: $height, $ease });
 
-new ScrollMagic.Scene({
-    triggerHook: 0,
-    offset: 10,
-})
-    .setTween(tween_header)
-    .addTo(controller)
+new ScrollMagic.Scene($introSetting)
+    .setTween($tween_header)
+    .addTo($controller)
 // .addIndicators({
-//     indent: 100,
-//     name: '블러 헤더 영역',
+//     indent: 0,
+//     name: '인트로 영역(로고+블러헤더+오브제박스)',
 //     colorStart: 'yellow',
 //     colorEnd: 'yellow',
 //     colorTrigger: 'yellow',
 // });
 
 
-
 //오브제박스 영역 높이 변경
-const tween_objBOX = TweenMax.fromTo('#obj-box', $introPageDuration, { height: '100vh' }, { height: $height });
+const $tween_objBOX = TweenMax.fromTo('#obj-box', $introPageDuration, { height: '100vh' }, { height: $height, $ease });
 
-new ScrollMagic.Scene({
-    triggerHook: 0,
-    offset: 10,
-})
-    .setTween(tween_objBOX)
-    .addTo(controller);
-
+new ScrollMagic.Scene($introSetting)
+    .setTween($tween_objBOX)
+    .addTo($controller);
 
 
 // 배경 오브젝트 포지션 이동
-const tween_obj = TweenMax.to('.top-obj', 3, { y: '-50%' });
+const $tween_obj = TweenMax.to('.top-obj', 10, { y: '-50%', $ease });
 new ScrollMagic.Scene({
-    duration: '100%',
+    duration: 2500,
     triggerHook: 0,
+    offset: 500,
 })
-    .setTween(tween_obj)
-    .addTo(controller)
+    .setTween($tween_obj)
+    .addTo($controller)
 // .addIndicators({
-//     indent: 200,
+//     indent: 700,
 //     name: '오브제 위치 변경',
-//     colorStart: 'pink',
-//     colorEnd: 'pink',
-//     colorTrigger: 'pink',
+//     colorStart: 'brown',
+//     colorEnd: 'brown',
+//     colorTrigger: 'brown',
 // });
 
 
-
 // 테마 변경 토글버튼 display
-const tween_toggle = TweenMax.fromTo(
-    '#toggle_btn', 1, { opacity: 0 }, { opacity: 1 });
+const $tween_toggle = TweenMax.fromTo(
+    '#toggle_btn', 1, { opacity: 0, x: 200 }, { opacity: 1, x: 0, $ease });
 
 new ScrollMagic.Scene({
     duration: 10,
@@ -177,29 +169,28 @@ new ScrollMagic.Scene({
     triggerHook: 0,
     // offset: 10,
 })
-    .setTween(tween_toggle)
-    .addTo(controller)
+    .setTween($tween_toggle)
+    .addTo($controller)
 // .addIndicators({
 //     indent: 0,
-//     name: 'toggle display',
+//     name: '토글버튼',
 //     colorStart: 'green',
 //     colorEnd: 'green',
 //     colorTrigger: 'green',
 // });
 
 
-
 // About section 아바타 비디오 scroll 모션
-const video = document.querySelector('.avata');
+const $video = document.querySelector('.avata');
 
-let videoScroll = new ScrollMagic.Scene({
+let $videoScroll = new ScrollMagic.Scene({
     duration: 4000,
     triggerElement: '.about',
     triggerHook: 0,
     offset: 100,
 })
     .setPin('.about')
-    .addTo(controller)
+    .addTo($controller)
 // .addIndicators({
 //     indent: 50,
 //     name: '비디오 비디오',
@@ -210,47 +201,39 @@ let videoScroll = new ScrollMagic.Scene({
 
 
 //Video Animation
-let accelamount = 0.1;
-let scrollpos = 0;
-let delay = 0;
+let $accelamount = 0.1;
+let $scrollpos = 0;
+let $delay = 0;
 
-videoScroll.on('update', e => {
+$videoScroll.on('update', e => {
     if (e.scrollPos > e.startPos) {
-        scrollpos = e.scrollPos / 1000;
-
-        console.log('active');
+        $scrollpos = e.scrollPos / 1000;
     }
 });
 
 setInterval(() => {
-    delay += (scrollpos - delay) * accelamount;
-    video.currentTime = scrollpos;
+    $delay += ($scrollpos - $delay) * $accelamount;
+    $video.currentTime = $scrollpos;
 }, 233.1);
 
 
-
-
-
 // about 텍스트 slide up
-const tween_about = TweenMax.fromTo('.about__text', 0.5, { opacity: 0, y: 30 }, { opacity: 1, y: 0 });
+const $tween_about = TweenMax.fromTo('.about__text', 0.5, { opacity: 0, y: 30 }, { opacity: 1, y: 0, $ease });
 new ScrollMagic.Scene({
     // duration: '100%',
     triggerElement: '.about__text',
     triggerHook: 0.8,
 
 })
-    .setTween(tween_about)
-    .addTo(controller)
+    .setTween($tween_about)
+    .addTo($controller)
 // .addIndicators({
-//     indent: 200,
+//     indent: 0,
 //     name: '자기소개 텍스트',
-//     colorStart: 'pink',
-//     colorEnd: 'pink',
-//     colorTrigger: 'pink',
+//     colorStart: 'blue',
+//     colorEnd: 'blue',
+//     colorTrigger: 'blue',
 // });
-
-
-
 
 
 //how to work 섹션 pinned 모션
@@ -261,7 +244,7 @@ new ScrollMagic.Scene({
 })
     .setPin('.howtowork .section-title')
     .setClassToggle('.section-title', 'is-active')
-    .addTo(controller)
+    .addTo($controller)
 // .addIndicators({
 //     indent: 50,
 //     name: '이렇게 일합니다',
@@ -271,74 +254,17 @@ new ScrollMagic.Scene({
 // });
 
 
-
-
-
-
-
-// 
-// //랜덤아이콘  
-// const $iconSection = document.querySelector('.howtowork');
-// 
-// let $posX = [],
-//     $posY = [];
-// 
-// for (let i = 0; i < 6; i++) {
-//     $iconSection.insertAdjacentHTML('afterbegin', `<div class="random-icon text-hide">배경 랜덤 아이콘</div>`);
-// 
-//     $posX.push(Math.floor(Math.random() * 100));
-//     $posY.push(Math.floor(Math.random() * 100));
-// }
-// 
-// 
-// const $randomIcon = document.querySelectorAll('.random-icon');
-// 
-// $randomIcon.forEach((icon, idx) => {
-//     icon.style.cssText = `
-//         top : ${$posY[idx]}%;
-//         left : ${$posX[idx]}%;
-//         background-image : url(../images/ico-random_${idx}.svg);
-//     `
-// 
-//     var timeline = new TimelineMax();
-// 
-//     const tween_icons1 = TweenMax.to('.random-icon:nth-child(odd)', 6, { rotation: 360 });
-//     const tween_icons2 = TweenMax.to('.random-icon:nth-child(even)', 6, { rotation: -360 });
-// 
-//     timeline.add(tween_icons1).add(tween_icons2);
-// 
-//     new ScrollMagic.Scene({
-//         duration: 2000,
-//         triggerElement: '.random-icon:nth-child(' + (idx + 1) + ')',
-//         triggerHook: 0.5,
-//         offset: -100,
-//     })
-//         .setClassToggle('.random-icon:nth-child(' + (idx + 1) + ')', 'is-active')
-//         .setTween(timeline)
-//         .addTo(controller)
-//         .addIndicators({
-//             indent: 100,
-//             name: '아이콘 애니',
-//             colorStart: 'green',
-//             colorEnd: 'green',
-//             colorTrigger: 'green',
-//         });
-// });
-// 
-
-
-
 // contact 타이틀 opacity
-const tween_contact = TweenMax.fromTo('.contact .section-title', 0.5, { opacity: 0 }, { opacity: 1 });
+const $tween_contact = TweenMax.fromTo('.contact .section-title', 0.5, { opacity: 0 }, { opacity: 1 });
 new ScrollMagic.Scene({
-    duration: '30%',
+    duration: 500,
     triggerElement: '.contact',
     triggerHook: 0.5,
     offset: -300,
 
 })
-    .setTween(tween_contact)
-    .addTo(controller)
+    .setTween($tween_contact)
+    .addTo($controller)
 // .addIndicators({
 //     indent: 100,
 //     name: '연락처 타이틀',
@@ -348,3 +274,20 @@ new ScrollMagic.Scene({
 // });
 
 
+// 이메일 텍스트 slide left
+const $tween_email = TweenMax.fromTo('.contact__wrap', 3, { opacity: 0, x: -100 }, { opacity: 1, x: 0, ease: Elastic.easeOut.config(1, 0.3) });
+new ScrollMagic.Scene({
+    // duration: 500,
+    triggerElement: '.contact .section-title',
+    triggerHook: 0.5,
+    offset: -50,
+})
+    .setTween($tween_email)
+    .addTo($controller)
+    // .addIndicators({
+    //     indent: 0,
+    //     name: '이메일 타이틀',
+    //     colorStart: 'yellow',
+    //     colorEnd: 'yellow',
+    //     colorTrigger: 'yellow',
+    // });

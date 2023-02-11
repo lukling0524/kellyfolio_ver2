@@ -23,10 +23,26 @@
     @include get-color(color, color-bg);
     border-radius: 10px;
     @include get-color(background-color, color-font);
-    transition: background-color 0.3s;
+    overflow: hidden;
+
+    &::before {
+        @include pseudo('', 0, 100%);
+        @include get-color(background-color, color-mint);
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: 0.3s;
+    }
 
     &:hover {
-        @include get-color(background-color, color-mint);
+        &::before {
+            width: 100%;
+        }
+    }
+
+    &__text {
+        position: relative;
+        z-index: 10;
     }
 
     .ico-link {
@@ -52,6 +68,7 @@
     &:hover .ico-link__arrow {
         animation: arrow 1s infinite both;
     }
+
 }
 
 @keyframes arrow {
