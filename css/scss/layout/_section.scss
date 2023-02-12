@@ -102,7 +102,7 @@
             top: -52px;
             left: 50%;
             transform: translateX(-50%);
-            background: url('#{$path-image}/ico-bulb.svg') no-repeat center / cover;
+            background: url('#{$path-image}/ico-bulb.png') no-repeat center / cover;
             opacity: 0.4;
         }
 
@@ -146,7 +146,7 @@
     &__main {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
 
         &--tit {
             font-size: 22px;
@@ -155,7 +155,7 @@
     }
 
     &__icon {
-        $size: 40px;
+        $size: 32px;
 
         width: $size;
         height: $size;
@@ -163,25 +163,25 @@
         background-size: cover;
 
         &--pencil {
-            background-image: url('#{$path-image}/ico-pencil.svg')
+            background-image: url('#{$path-image}/ico-pencil.png')
         }
 
         &--keyboard {
-            background-image: url('#{$path-image}/ico-keyboard.svg')
+            background-image: url('#{$path-image}/ico-keyboard.png')
         }
 
         &--user {
-            background-image: url('#{$path-image}/ico-user.svg')
+            background-image: url('#{$path-image}/ico-user.png')
         }
 
         &--chat {
-            background-image: url('#{$path-image}/ico-chat.svg')
+            background-image: url('#{$path-image}/ico-chat.png')
         }
     }
 
     &__sub {
         margin-top: 14px;
-        margin-left: 70px;
+        margin-left: 65px;
     }
 
     &__list {
@@ -236,7 +236,7 @@
         height: $size;
         position: absolute;
         left: 50%;
-        background: url('#{$path-image}/ico-interest.svg') no-repeat center / contain;
+        background: url('#{$path-image}/ico-interest.png') no-repeat center / contain;
         opacity: 0.8;
         z-index: -1;
 
@@ -263,7 +263,7 @@
 
             width: $size;
             height: $size;
-            background: url('#{$path-image}/ico-envelope.svg') no-repeat center / contain;
+            background: url('#{$path-image}/ico-envelope.png') no-repeat center / contain;
             animation: heartbeat 2s ease-in-out infinite both;
         }
 

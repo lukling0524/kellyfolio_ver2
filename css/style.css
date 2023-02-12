@@ -357,20 +357,14 @@ a:focus {
 	position: relative;
 }
 .wrap.loading {
-	height: 100vh;
-	max-height: 100vh;
 	overflow: hidden;
-}
-@supports (-webkit-touch-callout: none) {
-	.wrap.loading {
-		height: -webkit-fill-available;
-		max-height: -webkit-fill-available;
-	}
+	height: calc(var(--vh, 1vh) * 100);
+	max-height: calc(var(--vh, 1vh) * 100);
 }
 
 .full-box {
 	width: 100vw;
-	height: 100vh;
+	height: calc(var(--vh, 1vh) * 100);
 	position: relative;
 	display: flex;
 	justify-content: center;
@@ -384,7 +378,7 @@ a:focus {
 
 .header {
 	width: 100vw;
-	height: 100vh;
+	height: calc(var(--vh, 1vh) * 100);
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -578,11 +572,11 @@ a:focus {
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
-	padding: 0px 8px;
+	padding: 0px 4px;
 }
 .toggle__icon .item {
-	width: 20px;
-	height: 20px;
+	width: 18px;
+	height: 18px;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
@@ -592,10 +586,10 @@ a:focus {
 	opacity: 1;
 }
 .toggle__icon--dark {
-	background-image: url("../images/toggle-icon_dark.svg");
+	background-image: url("../images/toggle-icon_dark.png");
 }
 .toggle__icon--light {
-	background-image: url("../images/toggle-icon_light.svg");
+	background-image: url("../images/toggle-icon_light.png");
 }
 
 .scroll {
@@ -714,7 +708,7 @@ a:focus {
 	top: -52px;
 	left: 50%;
 	transform: translateX(-50%);
-	background: url("../images/ico-bulb.svg") no-repeat center/cover;
+	background: url("../images/ico-bulb.png") no-repeat center/cover;
 	opacity: 0.4;
 }
 .howtowork .section-title.is-active::after {
@@ -746,33 +740,33 @@ a:focus {
 .howtowork__main {
 	display: flex;
 	align-items: center;
-	gap: 10px;
+	gap: 12px;
 }
 .howtowork__main--tit {
 	font-size: 22px;
 	font-weight: 600;
 }
 .howtowork__icon {
-	width: 40px;
-	height: 40px;
+	width: 32px;
+	height: 32px;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
 .howtowork__icon--pencil {
-	background-image: url("../images/ico-pencil.svg");
+	background-image: url("../images/ico-pencil.png");
 }
 .howtowork__icon--keyboard {
-	background-image: url("../images/ico-keyboard.svg");
+	background-image: url("../images/ico-keyboard.png");
 }
 .howtowork__icon--user {
-	background-image: url("../images/ico-user.svg");
+	background-image: url("../images/ico-user.png");
 }
 .howtowork__icon--chat {
-	background-image: url("../images/ico-chat.svg");
+	background-image: url("../images/ico-chat.png");
 }
 .howtowork__sub {
 	margin-top: 14px;
-	margin-left: 70px;
+	margin-left: 65px;
 }
 .howtowork__list {
 	position: relative;
@@ -817,7 +811,7 @@ a:focus {
 	height: 36px;
 	position: absolute;
 	left: 50%;
-	background: url("../images/ico-interest.svg") no-repeat center/contain;
+	background: url("../images/ico-interest.png") no-repeat center/contain;
 	opacity: 0.8;
 	z-index: -1;
 }
@@ -840,7 +834,7 @@ a:focus {
 .contact__email--icon {
 	width: 100px;
 	height: 100px;
-	background: url("../images/ico-envelope.svg") no-repeat center/contain;
+	background: url("../images/ico-envelope.png") no-repeat center/contain;
 	animation: heartbeat 2s ease-in-out infinite both;
 }
 .contact__email--address {

@@ -9,31 +9,34 @@ const $html = document.querySelector('html'),
     $toggleBox = document.querySelector('.toggle__box');
 
 
+const vh = window.innerHeight * 0.01;   // [1]
+document.documentElement.style.setProperty('--vh', `${vh}px`); // [2]
+
 
 /**
 * 초기화면 로딩시
 */
-// setTimeout(function () {
-//     $wrap.classList.remove('loading');
-//     $scrollText.classList.add('show');
-// }, 6600)
+setTimeout(function () {
+    $wrap.classList.remove('loading');
+    $scrollText.classList.add('show');
+}, 6600)
 
 
 /**
  * LOGO 눈 path 상하 움직임 animation 
  */
-// setTimeout(function () {
-//     $eye_l.classList.add('action');
-//     $eye_r.classList.add('action');
-// }, 6000)
+setTimeout(function () {
+    $eye_l.classList.add('action');
+    $eye_r.classList.add('action');
+}, 6000)
 
 
 /**
  * 로고 클릭 시, 새로고침 시 scrollY = 0
  */
-// $scrollTop.addEventListener('click', function () {
-//     window.scroll({ top: 0, behavior: 'smooth' });
-// });
+$scrollTop.addEventListener('click', function () {
+    window.scroll({ top: 0, behavior: 'smooth' });
+});
 
 window.onbeforeunload = function () {
     window.scrollTo(0, 0);
@@ -43,17 +46,17 @@ window.onbeforeunload = function () {
 /**
  * 라이트모드-다크모드 토글 버튼
  */
-// const $toggleBtn = document.querySelector('.toggle__item'),
-//     $themeIcons = document.querySelectorAll('.toggle__icon .item');
-// 
-// $toggleBtn.addEventListener('click', function () {
-//     $html.classList.toggle('light-theme');
-// 
-//     for (let i = 0; i < $themeIcons.length; i++) {
-//         $themeIcons[i].classList.toggle('on');
-// 
-//     }
-// })
+const $toggleBtn = document.querySelector('.toggle__item'),
+    $themeIcons = document.querySelectorAll('.toggle__icon .item');
+
+$toggleBtn.addEventListener('click', function () {
+    $html.classList.toggle('light-theme');
+
+    for (let i = 0; i < $themeIcons.length; i++) {
+        $themeIcons[i].classList.toggle('on');
+
+    }
+})
 
 
 
@@ -62,7 +65,8 @@ window.onbeforeunload = function () {
  */
 
 // 변수선언
-const $height = 80,
+const $100vh = `calc(var(--vh, 1vh) * 100)`,
+    $height = 80,
     $introPageDuration = 1.5,
     $ease = 'ease : Expo.easeOut',
     $introSetting = {
@@ -117,7 +121,7 @@ new ScrollMagic.Scene($introSetting)
 
 
 // header (블러영역) 높이 변경
-const $tween_header = TweenMax.fromTo('#header', $introPageDuration, { height: '100vh' }, { height: $height, $ease });
+const $tween_header = TweenMax.fromTo('#header', $introPageDuration, { height: $100vh }, { height: $height, $ease });
 
 new ScrollMagic.Scene($introSetting)
     .setTween($tween_header)
@@ -132,29 +136,12 @@ new ScrollMagic.Scene($introSetting)
 
 
 //오브제박스 영역 높이 변경
-const $tween_objBOX = TweenMax.fromTo('#obj-box', $introPageDuration, { height: '100vh' }, { height: $height, $ease });
+const $tween_objBOX = TweenMax.fromTo('#obj-box', $introPageDuration, { height: $100vh }, { height: $height, $ease });
 
 new ScrollMagic.Scene($introSetting)
     .setTween($tween_objBOX)
     .addTo($controller);
 
-
-// 배경 오브젝트 포지션 이동
-const $tween_obj = TweenMax.to('.top-obj', 10, { y: '-50%', $ease });
-new ScrollMagic.Scene({
-    duration: 2500,
-    triggerHook: 0,
-    offset: 500,
-})
-    .setTween($tween_obj)
-    .addTo($controller)
-// .addIndicators({
-//     indent: 700,
-//     name: '오브제 위치 변경',
-//     colorStart: 'brown',
-//     colorEnd: 'brown',
-//     colorTrigger: 'brown',
-// });
 
 
 // 테마 변경 토글버튼 display
@@ -182,7 +169,7 @@ new ScrollMagic.Scene({
 const $video = document.querySelector('.avata');
 
 let $videoScroll = new ScrollMagic.Scene({
-    duration: 4000,
+    duration: 3000,
     triggerElement: '.about',
     triggerHook: 0,
     offset: 100,

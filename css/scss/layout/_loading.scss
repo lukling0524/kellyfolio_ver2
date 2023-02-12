@@ -2,20 +2,25 @@
     position: relative;
 
     &.loading {
-        height: 100vh;
-        max-height: 100vh;
+        // height: 100vh;
+        // max-height: 100vh;
         overflow: hidden;
 
-        @include ios {
-            height: -webkit-fill-available;
-            max-height: -webkit-fill-available;
-        }
+        // @include ios {
+        //     height: -webkit-fill-available;
+        //     max-height: -webkit-fill-available;
+        // }
+
+        height: calc(var(--vh, 1vh) * 100);
+        max-height: calc(var(--vh, 1vh) * 100);
+
     }
 }
 
 .full-box {
     width: 100vw;
-    height: 100vh;
+    // height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     position: relative;
     @include flexCenter(center);
 
@@ -26,7 +31,8 @@
 
 .header {
     width: 100vw;
-    height: 100vh;
+    // height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     position: fixed;
     top: 0;
     left: 0;
@@ -240,10 +246,10 @@
         height: 100%;
         position: absolute;
         @include flexCenter(space-evenly);
-        padding: 0px 8px;
+        padding: 0px 4px;
 
         .item {
-            $size: 20px;
+            $size: 18px;
             width: $size;
             height: $size;
             background-repeat: no-repeat;
@@ -257,11 +263,11 @@
         }
 
         &--dark {
-            background-image: url('#{$path-image}/toggle-icon_dark.svg');
+            background-image: url('#{$path-image}/toggle-icon_dark.png');
         }
 
         &--light {
-            background-image: url('#{$path-image}/toggle-icon_light.svg');
+            background-image: url('#{$path-image}/toggle-icon_light.png');
         }
     }
 }
