@@ -48,8 +48,10 @@
         width: 85%;
         max-width: 398px;
         margin: 0 auto;
-        // border-radius: 50%;
+        border-radius: 50%;
         border: 1px solid #fff;
+        overflow: hidden;
+
 
         @include macSafari {
             border: 1px solid yellow;
@@ -58,6 +60,10 @@
         @include mobs {
             max-width: 250px;
             border: 1px solid red;
+        }
+
+        &__sequence {
+            width: 100%;
         }
     }
 

@@ -249,10 +249,6 @@ a:focus {
 	padding: 20px;
 }
 
-.wrap {
-	overflow-x: hidden;
-}
-
 @media (max-width: 500px) {
 	body {
 		font-size: 16px;
@@ -732,7 +728,9 @@ a:focus {
 	width: 85%;
 	max-width: 398px;
 	margin: 0 auto;
+	border-radius: 50%;
 	border: 1px solid #fff;
+	overflow: hidden;
 }
 @media not all and (-webkit-min-device-pixel-ratio: 0), not all and (min-resolution: 0.001dpcm) {
 	@supports (-webkit-appearance: none) {
@@ -746,6 +744,9 @@ a:focus {
 		max-width: 250px;
 		border: 1px solid red;
 	}
+}
+.about .avata__sequence {
+	width: 100%;
 }
 .about__title {
 	position: relative;
