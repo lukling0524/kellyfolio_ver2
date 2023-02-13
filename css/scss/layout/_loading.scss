@@ -80,6 +80,19 @@
         stroke-dashoffset: -18px;
         animation: eye-l 0.3s cubic-bezier(0, 0, 0.04, 3) 4.5s forwards;
 
+
+        @include mobs {
+            stroke: red;
+            animation: eye-l 0.3s cubic-bezier(0, 0, 0.09, 1.97) 4.5s forwards;
+        }
+
+        @include macSafari {
+            stroke: green;
+            animation: eye-l 0.3s cubic-bezier(0, 0, 0.09, 1) 4.5s forwards;
+        }
+
+
+
         &.action {
             stroke-dashoffset: 0;
             animation: left_eye 3s 2s infinite;
@@ -90,6 +103,19 @@
         stroke-dasharray: 15px;
         stroke-dashoffset: -15px;
         animation: eye-r 0.3s cubic-bezier(0, 0, 0.04, 2.21) 5s forwards;
+
+
+        @include mobs {
+            stroke: red;
+            animation: eye-r 0.3s cubic-bezier(0, 0, 0.09, 1.97) 5s forwards;
+        }
+
+        @include macSafari {
+            stroke: green;
+            animation: eye-r 0.3s cubic-bezier(0, 0, 0.09, 1) 5s forwards;
+        }
+
+
 
         &.action {
             stroke-dashoffset: 0;

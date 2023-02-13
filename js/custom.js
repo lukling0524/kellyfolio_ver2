@@ -77,7 +77,7 @@ const $100vh = `calc(var(--vh, 1vh) * 100)`,
 
 
 // scroll magin 초기 선언
-const $controller = new ScrollMagic.Controller({});
+let $controller = new ScrollMagic.Controller({});
 
 // 스크롤 메세지 display
 const $tween_scrollMSG = TweenMax.to('.scroll', 0.1, { opacity: 0 });
@@ -221,8 +221,9 @@ new ScrollMagic.Scene({
 // });
 
 
+
 //how to work 섹션 pinned 모션
-new ScrollMagic.Scene({
+let pinned = new ScrollMagic.Scene({
     duration: 900,
     triggerElement: '.howtowork',
     triggerHook: 0,
@@ -237,6 +238,17 @@ new ScrollMagic.Scene({
 //     colorEnd: 'red',
 //     colorTrigger: 'red',
 // });
+
+if (window.innerWidth < 500) {
+
+    console.log('false');
+    pinned.destroy(true);
+    pinned = null;
+    // tween = null;
+    // $controller = null;
+
+}
+
 
 
 // contact 타이틀 opacity
@@ -281,8 +293,8 @@ new ScrollMagic.Scene({
 const box = document.querySelector('.contact__wrap');
 const items = document.querySelectorAll('.contact__icon');
 
-const width = box.offsetWidth - items[0].offsetWidth;
-const height = box.offsetHeight - items[0].offsetHeight;
+let width = box.offsetWidth - items[0].offsetWidth;
+let height = box.offsetHeight - items[0].offsetHeight;
 
 for (let i = 0; i < items.length; i++) {
     let x = Math.random() * width;

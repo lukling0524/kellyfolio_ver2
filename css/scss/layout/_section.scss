@@ -2,13 +2,22 @@
     position: relative;
     max-width: 1600px;
     margin: 0 auto 0;
-    padding: 0 60px 0;
+    padding: 0 60px;
+
+    @include mobs {
+        padding: 0 20px;
+    }
 }
 
 .about {
     $header : 80px;
     position: relative;
     padding-top: $header;
+
+    @include mobs {
+        height: calc(var(--vh, 1vh) * 100);
+        height: auto;
+    }
 
     &__intro {
         height: calc(100vh + $header);
@@ -18,11 +27,20 @@
         @include ios {
             min-height: -webkit-fill-available;
         }
+
+        @include mobs {
+            padding: 100px 0;
+            flex-direction: column;
+        }
     }
 
     &__visual {
         position: relative;
         flex: 1;
+
+        @include mobs {
+            flex: auto;
+        }
     }
 
     .avata {
@@ -30,7 +48,17 @@
         width: 85%;
         max-width: 398px;
         margin: 0 auto;
-        border-radius: 50%;
+        // border-radius: 50%;
+        border: 1px solid #fff;
+
+        @include macSafari {
+            border: 1px solid yellow;
+        }
+
+        @include mobs {
+            max-width: 250px;
+            border: 1px solid red;
+        }
     }
 
 
@@ -50,8 +78,19 @@
         position: relative;
         flex: 1;
 
+        @include mobs {
+            flex: auto;
+        }
+
         .section-title {
             margin-bottom: 40px;
+        }
+
+        .btn {
+            @include mobs {
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
     }
 
@@ -76,6 +115,13 @@
     align-items: flex-start;
     padding-top: 250px;
 
+    @include mobs {
+        padding-top: 150px;
+        flex-direction: column;
+
+    }
+
+
     //     .random-icon {
     //         $size: 100px;
     // 
@@ -94,6 +140,10 @@
         flex: 2;
         text-align: center;
 
+        @include mobs {
+            width: 100%;
+        }
+
         &::after {
             $size: 60px;
 
@@ -104,6 +154,11 @@
             transform: translateX(-50%);
             background: url('#{$path-image}/ico-bulb.png') no-repeat center / cover;
             opacity: 0.4;
+
+            @include mobs {
+                opacity: 1;
+                animation: flick 1.5s linear infinite both;
+            }
         }
 
         &.is-active::after {
@@ -137,6 +192,10 @@
         position: relative;
         flex: 3;
         margin-top: 220px;
+
+        @include mobs {
+            margin-top: 80px;
+        }
     }
 
     &__item+&__item {
@@ -147,6 +206,11 @@
         display: flex;
         align-items: center;
         gap: 12px;
+
+        @include mobs {
+            justify-content: center;
+            gap: 8px;
+        }
 
         &--tit {
             font-size: 22px;
@@ -182,6 +246,11 @@
     &__sub {
         margin-top: 14px;
         margin-left: 65px;
+
+        @include mobs {
+            margin-left: 20px;
+
+        }
     }
 
     &__list {
@@ -258,6 +327,11 @@
         gap: 46px;
         padding: 150px 0;
 
+        @include mobs {
+            gap: 10px;
+            padding: 80px 0;
+        }
+
         &--icon {
             $size: 100px;
 
@@ -265,12 +339,23 @@
             height: $size;
             background: url('#{$path-image}/ico-envelope.png') no-repeat center / contain;
             animation: heartbeat 2s ease-in-out infinite both;
+
+            @include mobs {
+                $size: 40px;
+
+                width: $size;
+                height: $size;
+            }
         }
 
         &--address {
             font-size: 60px;
             font-family: 'Open Sans', sans-serif;
             transition: 0.3s;
+
+            @include mobs {
+                font-size: 24px;
+            }
 
             &:hover {
                 transform: scale(1.1);

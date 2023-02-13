@@ -15,5 +15,14 @@ $break-point: 1459px;
 }
 
 @mixin res-laptop {
-    @media (max-width: 1610px) {}
+    @media (max-width: 1610px) {
+        @content;
+    }
+}
+
+
+@mixin mobs {
+    @media (max-width: 500px) {
+        @content;
+    }
 }

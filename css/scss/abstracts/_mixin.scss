@@ -2,6 +2,16 @@
 // mixin
 // -------
 
+@mixin macSafari {
+    @media not all and (min-resolution:.001dpcm) {
+        @supports (-webkit-appearance:none) {
+            @content;
+        }
+    }
+}
+
+
+
 // ios
 @mixin ios {
     @supports (-webkit-touch-callout: none) {
