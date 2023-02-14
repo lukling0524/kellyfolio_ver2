@@ -369,15 +369,28 @@ a:focus {
 	position: relative;
 }
 .wrap.loading {
-	overflow: hidden;
 	height: calc(var(--vh, 1vh) * 100);
 	max-height: calc(var(--vh, 1vh) * 100);
+	overflow: hidden;
+}
+.wrap.loading .full-box,
+.wrap.loading .header {
+	height: calc(var(--vh, 1vh) * 100);
+}
+.wrap.loading .full-box {
+	position: relative;
+}
+.wrap.loading .logo {
+	width: 312px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	cursor: default;
 }
 
 .full-box {
-	width: 100vw;
-	height: calc(var(--vh, 1vh) * 100);
 	position: relative;
+	width: 100vw;
+	height: 80px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -390,7 +403,7 @@ a:focus {
 
 .header {
 	width: 100vw;
-	height: calc(var(--vh, 1vh) * 100);
+	height: 80px;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -421,152 +434,14 @@ a:focus {
 	transform: rotate(-24deg);
 }
 
-.scroll-top {
+.logo {
+	width: 60px;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
 	cursor: pointer;
 }
 
-.logo {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-}
-.logo__k {
-	stroke-dasharray: 125px;
-	stroke-dashoffset: 0;
-}
-.logo__elly {
-	stroke-dasharray: 1412px;
-	stroke-dashoffset: 0;
-}
-.logo__eye-l {
-	stroke-dasharray: 18px;
-	stroke-dashoffset: -18px;
-	animation: eye-l 0.3s cubic-bezier(0, 0, 0.04, 3) 4.5s forwards;
-}
-@media (max-width: 500px) {
-	.logo__eye-l {
-		stroke: red;
-		animation: eye-l 0.3s cubic-bezier(0, 0, 0.09, 1.97) 4.5s forwards;
-	}
-}
-@media not all and (-webkit-min-device-pixel-ratio: 0), not all and (min-resolution: 0.001dpcm) {
-	@supports (-webkit-appearance: none) {
-		.logo__eye-l {
-			stroke: green;
-			animation: eye-l 0.3s cubic-bezier(0, 0, 0.09, 1) 4.5s forwards;
-		}
-	}
-}
-.logo__eye-l.action {
-	stroke-dashoffset: 0;
-	animation: left_eye 3s 2s infinite;
-}
-.logo__eye-r {
-	stroke-dasharray: 15px;
-	stroke-dashoffset: -15px;
-	animation: eye-r 0.3s cubic-bezier(0, 0, 0.04, 2.21) 5s forwards;
-}
-@media (max-width: 500px) {
-	.logo__eye-r {
-		stroke: red;
-		animation: eye-r 0.3s cubic-bezier(0, 0, 0.09, 1.97) 5s forwards;
-	}
-}
-@media not all and (-webkit-min-device-pixel-ratio: 0), not all and (min-resolution: 0.001dpcm) {
-	@supports (-webkit-appearance: none) {
-		.logo__eye-r {
-			stroke: green;
-			animation: eye-r 0.3s cubic-bezier(0, 0, 0.09, 1) 5s forwards;
-		}
-	}
-}
-.logo__eye-r.action {
-	stroke-dashoffset: 0;
-	animation: right_eye 3s 2s infinite;
-}
-
-.loading .logo__k {
-	stroke-dashoffset: -125px;
-	animation: k 0.25s cubic-bezier(0, 0, 0.65, 0.42) 1s forwards;
-}
-.loading .logo__elly {
-	stroke-dashoffset: -1412px;
-	animation: elly 2.5s cubic-bezier(0, 0, 0.75, 0.45) 1.5s forwards;
-}
-
-@keyframes k {
-	from {
-		stroke-dashoffset: 125px;
-	}
-	to {
-		stroke-dashoffset: 0;
-	}
-}
-@keyframes elly {
-	from {
-		stroke-dashoffset: 1412px;
-	}
-	to {
-		stroke-dashoffset: 0px;
-	}
-}
-@keyframes eye-l {
-	from {
-		stroke-dashoffset: 18px;
-	}
-	to {
-		stroke-dashoffset: 0px;
-	}
-}
-@keyframes eye-r {
-	from {
-		stroke-dashoffset: 15px;
-	}
-	to {
-		stroke-dashoffset: 0px;
-	}
-}
-@keyframes left_eye {
-	0% {
-		transform: translateY(0px);
-	}
-	10% {
-		transform: translateY(-4px);
-	}
-	20% {
-		transform: translateY(2px);
-	}
-	30% {
-		transform: translateY(-1px);
-	}
-	35% {
-		transform: translateY(0px);
-	}
-	100% {
-		transform: translateY(0px);
-	}
-}
-@keyframes right_eye {
-	0% {
-		transform: translateY(0px);
-	}
-	20% {
-		transform: translateY(-4px);
-	}
-	30% {
-		transform: translateY(2px);
-	}
-	40% {
-		transform: translateY(-1px);
-	}
-	45% {
-		transform: translateY(0px);
-	}
-	100% {
-		transform: translateY(0px);
-	}
-}
 .toggle__box {
 	display: flex;
 	width: 56px;
@@ -632,50 +507,6 @@ a:focus {
 	background-image: url("../images/toggle-icon_light.png");
 }
 
-.scroll {
-	height: 86px;
-	position: absolute;
-	left: 50%;
-	bottom: 0;
-	transform: translateX(-50%);
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	opacity: 0;
-	transition: 0.2s;
-}
-.scroll.show {
-	opacity: 1;
-}
-.scroll__text {
-	margin-bottom: 14px;
-	font-size: 14px;
-	font-weight: 300;
-	letter-spacing: 1.6px;
-}
-.scroll__line {
-	width: 1px;
-	height: 50px;
-	background-color: #FFFFFF;
-	animation: line 1.25s cubic-bezier(0.165, 0.84, 0.44, 1) 0s infinite normal;
-}
-.light-theme .scroll__line {
-	background-color: #222222;
-}
-
-@keyframes line {
-	0% {
-		transform: translate3d(0, 50px, 0);
-		opacity: 0;
-	}
-	15%, 85% {
-		opacity: 1;
-	}
-	100% {
-		transform: translate3d(0, 0, 0);
-		opacity: 0;
-	}
-}
 .contents {
 	position: relative;
 	max-width: 1600px;

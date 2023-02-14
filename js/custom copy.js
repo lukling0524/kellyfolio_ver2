@@ -3,42 +3,13 @@ const vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 
-// SVG drawing motion path 길이 css 설정
-const $path_k = document.querySelector('.logo__k'),
-    $path_elly = document.querySelector('.logo__elly'),
-    $path_eye_l = document.querySelector('.logo__eye-l'),
-    $path_eye_r = document.querySelector('.logo__eye-r'),
-    $path_k_leng = Math.ceil($path_k.getTotalLength()),
-    $path_elly_leng = Math.ceil($path_elly.getTotalLength()),
-    $path_eye_l_leng = Math.ceil($path_eye_l.getTotalLength()),
-    $path_eye_r_leng = Math.ceil($path_eye_r.getTotalLength());
-
-$path_k.style.cssText = `
-    stroke-dasharray: ${$path_k_leng};
-    stroke-dashoffset:${$path_k_leng};
-`;
-
-$path_elly.style.cssText = `
-    stroke-dasharray: ${$path_elly_leng};
-    stroke-dashoffset: ${$path_elly_leng};
-`;
-
-$path_eye_l.style.cssText = `
-    stroke-dasharray: ${$path_eye_l_leng};
-    stroke-dashoffset:${$path_eye_l_leng};
-`;
-
-$path_eye_r.style.cssText = `
-    stroke-dasharray: ${$path_eye_r_leng};
-    stroke-dashoffset: ${$path_eye_r_leng};
-`;
-
-
-
 const $html = document.querySelector('html'),
     $wrap = document.querySelector('.wrap'),
     $scrollTop = document.querySelector('.scroll-top'),
     $logo = document.getElementById('logo'),
+    $eye_l = document.querySelector('.logo__eye-l'),
+    $eye_r = document.querySelector('.logo__eye-r'),
+    $scrollText = document.querySelector('.scroll'),
     $toggleBox = document.querySelector('.toggle__box');
 
 
@@ -49,24 +20,40 @@ let $controller = new ScrollMagic.Controller({});
 /**
 * 초기화면 로딩시
 */
+// setTimeout(function () {
+//     // $wrap.classList.remove('loading');
+//     // $scrollText.classList.add('show');
+//     $wrap.classList.remove('ready');
+// 
+//     setTimeout(function () {
+// 
+//         $wrap.classList.remove('loading');
+// 
+//     }, 2500)
+// 
+// }, 6600)
 
-tween_logoDraw = new TimelineMax()
-    .delay(1)
-    .add(TweenMax.to($path_k, 0.65, { strokeDashoffset: 0, ease: "sine.in" }))
-    .add(TweenMax.to($path_elly, 2.2, { strokeDashoffset: 0, ease: "sine.in" }))
-    .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: "elastic.out(1, 0.3)" }))
-    .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: "elastic.out(1, 0.3)" }), 'queue')
-    .add(TweenMax.to('#header,#obj-box', 2, { height: 80, ease: "power1.in" }), 'queue+=0.5')
-    .add(TweenMax.to('#logo', 1.5, { width: 60, height: 'auto', left: 80, ease: "power1.in" }), 'queue+=1')
-    .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=1.8')
-    .call(() => {
-        $wrap.classList.remove('loading');
+
+
+
+
+
+function removeClass(className, delayTime) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve($wrap.classList.remove(className));
+        }, delayTime);
+    });
+}
+
+removeClass('ready', 6600)
+    .then(() => {
+        console.log(`1. ready 클래스 삭제`);
+        return removeClass('loading', 2500)
+    }).then(() => {
+        console.log(`2. loading 클래스 삭제`);
     });
 
-new ScrollMagic.Scene({ tweenChanges: true })
-    .setTween(tween_logoDraw)
-    .addTo($controller)
-// .addIndicators();
 
 
 
@@ -81,23 +68,22 @@ new ScrollMagic.Scene({ tweenChanges: true })
 /**
  * LOGO 눈 path 상하 움직임 animation 
  */
-// setTimeout(function () {
-//     $eye_l.classList.add('action');
-//     $eye_r.classList.add('action');
-// }, 6000)
+setTimeout(function () {
+    $eye_l.classList.add('action');
+    $eye_r.classList.add('action');
+}, 6000)
 
 
 /**
  * 로고 클릭 시, 새로고침 시 scrollY = 0
  */
-$logo.addEventListener('click', function (e) {
-    if ($wrap.classList.contains('loading')) {
-        e.preventDefault();
-    } else {
-        window.location.reload()
-    }
+$scrollTop.addEventListener('click', function () {
+    window.scroll({ top: 0, behavior: 'smooth' });
 });
 
+window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+};
 
 
 /**
@@ -131,6 +117,101 @@ const $100vh = `calc(var(--vh, 1vh) * 100)`,
         triggerHook: 0,
         // offset: 10,
     };
+
+
+
+
+// 스크롤 메세지 display
+const $tween_scrollMSG = TweenMax.to('.scroll', 0.1, { opacity: 0 });
+
+new ScrollMagic.Scene({
+    triggerHook: 0,
+    offset: 10,
+})
+    .setTween($tween_scrollMSG)
+    .addTo($controller)
+// .addIndicators({
+//     indent: 500,
+//     name: '스크롤 메세지',
+//     colorStart: 'red',
+//     colorEnd: 'red',
+//     colorTrigger: 'red',
+// });
+
+
+
+
+// introAnimation();
+function introAnimation(params) {
+    // 로고 포지션 이동
+    const $tween_logo =
+        TweenMax.fromTo('#logo', $introPageDuration, {
+            left: '50%',
+        }, {
+            width: 60,
+            height: 'auto',
+            left: 80,
+            $ease,
+        });
+
+    new ScrollMagic.Scene($introSetting)
+        .setTween($tween_logo)
+        .addTo($controller)
+    // .addIndicators({
+    //     indent: 0,
+    //     name: 'LOGO',
+    //     colorStart: '#ffa500',
+    //     colorEnd: '#ffa500',
+    //     colorTrigger: '#ffa500',
+    // });
+
+
+    // header (블러영역) 높이 변경
+    const $tween_header = TweenMax.fromTo('#header', $introPageDuration, { height: $100vh }, { height: $height, $ease });
+
+    new ScrollMagic.Scene($introSetting)
+        .setTween($tween_header)
+        .addTo($controller)
+    // .addIndicators({
+    //     indent: 0,
+    //     name: '인트로 영역(로고+블러헤더+오브제박스)',
+    //     colorStart: 'yellow',
+    //     colorEnd: 'yellow',
+    //     colorTrigger: 'yellow',
+    // });
+
+
+    //오브제박스 영역 높이 변경
+    const $tween_objBOX = TweenMax.fromTo('#obj-box', $introPageDuration, { height: $100vh }, { height: $height, $ease });
+
+    new ScrollMagic.Scene($introSetting)
+        .setTween($tween_objBOX)
+        .addTo($controller);
+
+}
+
+
+
+// 테마 변경 토글버튼 display
+const $tween_toggle = TweenMax.fromTo(
+    '#toggle_btn', 1, { opacity: 0, x: 200 }, { opacity: 1, x: 0, $ease });
+
+new ScrollMagic.Scene({
+    duration: 10,
+    triggerElement: '.contents',
+    triggerHook: 0,
+    // offset: 10,
+})
+    .setTween($tween_toggle)
+    .addTo($controller)
+// .addIndicators({
+//     indent: 0,
+//     name: '토글버튼',
+//     colorStart: 'green',
+//     colorEnd: 'green',
+//     colorTrigger: 'green',
+// });
+
 
 
 
