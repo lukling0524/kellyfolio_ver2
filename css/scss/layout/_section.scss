@@ -10,9 +10,7 @@
 }
 
 .about {
-    $header : 80px;
     position: relative;
-    padding-top: $header;
 
     @include mobs {
         height: calc(var(--vh, 1vh) * 100);
@@ -20,7 +18,7 @@
     }
 
     &__intro {
-        height: calc(100vh + $header);
+        height: calc(100vh - 60px);
         display: flex;
         align-items: center;
 

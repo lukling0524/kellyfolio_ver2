@@ -37,7 +37,6 @@ $path_eye_r.style.cssText = `
 
 const $html = document.querySelector('html'),
     $wrap = document.querySelector('.wrap'),
-    $scrollTop = document.querySelector('.scroll-top'),
     $logo = document.getElementById('logo'),
     $toggleBox = document.querySelector('.toggle__box');
 
@@ -47,44 +46,20 @@ let $controller = new ScrollMagic.Controller({});
 
 
 /**
-* 초기화면 로딩시
+* 인트로 (SVG drawing + header size 모션)
 */
-
 tween_logoDraw = new TimelineMax()
     .delay(1)
-    .add(TweenMax.to($path_k, 0.65, { strokeDashoffset: 0, ease: "sine.in" }))
-    .add(TweenMax.to($path_elly, 2.2, { strokeDashoffset: 0, ease: "sine.in" }))
-    .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: "elastic.out(1, 0.3)" }))
-    .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: "elastic.out(1, 0.3)" }), 'queue')
-    .add(TweenMax.to('#header,#obj-box', 2, { height: 80, ease: "power1.in" }), 'queue+=0.5')
-    .add(TweenMax.to('#logo', 1.5, { width: 60, height: 'auto', left: 80, ease: "power1.in" }), 'queue+=1')
+    .add(TweenMax.to($path_k, 0.65, { strokeDashoffset: 0, ease: 'sine.in' }))
+    .add(TweenMax.to($path_elly, 2.2, { strokeDashoffset: 0, ease: 'sine.in' }))
+    .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
+    .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }), 'queue')
+    .add(TweenMax.to('#header,#obj-box', 2, { height: 60, ease: 'power1.in' }), 'queue+=0.5')
+    .add(TweenMax.to('#logo', 1.5, { width: 52, height: 'auto', left: 40, marginLeft: 26, ease: 'power1.in' }), 'queue+=1')
     .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=1.8')
     .call(() => {
         $wrap.classList.remove('loading');
     });
-
-new ScrollMagic.Scene({ tweenChanges: true })
-    .setTween(tween_logoDraw)
-    .addTo($controller)
-// .addIndicators();
-
-
-
-
-
-
-
-
-
-
-
-/**
- * LOGO 눈 path 상하 움직임 animation 
- */
-// setTimeout(function () {
-//     $eye_l.classList.add('action');
-//     $eye_r.classList.add('action');
-// }, 6000)
 
 
 /**
@@ -122,25 +97,7 @@ $toggleBtn.addEventListener('click', function () {
  */
 
 // 변수선언
-const $100vh = `calc(var(--vh, 1vh) * 100)`,
-    $height = 80,
-    $introPageDuration = 5,
-    $ease = 'ease : Expo.easeOut',
-    $introSetting = {
-        // duration: '20%',
-        triggerHook: 0,
-        // offset: 10,
-    };
-
-
-
-
-
-
-
-
-
-
+const $ease = 'ease : Expo.easeOut';
 
 
 
@@ -169,7 +126,7 @@ new ScrollMagic.Scene({
     duration: 3000,
     triggerElement: '.about',
     triggerHook: 0,
-    offset: 100,
+    offset: -60,
 })
     .setTween($tween_avata)
     .setPin('.about')
@@ -305,7 +262,7 @@ for (let i = 0; i < items.length; i++) {
     }, speed);
 }
 
-window.addEventListener("resize", function () {
+window.addEventListener('resize', function () {
     width = box.innerWidth;
     height = box.innerHeight;
 });

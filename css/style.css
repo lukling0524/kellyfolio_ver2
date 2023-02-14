@@ -373,12 +373,8 @@ a:focus {
 	max-height: calc(var(--vh, 1vh) * 100);
 	overflow: hidden;
 }
-.wrap.loading .full-box,
-.wrap.loading .header {
+.wrap.loading .intro-box {
 	height: calc(var(--vh, 1vh) * 100);
-}
-.wrap.loading .full-box {
-	position: relative;
 }
 .wrap.loading .logo {
 	width: 312px;
@@ -387,23 +383,21 @@ a:focus {
 	cursor: default;
 }
 
-.full-box {
-	position: relative;
+.intro-box {
 	width: 100vw;
-	height: 80px;
+}
+@supports (-webkit-touch-callout: none) {
+	.intro-box {
+		height: -webkit-fill-available;
+	}
+}
+.intro-box__obj {
+	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-@supports (-webkit-touch-callout: none) {
-	.full-box {
-		height: -webkit-fill-available;
-	}
-}
-
-.header {
-	width: 100vw;
-	height: 80px;
+.intro-box__header {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -420,12 +414,7 @@ a:focus {
 	z-index: 1000;
 	overflow: hidden;
 }
-@supports (-webkit-touch-callout: none) {
-	.header {
-		height: -webkit-fill-available;
-	}
-}
-.light-theme .header {
+.light-theme .intro-box__header {
 	background-color: rgba(155, 155, 155, 0.1);
 }
 
@@ -440,6 +429,53 @@ a:focus {
 	top: 50%;
 	transform: translate(-50%, -50%);
 	cursor: pointer;
+}
+
+.action.logo__eye-l {
+	animation: left_eye 3s 2s infinite;
+}
+.action.logo__eye-r {
+	animation: right_eye 3s 2s infinite;
+}
+@keyframes left_eye {
+	0% {
+		transform: translateY(0px);
+	}
+	10% {
+		transform: translateY(-4px);
+	}
+	20% {
+		transform: translateY(2px);
+	}
+	30% {
+		transform: translateY(-1px);
+	}
+	35% {
+		transform: translateY(0px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+@keyframes right_eye {
+	0% {
+		transform: translateY(0px);
+	}
+	20% {
+		transform: translateY(-4px);
+	}
+	30% {
+		transform: translateY(2px);
+	}
+	40% {
+		transform: translateY(-1px);
+	}
+	45% {
+		transform: translateY(0px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
 }
 
 .toggle__box {
@@ -521,7 +557,6 @@ a:focus {
 
 .about {
 	position: relative;
-	padding-top: 80px;
 }
 @media (max-width: 500px) {
 	.about {
@@ -530,7 +565,7 @@ a:focus {
 	}
 }
 .about__intro {
-	height: calc(100vh + 80px);
+	height: calc(100vh - 60px);
 	display: flex;
 	align-items: center;
 }
