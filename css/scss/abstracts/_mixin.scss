@@ -91,6 +91,8 @@
     }
 }
 
+$w-scrollbar: 8px;
+
 //Scroll bar 
 @mixin scrollbar {
     &::-webkit-scrollbar {

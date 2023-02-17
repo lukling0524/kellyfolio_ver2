@@ -230,6 +230,27 @@ body {
 	background-color: #FAFAFA;
 }
 
+body::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+body::-webkit-scrollbar-button {
+	width: 0;
+	height: 0;
+}
+body::-webkit-scrollbar-thumb {
+	background-color: #c1c1c1;
+	border-radius: 10px;
+}
+body::-webkit-scrollbar-track {
+	background-color: #e5e5e5;
+}
+body::-webkit-scrollbar-button:start:decrement, body::-webkit-scrollbar-button:end:increment {
+	display: none !important;
+	width: 0;
+	height: 0;
+}
+
 a:focus {
 	opacity: 1;
 }
@@ -323,9 +344,21 @@ a:focus {
 .btn:hover::before {
 	width: 100%;
 }
+.btn.no-icon {
+	padding: 14px 58px;
+}
+.btn__sm {
+	padding: 10px 50px 10px 30px;
+}
+.btn__sm.no-icon {
+	padding: 10px 30px;
+}
 .btn__text {
 	position: relative;
 	z-index: 10;
+}
+.btn > * {
+	position: relative;
 }
 .btn .ico-link {
 	display: block;
@@ -405,9 +438,6 @@ a:focus {
 	justify-content: space-between;
 	align-items: center;
 	padding: 10px 40px;
-	transition: -webkit-backdrop-filter 0.4s;
-	transition: backdrop-filter 0.4s;
-	transition: backdrop-filter 0.4s, -webkit-backdrop-filter 0.4s;
 	background-color: rgba(255, 255, 255, 0.1);
 	-webkit-backdrop-filter: blur(10px) opacity(1);
 	        backdrop-filter: blur(10px) opacity(1);
@@ -421,6 +451,10 @@ a:focus {
 .top-obj {
 	position: relative;
 	transform: rotate(-24deg);
+}
+
+.light-theme .top-obj {
+	filter: brightness(0.8);
 }
 
 .logo {
@@ -483,13 +517,13 @@ a:focus {
 	width: 56px;
 	position: absolute;
 	right: 40px;
-	background-color: rgba(137, 221, 255, 0.5);
+	background-color: #8eb0c4;
 	border-radius: 14px;
 	opacity: 0;
 	transition: 0.3s;
 }
 .light-theme .toggle__box {
-	background-color: #32979e;
+	background-color: #227176;
 }
 
 .toggle__item {
@@ -537,10 +571,10 @@ a:focus {
 	opacity: 1;
 }
 .toggle__icon--dark {
-	background-image: url("../images/toggle-icon_dark.png");
+	background-image: url("../images/toggle-icon_light.png");
 }
 .toggle__icon--light {
-	background-image: url("../images/toggle-icon_light.png");
+	background-image: url("../images/toggle-icon_dark.png");
 }
 
 .contents {
@@ -557,6 +591,7 @@ a:focus {
 
 .about {
 	position: relative;
+	padding-bottom: 100px;
 }
 @media (max-width: 500px) {
 	.about {
@@ -595,20 +630,19 @@ a:focus {
 	max-width: 398px;
 	margin: 0 auto;
 	border-radius: 50%;
-	border: 1px solid #fff;
 	overflow: hidden;
+}
+@media (max-width: 500px) {
+	.about .avata {
+		max-width: 250px;
+		border: 1px solid red;
+	}
 }
 @media not all and (-webkit-min-device-pixel-ratio: 0), not all and (min-resolution: 0.001dpcm) {
 	@supports (-webkit-appearance: none) {
 		.about .avata {
 			border: 1px solid yellow;
 		}
-	}
-}
-@media (max-width: 500px) {
-	.about .avata {
-		max-width: 250px;
-		border: 1px solid red;
 	}
 }
 .about .avata__sequence {
@@ -649,7 +683,7 @@ a:focus {
 	width: 100%;
 	display: flex;
 	align-items: flex-start;
-	padding-top: 250px;
+	padding: 250px 0 160px;
 }
 @media (max-width: 500px) {
 	.howtowork {
@@ -779,18 +813,97 @@ a:focus {
 	background-color: #39ADB5;
 }
 
-.process .section-title {
-	margin-top: 140px;
-	margin-bottom: 80px;
+.process {
+	padding: 160px 0;
 }
 
-.project .section-title {
-	margin-top: 140px;
-	margin-bottom: 80px;
+.project {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 160px 0;
+}
+.project__wrap {
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+.project__grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 28px;
+	margin: 80px 0 100px;
+}
+@media (max-width: 1279px) {
+	.project__grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+.project__item {
+	height: 340px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	padding: 20px 30px;
+	border-radius: 10px;
+	box-shadow: 2px 8px 9px 3px rgba(19, 19, 19, 0.3);
+	background-color: rgba(255, 255, 255, 0.1);
+	transition: 0.2s;
+}
+.project__item:hover {
+	background-color: rgba(255, 255, 255, 0.12);
+}
+.project__icon {
+	width: 40px;
+	height: 40px;
+	background: url("../images/ico-folder.png") top/cover no-repeat;
+}
+.project__item:hover .project__icon {
+	background-position: bottom;
+}
+.project__title {
+	font-weight: 600;
+}
+.project__detail {
+	margin: 10px 0;
+	font-size: 14px;
+}
+.project__skill {
+	display: flex;
+	gap: 20px;
+}
+.project__link {
+	display: flex;
+	justify-content: center;
+	gap: 30px;
+}
+.project__link .link__icon {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	right: 20px;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.project__link .link__icon--more {
+	background-image: url("../images/ico-magnifying_glass.png");
+}
+.project__link .link__icon--link {
+	background-image: url("../images/ico-link.png");
+}
+.project__link .btn__sm {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 16px;
 }
 
 .contact {
-	padding-top: 100px;
+	padding-top: 160px;
 }
 .contact__wrap {
 	position: relative;
@@ -805,11 +918,23 @@ a:focus {
 	opacity: 0.8;
 	z-index: -1;
 }
-.contact__icon:first-of-type {
+.contact__icon:nth-of-type(1) {
 	transform: scale(0.8);
 }
-.contact__icon:last-of-type {
+.contact__icon:nth-of-type(2) {
+	transform: scale(0.9);
+}
+.contact__icon:nth-of-type(3) {
+	transform: scale(1);
+}
+.contact__icon:nth-of-type(4) {
+	transform: scale(1.1);
+}
+.contact__icon:nth-of-type(5) {
 	transform: scale(1.2);
+}
+.contact__icon:nth-of-type(6) {
+	transform: scale(1.3);
 }
 .contact .section-title {
 	text-align: center;
@@ -818,8 +943,9 @@ a:focus {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 46px;
-	padding: 150px 0;
+	flex-direction: column;
+	gap: 10px;
+	padding: 100px 0;
 }
 @media (max-width: 500px) {
 	.contact__email {
@@ -881,7 +1007,7 @@ a:focus {
 	}
 }
 .footer {
-	padding: 40px 0 20px;
+	padding: 20px 0 20px;
 	font-size: 12px;
 	text-align: center;
 	color: #AFC9D3;

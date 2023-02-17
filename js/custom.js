@@ -1,4 +1,4 @@
-// 반응형 대응 vh css 변수 설정
+// ios 대응 vh css 변수 설정
 const vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
 
@@ -55,28 +55,33 @@ tween_logoDraw = new TimelineMax()
     .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
     .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }), 'queue')
     .add(TweenMax.to('#header,#obj-box', 2, { height: 60, ease: 'power1.in' }), 'queue+=0.5')
-    .add(TweenMax.to('#logo', 1.5, { width: 52, height: 'auto', left: 40, marginLeft: 26, ease: 'power1.in' }), 'queue+=1')
-    .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=1.8')
+    .add(TweenMax.to('#logo', 1.2, { width: 52, height: 'auto', left: 40, marginLeft: 26, ease: 'power1.in' }), 'queue+=1.3')
+    .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=2')
     .call(() => {
         $wrap.classList.remove('loading');
     });
 
+// 
+// tween_logoDraw = new TimelineMax()
+//     .add(TweenMax.to($path_k, { strokeDashoffset: 0, ease: 'sine.in' }))
+//     .add(TweenMax.to($path_elly, { strokeDashoffset: 0, ease: 'sine.in' }))
+//     .add(TweenMax.to($path_eye_l, { strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
+//     .add(TweenMax.to($path_eye_r, { strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
+//     .add(TweenMax.to('#header,#obj-box', { height: 60, ease: 'power1.in' }))
+//     .add(TweenMax.to('#logo', { width: 52, height: 'auto', left: 40, marginLeft: 26, ease: 'power1.in' }))
+//     .add(TweenMax.fromTo('#toggle_btn', { opacity: 0, x: 100 }, { opacity: 1, x: 0 }))
+//     .call(() => {
+//         $wrap.classList.remove('loading');
+//     });
+
+
+
+
+
+
 
 /**
- * 로고 클릭 시, 새로고침 시 scrollY = 0
- */
-$logo.addEventListener('click', function (e) {
-    if ($wrap.classList.contains('loading')) {
-        e.preventDefault();
-    } else {
-        window.location.reload()
-    }
-});
-
-
-
-/**
- * 라이트모드-다크모드 토글 버튼
+ * 라이트모드-다크모드 테마 토글 버튼
  */
 const $toggleBtn = document.querySelector('.toggle__item'),
     $themeIcons = document.querySelectorAll('.toggle__icon .item');
@@ -86,7 +91,6 @@ $toggleBtn.addEventListener('click', function () {
 
     for (let i = 0; i < $themeIcons.length; i++) {
         $themeIcons[i].classList.toggle('on');
-
     }
 })
 
@@ -147,7 +151,7 @@ const $tween_about = TweenMax.fromTo('.about__text', 0.5, { opacity: 0, y: 30 },
 new ScrollMagic.Scene({
     // duration: '100%',
     triggerElement: '.about__text',
-    triggerHook: 0.8,
+    triggerHook: 0.9,
 
 })
     .setTween($tween_about)
@@ -268,3 +272,34 @@ window.addEventListener('resize', function () {
 });
 
 
+
+
+const $projectGrid = document.querySelector('.project__grid'),
+    $projectItem = document.querySelectorAll('.project__item'),
+    $displayBtn = document.getElementById('btn-display');
+
+for (let i = 0; i < $projectItem.length; i++) {
+    if (i >= 6) {
+        $projectItem[i].style.display = 'none';
+    }
+}
+
+$displayBtn.addEventListener('click', function () {
+
+
+    if ($projectGrid.classList.contains('default')) {
+        for (let i = 0; i < $projectItem.length; i++) {
+            $projectItem[i].style.display = 'flex';
+        }
+
+        this.querySelector('span').textContent = '접기';
+    } else {
+        for (let i = 0; i < $projectItem.length; i++) {
+            if (i >= 6) {
+                $projectItem[i].style.display = 'none';
+            }
+        }
+        this.querySelector('span').textContent = '더보기';
+    }
+    $projectGrid.classList.toggle('default');
+})

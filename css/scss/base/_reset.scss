@@ -204,6 +204,7 @@ body {
     word-break: keep-all;
     @include get-color(color, color-font);
     @include get-color(background-color, color-bg);
+    @include scrollbar;
     overflow-x: hidden;
     transition: color, background 0.2s;
 }

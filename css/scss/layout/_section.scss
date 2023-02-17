@@ -1,3 +1,5 @@
+$sectionSpacs: 160px;
+
 .contents {
     position: relative;
     max-width: 1600px;
@@ -11,6 +13,7 @@
 
 .about {
     position: relative;
+    padding-bottom: 100px;
 
     @include mobs {
         height: calc(var(--vh, 1vh) * 100);
@@ -47,36 +50,23 @@
         max-width: 398px;
         margin: 0 auto;
         border-radius: 50%;
-        border: 1px solid #fff;
         overflow: hidden;
 
 
-        @include macSafari {
-            border: 1px solid yellow;
-        }
 
         @include mobs {
             max-width: 250px;
             border: 1px solid red;
         }
 
+        @include macSafari {
+            border: 1px solid yellow;
+        }
+
         &__sequence {
             width: 100%;
         }
     }
-
-
-    //     .memoji {
-    //         $size: 70px;
-    // 
-    //         width: 100%;
-    //         max-width: $size;
-    //         height: 100%;
-    //         max-height: $size;
-    //         position: absolute;
-    //         background: url('#{$path-image}/img-about.png') no-repeat center / contain;
-    //         opacity: 0.6;
-    //     }
 
     &__title {
         position: relative;
@@ -117,27 +107,13 @@
     width: 100%;
     display: flex;
     align-items: flex-start;
-    padding-top: 250px;
+    padding: 250px 0 $sectionSpacs;
 
     @include mobs {
         padding-top: 150px;
         flex-direction: column;
 
     }
-
-
-    //     .random-icon {
-    //         $size: 100px;
-    // 
-    //         width: 100%;
-    //         max-width: $size;
-    //         height: 100%;
-    //         max-height: $size;
-    //         position: absolute;
-    //         background: url('#{$path-image}/ico-random_6.svg') no-repeat center / contain;
-    //         opacity: 0.6;
-    //     }
-
 
     .section-title {
         position: relative;
@@ -278,24 +254,116 @@
 }
 
 .process {
-    .section-title {
-        margin-top: 140px;
-        margin-bottom: 80px;
-    }
+    padding: $sectionSpacs 0;
 
 }
 
 .project {
-    .section-title {
-        margin-top: 140px;
-        margin-bottom: 80px;
+    $project: &;
+    width: 100%;
+    @include flexCenter(center);
+    flex-direction: column;
+    padding: $sectionSpacs 0;
+
+    &__wrap {
+        width: 100%;
+        @include flexCenter(space-evenly);
     }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+        margin: 80px 0 100px;
+
+        @include tablet {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    &__item {
+        height: 340px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 2px 8px 9px 3px rgba(19, 19, 19, 0.3);
+        background-color: rgba($color: #fff, $alpha: 0.1);
+        transition: 0.2s;
+
+        &:hover {
+            background-color: rgba($color: #fff, $alpha: 0.12);
+        }
+    }
+
+    &__icon {
+        $size: 40px;
+
+        width: $size;
+        height: $size;
+        background: url('#{$path-image}/ico-folder.png') top / cover no-repeat;
+
+        #{$project}__item:hover & {
+            background-position: bottom;
+        }
+    }
+
+    &__title {
+        font-weight: 600;
+    }
+
+    &__detail {
+        margin: 10px 0;
+        font-size: 14px;
+    }
+
+    &__skill {
+        display: flex;
+        gap: 20px;
+    }
+
+    &__link {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+
+
+        .link__icon {
+            $size: 20px;
+
+            display: inline-block;
+            width: $size;
+            height: $size;
+            position: absolute;
+            right: $size;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+
+            &--more {
+                background-image: url('#{$path-image}/ico-magnifying_glass.png');
+            }
+
+            &--link {
+                background-image: url('#{$path-image}/ico-link.png');
+            }
+        }
+
+        .btn__sm {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+        }
+    }
+
 
 }
 
 
 .contact {
-    padding-top: 100px;
+    padding-top: $sectionSpacs;
 
     &__wrap {
         position: relative;
@@ -313,12 +381,13 @@
         opacity: 0.8;
         z-index: -1;
 
-        &:first-of-type {
-            transform: scale(0.8);
-        }
+        @for $i from 1 through 6 {
+            $res : calc((7 + $i) / 10);
 
-        &:last-of-type {
-            transform: scale(1.2);
+            &:nth-of-type(#{$i}) {
+                transform: scale($res);
+            }
+
         }
     }
 
@@ -328,8 +397,9 @@
 
     &__email {
         @include flexCenter(center);
-        gap: 46px;
-        padding: 150px 0;
+        flex-direction: column;
+        gap: 10px;
+        padding: 100px 0;
 
         @include mobs {
             gap: 10px;
@@ -403,7 +473,7 @@
 
 
 .footer {
-    padding: 40px 0 20px;
+    padding: 20px 0 20px;
     font-size: 12px;
     text-align: center;
     @include get-color(color, color-lightblue);

@@ -55,9 +55,25 @@ body {
         }
     }
 
+    &.no-icon {
+        padding: 14px 58px;
+    }
+
+    &__sm {
+        padding: 10px 50px 10px 30px;
+
+        &.no-icon {
+            padding: 10px 30px;
+        }
+    }
+
     &__text {
         position: relative;
         z-index: 10;
+    }
+
+    >* {
+        position: relative;
     }
 
     .ico-link {
@@ -83,8 +99,8 @@ body {
     &:hover .ico-link__arrow {
         animation: arrow 1s infinite both;
     }
-
 }
+
 
 @keyframes arrow {
     0% {
