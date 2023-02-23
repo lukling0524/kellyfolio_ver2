@@ -413,7 +413,6 @@ a:focus {
 	width: 312px;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	cursor: default;
 }
 
 .intro-box {
@@ -462,7 +461,6 @@ a:focus {
 	position: absolute;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	cursor: pointer;
 }
 
 .action.logo__eye-l {
@@ -683,7 +681,7 @@ a:focus {
 	width: 100%;
 	display: flex;
 	align-items: flex-start;
-	padding: 250px 0 160px;
+	padding: 250px 0 100px;
 }
 @media (max-width: 500px) {
 	.howtowork {
@@ -748,7 +746,7 @@ a:focus {
 	}
 }
 .howtowork__item + .howtowork__item {
-	margin-top: 100px;
+	margin-top: 140px;
 }
 .howtowork__main {
 	display: flex;
@@ -814,7 +812,7 @@ a:focus {
 }
 
 .process {
-	padding: 160px 0;
+	padding: 100px 0;
 }
 
 .project {
@@ -823,7 +821,7 @@ a:focus {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	padding: 160px 0;
+	padding: 100px 0;
 }
 .project__wrap {
 	width: 100%;
@@ -835,7 +833,7 @@ a:focus {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 28px;
-	margin: 80px 0 100px;
+	margin: 120px 0 100px;
 }
 @media (max-width: 1279px) {
 	.project__grid {
@@ -903,7 +901,7 @@ a:focus {
 }
 
 .contact {
-	padding-top: 160px;
+	padding-top: 100px;
 }
 .contact__wrap {
 	position: relative;

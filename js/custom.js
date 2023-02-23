@@ -48,31 +48,31 @@ let $controller = new ScrollMagic.Controller({});
 /**
 * 인트로 (SVG drawing + header size 모션)
 */
-tween_logoDraw = new TimelineMax()
-    .delay(1)
-    .add(TweenMax.to($path_k, 0.65, { strokeDashoffset: 0, ease: 'sine.in' }))
-    .add(TweenMax.to($path_elly, 2.2, { strokeDashoffset: 0, ease: 'sine.in' }))
-    .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
-    .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }), 'queue')
-    .add(TweenMax.to('#header,#obj-box', 2, { height: 60, ease: 'power1.in' }), 'queue+=0.5')
-    .add(TweenMax.to('#logo', 1.2, { width: 52, height: 'auto', left: 40, marginLeft: 26, ease: 'power1.in' }), 'queue+=1.3')
-    .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=2')
-    .call(() => {
-        $wrap.classList.remove('loading');
-    });
-
-// 
-// tween_logoDraw = new TimelineMax()
-//     .add(TweenMax.to($path_k, { strokeDashoffset: 0, ease: 'sine.in' }))
-//     .add(TweenMax.to($path_elly, { strokeDashoffset: 0, ease: 'sine.in' }))
-//     .add(TweenMax.to($path_eye_l, { strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
-//     .add(TweenMax.to($path_eye_r, { strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
-//     .add(TweenMax.to('#header,#obj-box', { height: 60, ease: 'power1.in' }))
-//     .add(TweenMax.to('#logo', { width: 52, height: 'auto', left: 40, marginLeft: 26, ease: 'power1.in' }))
-//     .add(TweenMax.fromTo('#toggle_btn', { opacity: 0, x: 100 }, { opacity: 1, x: 0 }))
+// $tween_logoDraw = new TimelineMax()
+//     .delay(1)
+//     .add(TweenMax.to($path_k, 0.65, { strokeDashoffset: 0, ease: 'sine.in' }))
+//     .add(TweenMax.to($path_elly, 2.2, { strokeDashoffset: 0, ease: 'sine.in' }))
+//     .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
+//     .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }), 'queue')
+//     .add(TweenMax.to('#header,#obj-box', 2, { height: 60, ease: 'power1.in' }), 'queue+=0.5')
+//     .add(TweenMax.to('#logo', 1.2, { width: 52, height: 'auto', left: 40, marginLeft: 26, ease: 'power1.in' }), 'queue+=1.3')
+//     .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=2')
 //     .call(() => {
 //         $wrap.classList.remove('loading');
 //     });
+
+
+$tween_logoDraw = new TimelineMax()
+    .add(TweenMax.to($path_k, { strokeDashoffset: 0, ease: 'sine.in' }))
+    .add(TweenMax.to($path_elly, { strokeDashoffset: 0, ease: 'sine.in' }))
+    .add(TweenMax.to($path_eye_l, { strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
+    .add(TweenMax.to($path_eye_r, { strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
+    .add(TweenMax.to('#header,#obj-box', { height: 60, ease: 'power1.in' }))
+    .add(TweenMax.to('#logo', { width: 52, height: 'auto', left: 40, marginLeft: 26, ease: 'power1.in' }))
+    .add(TweenMax.fromTo('#toggle_btn', { opacity: 0, x: 100 }, { opacity: 1, x: 0 }))
+    .call(() => {
+        $wrap.classList.remove('loading');
+    });
 
 
 
@@ -100,11 +100,6 @@ $toggleBtn.addEventListener('click', function () {
  * 스크롤 애니메이션
  */
 
-// 변수선언
-const $ease = 'ease : Expo.easeOut';
-
-
-
 // About section 아바타 이미지 시퀀스
 const $avataImgSqc = new Array();
 const $imgTag = document.querySelector('.avata__sequence');
@@ -115,16 +110,14 @@ for (let i = 1; i < 48; i++) {
 
 const $img = { crntImg: 0 };
 
-let $tween_avata = TweenMax.to($img, 0.5,
-    {
-        crntImg: $avataImgSqc.length - 1,
-        roundProps: 'crntImg',
-        immediateRender: true,
-        onUpdate: function () {
-            $imgTag.setAttribute('src', $avataImgSqc[$img.crntImg])
-        }
+let $tween_avata = TweenMax.to($img, 0.5, {
+    crntImg: $avataImgSqc.length - 1,
+    roundProps: 'crntImg',
+    immediateRender: true,
+    onUpdate: function () {
+        $imgTag.setAttribute('src', $avataImgSqc[$img.crntImg])
     }
-);
+});
 
 new ScrollMagic.Scene({
     duration: 3000,
@@ -147,7 +140,7 @@ new ScrollMagic.Scene({
 
 
 // about 텍스트 slide up
-const $tween_about = TweenMax.fromTo('.about__text', 0.5, { opacity: 0, y: 30 }, { opacity: 1, y: 0, $ease });
+const $tween_about = TweenMax.fromTo('.about__text', 0.5, { opacity: 0, y: 60 }, { opacity: 1, y: 0 });
 new ScrollMagic.Scene({
     // duration: '100%',
     triggerElement: '.about__text',
@@ -163,6 +156,25 @@ new ScrollMagic.Scene({
 //     colorEnd: 'blue',
 //     colorTrigger: 'blue',
 // });
+
+
+//how to work 타이틀 slide left to right
+// const $tween_howtoTitle = TweenMax.fromTo('.howtowork .section-title', 20, { x: -100 }, { x: 0 });
+// new ScrollMagic.Scene({
+//     duration: '100%',
+//     triggerElement: '.about__text',
+//     triggerHook: 0,
+//     offset: '100%'
+// })
+//     .setTween($tween_howtoTitle)
+//     .addTo($controller)
+//     .addIndicators({
+//         indent: 0,
+//         name: '이렇게일합니다',
+//         colorStart: 'blue',
+//         colorEnd: 'blue',
+//         colorTrigger: 'blue',
+//     });
 
 
 
@@ -184,14 +196,55 @@ let pinned = new ScrollMagic.Scene({
 // });
 
 if (window.innerWidth < 500) {
-
-    console.log('false');
     pinned.destroy(true);
     pinned = null;
     // tween = null;
     // $controller = null;
 
 }
+
+
+// project 섹션 slide up
+$tween_project = new TimelineMax()
+    .add(TweenMax.fromTo('.project__wrap .section-title', 0.5, { opacity: 0, y: 30 }, { opacity: 1, y: 0 }), 'queue')
+    .add(TweenMax.fromTo('.project__wrap .btn', 0.5, { opacity: 0, y: 30 }, { opacity: 1, y: 0 }), 'queue+=0.1');
+
+new ScrollMagic.Scene({
+    // duration: '100%',
+    triggerElement: '.project',
+    triggerHook: 0.6,
+
+})
+    .setTween($tween_project)
+    .addTo($controller)
+// .addIndicators({
+//     indent: 0,
+//     name: '프로젝트 타이틀',
+//     colorStart: 'red',
+//     colorEnd: 'red',
+//     colorTrigger: 'red',
+// });
+
+
+// project 섹션 slide up
+const $tween_grid = TweenMax.fromTo('.project__grid', 0.7, { opacity: 0, y: 50 }, { opacity: 1, y: 0 });
+
+
+new ScrollMagic.Scene({
+    // duration: '100%',
+    triggerElement: '.project__wrap',
+    triggerHook: 0.4,
+})
+    .setTween($tween_grid)
+    .addTo($controller)
+// .addIndicators({
+//     indent: 0,
+//     name: '그리드',
+//     colorStart: 'yellow',
+//     colorEnd: 'yellow',
+//     colorTrigger: 'yellow',
+// });
+
 
 
 
@@ -234,11 +287,10 @@ new ScrollMagic.Scene({
 // });
 
 
-const box = document.querySelector('.contact__wrap');
-const items = document.querySelectorAll('.contact__icon');
-
-let width = box.offsetWidth - items[0].offsetWidth;
-let height = box.offsetHeight - items[0].offsetHeight;
+let box = document.querySelector('.contact__wrap'),
+    items = document.querySelectorAll('.contact__icon'),
+    width = box.offsetWidth - items[0].offsetWidth,
+    height = box.offsetHeight - items[0].offsetHeight;
 
 for (let i = 0; i < items.length; i++) {
     let x = Math.random() * width;
@@ -267,8 +319,13 @@ for (let i = 0; i < items.length; i++) {
 }
 
 window.addEventListener('resize', function () {
-    width = box.innerWidth;
-    height = box.innerHeight;
+
+
+    box = document.querySelector('.contact__wrap');
+    items = document.querySelectorAll('.contact__icon');
+
+    width = box.offsetWidth - items[0].offsetWidth;
+    height = box.offsetHeight - items[0].offsetHeight;
 });
 
 
