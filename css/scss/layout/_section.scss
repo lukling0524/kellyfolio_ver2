@@ -1,4 +1,5 @@
-$sectionSpacs: 100px;
+$sectionSpace: 100px;
+$sectionSpaceMobile : 60px;
 
 .contents {
     position: relative;
@@ -15,23 +16,23 @@ $sectionSpacs: 100px;
     position: relative;
     padding-bottom: 100px;
 
-    @include mobs {
-        height: calc(var(--vh, 1vh) * 100);
-        height: auto;
-    }
+    // @include mobs {
+    //     height: calc(var(--vh, 1vh) * 100);
+    // }
 
     &__intro {
         height: calc(100vh - 60px);
         display: flex;
         align-items: center;
 
-        @include ios {
-            min-height: -webkit-fill-available;
-        }
-
         @include mobs {
             padding: 100px 0;
+            justify-content: center;
             flex-direction: column;
+
+            @include safariOnly {
+                height: calc(var(--vh, 1vh) * 100);
+            }
         }
     }
 
@@ -56,16 +57,18 @@ $sectionSpacs: 100px;
 
         @include mobs {
             max-width: 250px;
-            border: 5px solid green;
+            // border: 5px solid green;
         }
 
-        @include macSafari {
-            border: 5px solid yellow;
-        }
+        //         @include ios {
+        //             border: 5px solid red;
+        //         }
+        // 
+        // 
+        //         @include safariOnly {
+        //             border: 5px solid yellow;
+        //         }
 
-        @include ios {
-            border: 5px solid red;
-        }
 
         &__sequence {
             width: 100%;
@@ -78,10 +81,18 @@ $sectionSpacs: 100px;
 
         @include mobs {
             flex: auto;
+
+            // @include safariOnly {
+            //     margin-top: 40px;
+            // }
         }
 
         .section-title {
             margin-bottom: 40px;
+
+            @include mobs {
+                margin: 10% 0;
+            }
         }
 
         .btn {
@@ -111,12 +122,11 @@ $sectionSpacs: 100px;
     width: 100%;
     display: flex;
     align-items: flex-start;
-    padding: 250px 0 $sectionSpacs;
+    padding: 250px 0 $sectionSpace;
 
     @include mobs {
-        padding-top: 150px;
+        padding: 80px 0 $sectionSpaceMobile;
         flex-direction: column;
-
     }
 
     .section-title {
@@ -126,6 +136,18 @@ $sectionSpacs: 100px;
 
         @include mobs {
             width: 100%;
+            position: sticky;
+            top: 130px;
+            z-index: 100;
+
+            &::before {
+                @include pseudo('', 100%, 200px);
+                position: absolute;
+                top: -130px;
+                left: 0;
+                @include get-color(background-color, color-bg);
+                z-index: -1;
+            }
         }
 
         &::after {
@@ -184,6 +206,10 @@ $sectionSpacs: 100px;
 
     &__item+&__item {
         margin-top: 140px;
+
+        @include mobs {
+            margin-top: 80px;
+        }
     }
 
     &__main {
@@ -199,6 +225,10 @@ $sectionSpacs: 100px;
         &--tit {
             font-size: 22px;
             font-weight: 600;
+
+            @include mobs {
+                font-size: 20px;
+            }
         }
     }
 
@@ -210,6 +240,21 @@ $sectionSpacs: 100px;
         height: $size;
         background-repeat: no-repeat;
         background-size: cover;
+
+        @include mobs {
+            $size: 24px;
+
+            width: $size;
+            height: $size;
+        }
+
+        @include safariOnly {
+            margin-right: 12px;
+
+            @include mobs {
+                margin-right: 8px;
+            }
+        }
 
         &--pencil {
             background-image: url('#{$path-image}/ico-pencil.png')
@@ -258,10 +303,6 @@ $sectionSpacs: 100px;
     }
 }
 
-.process {
-    padding: $sectionSpacs 0;
-
-}
 
 .project {
     $project: &;
@@ -269,11 +310,29 @@ $sectionSpacs: 100px;
     width: 100%;
     @include flexCenter(center);
     flex-direction: column;
-    padding: $sectionSpacs 0;
+    padding: $sectionSpace 0;
+
+    @include mobs {
+        padding: $sectionSpaceMobile 0;
+    }
+
 
     &__wrap {
         width: 100%;
         @include flexCenter(space-evenly);
+
+        @include mobs {
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .section-title {
+            @include mobs {
+                @include safariOnly {
+                    margin-bottom: 30px;
+                }
+            }
+        }
     }
 
     &__grid {
@@ -290,21 +349,31 @@ $sectionSpacs: 100px;
         // @media (max-width: 949px) {
         //     grid-template-columns: 1fr;
         // }
+
+        @include mobs {
+            grid-template-columns: 1fr;
+            margin: 80px 0 $sectionSpaceMobile;
+        }
     }
 
     &__item {
         height: 340px;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
-        padding: 20px 30px;
+        justify-content: space-between;
+        padding: 30px;
         border-radius: 10px;
         box-shadow: 2px 8px 9px 3px rgba(19, 19, 19, 0.3);
         background-color: rgba($color: #fff, $alpha: 0.1);
         transition: 0.2s;
 
         @media (max-width: 949px) {
-            height: 328px;
+            height: 300px;
+        }
+
+
+        @include mobs {
+            height: 280px;
         }
 
         &:hover {
@@ -340,11 +409,25 @@ $sectionSpacs: 100px;
             justify-content: space-between;
             margin: 16px 0;
         }
+
+        @include mobs {
+            display: block;
+        }
     }
 
     &__skill {
         display: flex;
         gap: 20px;
+
+        @include safariOnly {
+            gap: 0px;
+        }
+
+        &--list+&--list {
+            @include safariOnly {
+                margin-left: 14px;
+            }
+        }
     }
 
     &__link {
@@ -352,6 +435,23 @@ $sectionSpacs: 100px;
         justify-content: center;
         gap: 30px;
 
+        @include mobs {
+            gap: 20px;
+        }
+
+        @include safariOnly {
+            gap: 0;
+        }
+
+        .btn+.btn {
+            @include safariOnly {
+                margin-left: 30px;
+
+                @include mobs {
+                    margin-left: 20px;
+                }
+            }
+        }
 
         .link__icon {
             $size: 20px;
@@ -363,6 +463,10 @@ $sectionSpacs: 100px;
             right: $size;
             background-repeat: no-repeat;
             background-size: cover;
+
+            @include mobs {
+                right: 15px;
+            }
 
 
             &--more {
@@ -379,18 +483,28 @@ $sectionSpacs: 100px;
             align-items: center;
             gap: 10px;
             font-size: 16px;
+
+            @include mobs {
+                padding-left: 20px;
+                padding-right: 40px;
+            }
         }
     }
 }
 
 
 .contact {
-    padding-top: $sectionSpacs;
+    padding-top: $sectionSpace;
+    overflow: hidden;
+
+    @include mobs {
+        padding-top: $sectionSpaceMobile;
+    }
+
 
     &__wrap {
         position: relative;
         padding: 40px 0;
-        overflow: hidden;
     }
 
     &__icon {
@@ -426,7 +540,6 @@ $sectionSpacs: 100px;
         padding: 100px 0;
 
         @include mobs {
-            gap: 10px;
             padding: 80px 0;
         }
 
@@ -453,7 +566,7 @@ $sectionSpacs: 100px;
             transition: 0.3s;
 
             @include mobs {
-                font-size: 24px;
+                font-size: 30px;
             }
 
             &:hover {

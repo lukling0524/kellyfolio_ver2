@@ -39,6 +39,10 @@
         z-index: $header;
         overflow: hidden;
 
+        @include mobs {
+            padding: 10px 20px;
+        }
+
         @at-root .light-theme & {
             background-color: rgba(155, 155, 155, 0.1);
         }
@@ -137,6 +141,10 @@
         border-radius: 14px;
         opacity: 0;
         transition: 0.3s;
+
+        @include mobs {
+            right: 20px;
+        }
     }
 
     &__item {

@@ -52,16 +52,16 @@ $tween_logoDraw = new TimelineMax()
     .delay(1)
     .add(TweenMax.to($path_k, 0.65, { strokeDashoffset: 0, ease: 'sine.in' }))
     .add(TweenMax.to($path_elly, 2.2, { strokeDashoffset: 0, ease: 'sine.in' }))
-    .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
-    .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }), 'queue')
+    .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: window.innerWidth < 500 ? 'sine.in' : 'elastic.out(1, 0.3)' }))
+    .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: window.innerWidth < 500 ? 'sine.in' : 'elastic.out(1, 0.3)' }), 'queue')
     .add(TweenMax.to('.intro-box', 2, { height: 60, ease: 'power1.in' }), 'queue+=0.5')
-    .add(TweenMax.to('#logo', 1.2, { width: 52, height: 'auto', left: 40, marginLeft: 26, ease: 'power1.in' }), 'queue+=1.3')
+    .add(TweenMax.to('#logo', 1.2, { width: 52, height: 'auto', left: window.innerWidth < 500 ? 20 : 40, marginLeft: 26, ease: 'power1.in' }), 'queue+=1.3')
     .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=2')
     .call(() => {
         $wrap.classList.remove('loading');
     });
 
-// 
+
 // $tween_logoDraw = new TimelineMax()
 //     .add(TweenMax.to($path_k, { strokeDashoffset: 0, ease: 'sine.in' }))
 //     .add(TweenMax.to($path_elly, { strokeDashoffset: 0, ease: 'sine.in' }))
@@ -73,8 +73,8 @@ $tween_logoDraw = new TimelineMax()
 //     .call(() => {
 //         $wrap.classList.remove('loading');
 //     });
-// 
-// 
+
+
 
 
 
@@ -159,22 +159,28 @@ new ScrollMagic.Scene({
 
 
 //how to work 타이틀 slide left to right
-// const $tween_howtoTitle = TweenMax.fromTo('.howtowork .section-title', 20, { x: -100 }, { x: 0 });
-// new ScrollMagic.Scene({
-//     duration: '100%',
-//     triggerElement: '.about__text',
-//     triggerHook: 0,
-//     offset: '100%'
-// })
-//     .setTween($tween_howtoTitle)
-//     .addTo($controller)
-//     .addIndicators({
-//         indent: 0,
-//         name: '이렇게일합니다',
-//         colorStart: 'blue',
-//         colorEnd: 'blue',
-//         colorTrigger: 'blue',
-//     });
+
+if (window.innerWidth < 500) {
+
+    const $tween_howtoTitle = TweenMax.fromTo('.howtowork .section-title', 10, { x: -300 }, { x: 0 });
+
+    new ScrollMagic.Scene({
+        duration: '50%',
+        triggerElement: '.about__text',
+        triggerHook: 0,
+        offset: '300%'
+    })
+        .setTween($tween_howtoTitle)
+        .addTo($controller)
+    // .addIndicators({
+    //     indent: 0,
+    //     name: '이렇게일합니다',
+    //     colorStart: 'red',
+    //     colorEnd: 'red',
+    //     colorTrigger: 'red',
+    // });
+}
+
 
 
 
@@ -198,9 +204,6 @@ let pinned = new ScrollMagic.Scene({
 if (window.innerWidth < 500) {
     pinned.destroy(true);
     pinned = null;
-    // tween = null;
-    // $controller = null;
-
 }
 
 
