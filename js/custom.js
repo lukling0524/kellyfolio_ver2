@@ -48,33 +48,33 @@ let $controller = new ScrollMagic.Controller({});
 /**
 * 인트로 (SVG drawing + header size 모션)
 */
-// $tween_logoDraw = new TimelineMax()
-//     .delay(1)
-//     .add(TweenMax.to($path_k, 0.65, { strokeDashoffset: 0, ease: 'sine.in' }))
-//     .add(TweenMax.to($path_elly, 2.2, { strokeDashoffset: 0, ease: 'sine.in' }))
-//     .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
-//     .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }), 'queue')
-//     .add(TweenMax.to('#header,#obj-box', 2, { height: 60, ease: 'power1.in' }), 'queue+=0.5')
-//     .add(TweenMax.to('#logo', 1.2, { width: 52, height: 'auto', left: 40, marginLeft: 26, ease: 'power1.in' }), 'queue+=1.3')
-//     .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=2')
-//     .call(() => {
-//         $wrap.classList.remove('loading');
-//     });
-
-
 $tween_logoDraw = new TimelineMax()
-    .add(TweenMax.to($path_k, { strokeDashoffset: 0, ease: 'sine.in' }))
-    .add(TweenMax.to($path_elly, { strokeDashoffset: 0, ease: 'sine.in' }))
-    .add(TweenMax.to($path_eye_l, { strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
-    .add(TweenMax.to($path_eye_r, { strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
-    .add(TweenMax.to('#header,#obj-box', { height: 60, ease: 'power1.in' }))
-    .add(TweenMax.to('#logo', { width: 52, height: 'auto', left: 40, marginLeft: 26, ease: 'power1.in' }))
-    .add(TweenMax.fromTo('#toggle_btn', { opacity: 0, x: 100 }, { opacity: 1, x: 0 }))
+    .delay(1)
+    .add(TweenMax.to($path_k, 0.65, { strokeDashoffset: 0, ease: 'sine.in' }))
+    .add(TweenMax.to($path_elly, 2.2, { strokeDashoffset: 0, ease: 'sine.in' }))
+    .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
+    .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }), 'queue')
+    .add(TweenMax.to('.intro-box', 2, { height: 60, ease: 'power1.in' }), 'queue+=0.5')
+    .add(TweenMax.to('#logo', 1.2, { width: 52, height: 'auto', left: 40, marginLeft: 26, ease: 'power1.in' }), 'queue+=1.3')
+    .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=2')
     .call(() => {
         $wrap.classList.remove('loading');
     });
 
-
+// 
+// $tween_logoDraw = new TimelineMax()
+//     .add(TweenMax.to($path_k, { strokeDashoffset: 0, ease: 'sine.in' }))
+//     .add(TweenMax.to($path_elly, { strokeDashoffset: 0, ease: 'sine.in' }))
+//     .add(TweenMax.to($path_eye_l, { strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
+//     .add(TweenMax.to($path_eye_r, { strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
+//     .add(TweenMax.to('.intro-box', { height: 60, ease: 'power1.in' }))
+//     .add(TweenMax.to('#logo', { width: 52, height: 'auto', left: 40, marginLeft: 26, ease: 'power1.in' }))
+//     .add(TweenMax.fromTo('#toggle_btn', { opacity: 0, x: 100 }, { opacity: 1, x: 0 }))
+//     .call(() => {
+//         $wrap.classList.remove('loading');
+//     });
+// 
+// 
 
 
 
@@ -233,7 +233,7 @@ const $tween_grid = TweenMax.fromTo('.project__grid', 0.7, { opacity: 0, y: 50 }
 new ScrollMagic.Scene({
     // duration: '100%',
     triggerElement: '.project__wrap',
-    triggerHook: 0.4,
+    triggerHook: 0.5,
 })
     .setTween($tween_grid)
     .addTo($controller)

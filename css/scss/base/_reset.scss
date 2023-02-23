@@ -203,8 +203,9 @@ body {
     -webkit-font-smoothing: antialiased;
     word-break: keep-all;
     @include get-color(color, color-font);
+    background: url(#{$path-image}/bg-intro_obj.png) no-repeat top 40% center;
     @include get-color(background-color, color-bg);
-    @include scrollbar;
+    @include scrollbarY;
     overflow-x: hidden;
     transition: color, background 0.2s;
 }

@@ -56,11 +56,15 @@ $sectionSpacs: 100px;
 
         @include mobs {
             max-width: 250px;
-            border: 1px solid red;
+            border: 5px solid green;
         }
 
         @include macSafari {
-            border: 1px solid yellow;
+            border: 5px solid yellow;
+        }
+
+        @include ios {
+            border: 5px solid red;
         }
 
         &__sequence {
@@ -201,6 +205,7 @@ $sectionSpacs: 100px;
     &__icon {
         $size: 32px;
 
+        display: block;
         width: $size;
         height: $size;
         background-repeat: no-repeat;
@@ -260,6 +265,7 @@ $sectionSpacs: 100px;
 
 .project {
     $project: &;
+
     width: 100%;
     @include flexCenter(center);
     flex-direction: column;
@@ -271,6 +277,7 @@ $sectionSpacs: 100px;
     }
 
     &__grid {
+        width: 100%;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 28px;
@@ -279,6 +286,10 @@ $sectionSpacs: 100px;
         @include tablet {
             grid-template-columns: repeat(2, 1fr);
         }
+
+        // @media (max-width: 949px) {
+        //     grid-template-columns: 1fr;
+        // }
     }
 
     &__item {
@@ -292,7 +303,13 @@ $sectionSpacs: 100px;
         background-color: rgba($color: #fff, $alpha: 0.1);
         transition: 0.2s;
 
+        @media (max-width: 949px) {
+            height: 328px;
+        }
+
         &:hover {
+            transform: scale(1.02);
+            box-shadow: 2px 8px 9px 3px rgba(19, 19, 19, 0.45);
             background-color: rgba($color: #fff, $alpha: 0.12);
         }
     }
@@ -300,6 +317,7 @@ $sectionSpacs: 100px;
     &__icon {
         $size: 40px;
 
+        display: block;
         width: $size;
         height: $size;
         background: url('#{$path-image}/ico-folder.png') top / cover no-repeat;
@@ -316,6 +334,12 @@ $sectionSpacs: 100px;
     &__detail {
         margin: 10px 0;
         font-size: 14px;
+
+        @media (max-width: 949px) {
+            display: flex;
+            justify-content: space-between;
+            margin: 16px 0;
+        }
     }
 
     &__skill {
@@ -357,8 +381,6 @@ $sectionSpacs: 100px;
             font-size: 16px;
         }
     }
-
-
 }
 
 
@@ -368,11 +390,13 @@ $sectionSpacs: 100px;
     &__wrap {
         position: relative;
         padding: 40px 0;
+        overflow: hidden;
     }
 
     &__icon {
         $size: 36px;
 
+        display: block;
         width: $size;
         height: $size;
         position: absolute;
@@ -409,6 +433,7 @@ $sectionSpacs: 100px;
         &--icon {
             $size: 100px;
 
+            display: block;
             width: $size;
             height: $size;
             background: url('#{$path-image}/ico-envelope.png') no-repeat center / contain;

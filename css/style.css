@@ -218,6 +218,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	word-break: keep-all;
 	color: #FFFFFF;
+	background: url(../images/bg-intro_obj.png) no-repeat top 40% center;
 	background-color: #1A2744;
 	overflow-x: hidden;
 	transition: color, background 0.2s;
@@ -232,10 +233,8 @@ body {
 
 body::-webkit-scrollbar {
 	width: 8px;
-	height: 8px;
 }
 body::-webkit-scrollbar-button {
-	width: 0;
 	height: 0;
 }
 body::-webkit-scrollbar-thumb {
@@ -423,13 +422,8 @@ a:focus {
 		height: -webkit-fill-available;
 	}
 }
-.intro-box__obj {
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
 .intro-box__header {
+	width: 100%;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -438,8 +432,8 @@ a:focus {
 	align-items: center;
 	padding: 10px 40px;
 	background-color: rgba(255, 255, 255, 0.1);
-	-webkit-backdrop-filter: blur(10px) opacity(1);
-	        backdrop-filter: blur(10px) opacity(1);
+	-webkit-backdrop-filter: blur(10px);
+	        backdrop-filter: blur(10px);
 	z-index: 1000;
 	overflow: hidden;
 }
@@ -633,14 +627,19 @@ a:focus {
 @media (max-width: 500px) {
 	.about .avata {
 		max-width: 250px;
-		border: 1px solid red;
+		border: 5px solid green;
 	}
 }
 @media not all and (-webkit-min-device-pixel-ratio: 0), not all and (min-resolution: 0.001dpcm) {
 	@supports (-webkit-appearance: none) {
 		.about .avata {
-			border: 1px solid yellow;
+			border: 5px solid yellow;
 		}
+	}
+}
+@supports (-webkit-touch-callout: none) {
+	.about .avata {
+		border: 5px solid red;
 	}
 }
 .about .avata__sequence {
@@ -764,6 +763,7 @@ a:focus {
 	font-weight: 600;
 }
 .howtowork__icon {
+	display: block;
 	width: 32px;
 	height: 32px;
 	background-repeat: no-repeat;
@@ -830,6 +830,7 @@ a:focus {
 	align-items: center;
 }
 .project__grid {
+	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 28px;
@@ -851,10 +852,18 @@ a:focus {
 	background-color: rgba(255, 255, 255, 0.1);
 	transition: 0.2s;
 }
+@media (max-width: 949px) {
+	.project__item {
+		height: 328px;
+	}
+}
 .project__item:hover {
+	transform: scale(1.02);
+	box-shadow: 2px 8px 9px 3px rgba(19, 19, 19, 0.45);
 	background-color: rgba(255, 255, 255, 0.12);
 }
 .project__icon {
+	display: block;
 	width: 40px;
 	height: 40px;
 	background: url("../images/ico-folder.png") top/cover no-repeat;
@@ -868,6 +877,13 @@ a:focus {
 .project__detail {
 	margin: 10px 0;
 	font-size: 14px;
+}
+@media (max-width: 949px) {
+	.project__detail {
+		display: flex;
+		justify-content: space-between;
+		margin: 16px 0;
+	}
 }
 .project__skill {
 	display: flex;
@@ -906,8 +922,10 @@ a:focus {
 .contact__wrap {
 	position: relative;
 	padding: 40px 0;
+	overflow: hidden;
 }
 .contact__icon {
+	display: block;
 	width: 36px;
 	height: 36px;
 	position: absolute;
@@ -952,6 +970,7 @@ a:focus {
 	}
 }
 .contact__email--icon {
+	display: block;
 	width: 100px;
 	height: 100px;
 	background: url("../images/ico-envelope.png") no-repeat center/contain;

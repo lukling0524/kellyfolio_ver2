@@ -1,5 +1,6 @@
 .wrap {
     position: relative;
+    // background: url(#{$path-image}/bg-intro_obj.png) no-repeat top -12% center;
 
     &.loading {
         height: calc(var(--vh, 1vh) * 100);
@@ -25,19 +26,16 @@
         height: -webkit-fill-available;
     }
 
-    &__obj {
-        position: relative;
-        @include flexCenter(center);
-    }
 
     &__header {
+        width: 100%;
         position: fixed;
         top: 0;
         left: 0;
         @include flexCenter(space-between);
         padding: 10px 40px;
         background-color: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px) opacity(1);
+        backdrop-filter: blur(10px);
         z-index: $header;
         overflow: hidden;
 
