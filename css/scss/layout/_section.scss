@@ -5,12 +5,34 @@ $sectionSpaceMobile : 60px;
     position: relative;
     max-width: 1600px;
     margin: 0 auto 0;
-    padding: 0 60px;
+    //     padding: 0 60px;
+    // 
+    //     @include mobs {
+    //         padding: 0 20px;
+    //     }
+}
 
-    @include mobs {
-        padding: 0 20px;
+
+.section {
+
+    &__container {
+        padding: 0 60px;
+
+        @include mobs {
+            padding: 0 20px;
+        }
+    }
+
+    &__title {
+        font-size: 46px;
+        font-weight: 600;
+
+        @include mobs {
+            font-size: 26px;
+        }
     }
 }
+
 
 .about {
     position: relative;
@@ -87,7 +109,7 @@ $sectionSpaceMobile : 60px;
             // }
         }
 
-        .section-title {
+        .section__title {
             margin-bottom: 40px;
 
             @include mobs {
@@ -105,6 +127,11 @@ $sectionSpaceMobile : 60px;
 
     &__text {
         @include flexCenter(center);
+        padding-top: $sectionSpace;
+
+        @include mobs {
+            padding-top: $sectionSpaceMobile;
+        }
 
         &--box {
             display: inline-block;
@@ -118,78 +145,86 @@ $sectionSpaceMobile : 60px;
 
 
 .howtowork {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
-    padding: 250px 0 $sectionSpace;
-
-    @include mobs {
-        padding: 80px 0 $sectionSpaceMobile;
-        flex-direction: column;
-    }
-
-    .section-title {
-        position: relative;
-        flex: 2;
-        text-align: center;
-
-        @include mobs {
+    .section {
+        &__container {
+            position: relative;
             width: 100%;
-            position: sticky;
-            top: 130px;
-            z-index: 100;
-
-            &::before {
-                @include pseudo('', 100%, 200px);
-                position: absolute;
-                top: -130px;
-                left: 0;
-                @include get-color(background-color, color-bg);
-                z-index: -1;
-            }
-        }
-
-        &::after {
-            $size: 60px;
-
-            @include pseudo('', $size, $size);
-            position: absolute;
-            top: -52px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: url('#{$path-image}/ico-bulb.png') no-repeat center / cover;
-            opacity: 0.4;
+            display: flex;
+            align-items: flex-start;
+            padding-top: 200px;
+            padding-bottom: $sectionSpace;
 
             @include mobs {
+                flex-direction: column;
+                padding-top: 80px;
+                padding-bottom: $sectionSpaceMobile;
+
+            }
+        }
+
+        &__title {
+            position: relative;
+            flex: 2;
+            text-align: center;
+
+            @include mobs {
+                width: 100%;
+                position: sticky;
+                top: 130px;
+                z-index: 100;
+
+                &::before {
+                    @include pseudo('', 100%, 200px);
+                    position: absolute;
+                    top: -130px;
+                    left: 0;
+                    @include get-color(background-color, color-bg);
+                    z-index: -1;
+                }
+            }
+
+            &::after {
+                $size: 60px;
+
+                @include pseudo('', $size, $size);
+                position: absolute;
+                top: -52px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: url('#{$path-image}/ico-bulb.png') no-repeat center / cover;
+                opacity: 0.4;
+
+                @include mobs {
+                    opacity: 1;
+                    animation: flick 1.5s linear infinite both;
+                }
+            }
+
+            &.is-active::after {
                 opacity: 1;
                 animation: flick 1.5s linear infinite both;
-            }
-        }
 
-        &.is-active::after {
-            opacity: 1;
-            animation: flick 1.5s linear infinite both;
+                @keyframes flick {
 
-            @keyframes flick {
+                    0%,
+                    100% {
+                        opacity: 1;
+                    }
 
-                0%,
-                100% {
-                    opacity: 1;
+                    20% {
+                        opacity: 0.4;
+                    }
                 }
 
-                20% {
-                    opacity: 0.4;
-                }
             }
-
         }
     }
+
 
     .scrollmagic-pin-spacer {
         flex: 2;
 
-        .section-title {
+        .section__title {
             width: auto;
         }
     }
@@ -307,14 +342,29 @@ $sectionSpaceMobile : 60px;
 .project {
     $project: &;
 
-    width: 100%;
-    @include flexCenter(center);
-    flex-direction: column;
-    padding: $sectionSpace 0;
+    .section {
+        &__container {
+            width: 100%;
+            @include flexCenter(center);
+            flex-direction: column;
+            padding-top: $sectionSpace;
+            padding-bottom: $sectionSpace;
 
-    @include mobs {
-        padding: $sectionSpaceMobile 0;
+            @include mobs {
+                padding-top: $sectionSpaceMobile;
+                padding-bottom: $sectionSpaceMobile;
+            }
+        }
+
+        &__title {
+            @include mobs {
+                @include safariOnly {
+                    margin-bottom: 30px;
+                }
+            }
+        }
     }
+
 
 
     &__wrap {
@@ -324,14 +374,6 @@ $sectionSpaceMobile : 60px;
         @include mobs {
             flex-direction: column;
             gap: 30px;
-        }
-
-        .section-title {
-            @include mobs {
-                @include safariOnly {
-                    margin-bottom: 30px;
-                }
-            }
         }
     }
 
@@ -529,7 +571,7 @@ $sectionSpaceMobile : 60px;
         }
     }
 
-    .section-title {
+    .section__title {
         text-align: center;
     }
 
@@ -563,6 +605,7 @@ $sectionSpaceMobile : 60px;
         &--address {
             font-size: 60px;
             font-family: 'Open Sans', sans-serif;
+            font-weight: 300;
             transition: 0.3s;
 
             @include mobs {

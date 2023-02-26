@@ -37,6 +37,7 @@ $path_eye_r.style.cssText = `
 
 const $html = document.querySelector('html'),
     $wrap = document.querySelector('.wrap'),
+    $header = document.querySelector('.header'),
     $logo = document.getElementById('logo'),
     $toggleBox = document.querySelector('.toggle__box');
 
@@ -59,7 +60,9 @@ $tween_logoDraw = new TimelineMax()
     .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=2')
     .call(() => {
         $wrap.classList.remove('loading');
+        $header.classList.add('end');
     });
+
 
 
 // $tween_logoDraw = new TimelineMax()
@@ -72,10 +75,52 @@ $tween_logoDraw = new TimelineMax()
 //     .add(TweenMax.fromTo('#toggle_btn', { opacity: 0, x: 100 }, { opacity: 1, x: 0 }))
 //     .call(() => {
 //         $wrap.classList.remove('loading');
+//         $header.classList.add('end');
 //     });
 
 
 
+/**
+ * 로고 클릭 시 새로고침
+ */
+
+$logo.addEventListener('click', function (e) {
+    if ($wrap.classList.contains('loading')) {
+        e.preventDefault();
+    } else {
+        window.location.href = 'http://kellyfolio.com/home.html'
+    }
+});
+/**
+ *  Navigation hover 
+ */
+const $gnb = document.querySelector('.gnb'),
+    $activeList = document.querySelector('.gnb__list.is-active'),
+    $gnbItem = document.querySelectorAll('.gnb__item'),
+    $activeBg = document.querySelector('.active-bar');
+
+// active bar 넓이 초기세팅
+// $activeBg.style.width = $activeList.offsetWidth + 'px';
+
+
+$gnbItem.forEach((item) => {
+
+    item.addEventListener('click', function () {
+
+        this.parentNode.classList.add('is-active');
+
+        $gnbItem.forEach((el) => {
+            el.parentNode.classList.toggle('is-active', this === el);
+        })
+
+        leftPos = this.offsetLeft;
+
+        $activeBg.style.width = this.offsetWidth + 'px';
+        $activeBg.style.left = leftPos + 'px';
+
+
+    })
+});
 
 
 
@@ -99,6 +144,29 @@ $toggleBtn.addEventListener('click', function () {
 /**
  * 스크롤 애니메이션
  */
+
+
+// GNB slide down
+const $tween_gnb = TweenMax.fromTo('.nav', 0.5, { opacity: 0, y: -50 }, { opacity: 1, y: 0 });
+
+new ScrollMagic.Scene({
+    // duration: '100%',
+    triggerElement: '.howtowork',
+    triggerHook: 1,
+})
+    .setTween($tween_gnb)
+    .addTo($controller)
+    .addIndicators({
+        indent: 0,
+        name: 'gnb',
+        colorStart: 'yellow',
+        colorEnd: 'yellow',
+        colorTrigger: 'yellow',
+    });
+
+
+
+
 
 // About section 아바타 이미지 시퀀스
 const $avataImgSqc = new Array();
@@ -137,18 +205,16 @@ new ScrollMagic.Scene({
 
 
 
-
-
 // about 텍스트 slide up
-const $tween_about = TweenMax.fromTo('.about__text', 0.5, { opacity: 0, y: 60 }, { opacity: 1, y: 0 });
-new ScrollMagic.Scene({
-    // duration: '100%',
-    triggerElement: '.about__text',
-    triggerHook: 0.9,
-
-})
-    .setTween($tween_about)
-    .addTo($controller)
+// const $tween_about = TweenMax.fromTo('.about__text', 0.5, { opacity: 0, y: 60 }, { opacity: 1, y: 0 });
+// new ScrollMagic.Scene({
+//     // duration: '100%',
+//     triggerElement: '.about__text',
+//     triggerHook: 0.9,
+// 
+// })
+//     .setTween($tween_about)
+//     .addTo($controller)
 // .addIndicators({
 //     indent: 0,
 //     name: '자기소개 텍스트',
@@ -162,7 +228,7 @@ new ScrollMagic.Scene({
 
 if (window.innerWidth < 500) {
 
-    const $tween_howtoTitle = TweenMax.fromTo('.howtowork .section-title', 10, { x: -300 }, { x: 0 });
+    const $tween_howtoTitle = TweenMax.fromTo('.howtowork .section__title', 10, { x: -300 }, { x: 0 });
 
     new ScrollMagic.Scene({
         duration: '50%',
@@ -190,8 +256,8 @@ let pinned = new ScrollMagic.Scene({
     triggerElement: '.howtowork',
     triggerHook: 0,
 })
-    .setPin('.howtowork .section-title')
-    .setClassToggle('.section-title', 'is-active')
+    .setPin('.howtowork .section__title')
+    .setClassToggle('.section__title', 'is-active')
     .addTo($controller)
 // .addIndicators({
 //     indent: 50,
@@ -209,7 +275,7 @@ if (window.innerWidth < 500) {
 
 // project 섹션 slide up
 $tween_project = new TimelineMax()
-    .add(TweenMax.fromTo('.project__wrap .section-title', 0.5, { opacity: 0, y: 30 }, { opacity: 1, y: 0 }), 'queue')
+    .add(TweenMax.fromTo('.project__wrap .section__title', 0.5, { opacity: 0, y: 30 }, { opacity: 1, y: 0 }), 'queue')
     .add(TweenMax.fromTo('.project__wrap .btn', 0.5, { opacity: 0, y: 30 }, { opacity: 1, y: 0 }), 'queue+=0.1');
 
 new ScrollMagic.Scene({
@@ -252,7 +318,7 @@ new ScrollMagic.Scene({
 
 
 // contact 타이틀 opacity
-const $tween_contact = TweenMax.fromTo('.contact .section-title', 0.5, { opacity: 0 }, { opacity: 1 });
+const $tween_contact = TweenMax.fromTo('.contact .section__title', 0.5, { opacity: 0 }, { opacity: 1 });
 new ScrollMagic.Scene({
     duration: 500,
     triggerElement: '.contact',
@@ -275,7 +341,7 @@ new ScrollMagic.Scene({
 const $tween_email = TweenMax.fromTo('.contact__email', 3, { opacity: 0, x: -100 }, { opacity: 1, x: 0, ease: Elastic.easeOut.config(1, 0.3) });
 new ScrollMagic.Scene({
     // duration: 500,
-    triggerElement: '.contact .section-title',
+    triggerElement: '.contact .section__title',
     triggerHook: 0.5,
     offset: -50,
 })

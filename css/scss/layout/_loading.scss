@@ -15,6 +15,7 @@
             width: 312px;
             left: 50%;
             transform: translate(-50%, -50%);
+            cursor: default;
         }
     }
 }
@@ -25,7 +26,6 @@
     @include ios {
         height: -webkit-fill-available;
     }
-
 
     &__header {
         width: 100%;
@@ -46,6 +46,23 @@
         @at-root .light-theme & {
             background-color: rgba(155, 155, 155, 0.1);
         }
+
+        &.end {
+            .logo {
+                position: static;
+                transform: translate(0);
+                margin-left: 0 !important;
+                cursor: pointer;
+            }
+
+            .nav {
+                display: block;
+            }
+        }
+    }
+
+    h1 {
+        display: inherit;
     }
 }
 
@@ -131,12 +148,50 @@
     }
 }
 
+.nav {
+    display: none;
+}
+
+.gnb {
+    $gnb: &;
+    $transition: 0.4s;
+
+    position: relative;
+    display: flex;
+    font-size: 16px;
+
+    &__item {
+        display: block;
+        padding: 6px 24px;
+        font-family: 'Open Sans', sans-serif;
+
+        &:hover {
+            opacity: 0.5;
+            transition: $transition;
+        }
+
+        #{$gnb}__list.is-active & {
+            @include get-color(color, color-bg);
+            opacity: 1;
+            transition: $transition;
+        }
+    }
+
+    .active-bar {
+        height: 100%;
+        position: absolute;
+        left: 0;
+        @include get-color(background-color, color-mint);
+        border-radius: 20px;
+        z-index: -1;
+        transition: $transition;
+    }
+}
+
 .toggle {
     &__box {
         display: flex;
         width: 56px;
-        position: absolute;
-        right: 40px;
         @include get-color(background-color, color-toggle);
         border-radius: 14px;
         opacity: 0;

@@ -8,7 +8,7 @@
 =============================================================*/
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
 
 *,
 *::before,
@@ -188,7 +188,7 @@ html {
     -ms-overflow-style: scrollbar;
     -webkit-tap-highlight-color: transparent;
     font-size: 100%;
-    //touch-action: pan-y;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -208,6 +208,11 @@ body {
     @include scrollbarY;
     overflow-x: hidden;
     transition: color, background 0.2s;
+
+    @include mobs {
+        font-size: 16px;
+        line-height: 1.6
+    }
 }
 
 a:focus {
@@ -222,9 +227,4 @@ a:focus {
 .text-hide {
     font-size: 0 !important;
     text-indent: -9999px;
-}
-
-.contents {
-    position: relative;
-    padding: 20px;
 }

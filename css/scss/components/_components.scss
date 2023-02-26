@@ -1,9 +1,9 @@
-body {
-    @include mobs {
-        font-size: 16px;
-        line-height: 1.6
-    }
-}
+// body {
+//     @include mobs {
+//         font-size: 16px;
+//         line-height: 1.6
+//     }
+// }
 
 .svg-color {
     @include get-color(stroke, color-font);
@@ -13,14 +13,6 @@ body {
     }
 }
 
-.section-title {
-    font-size: 46px;
-    font-weight: 600;
-
-    @include mobs {
-        font-size: 26px;
-    }
-}
 
 .font-accent {
     @include get-color(color, color-mint);
