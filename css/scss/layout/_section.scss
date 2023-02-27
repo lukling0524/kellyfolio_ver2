@@ -35,7 +35,6 @@ $sectionSpaceMobile : 60px;
 
 .about {
     position: relative;
-    padding-bottom: 100px;
 
     .scrollmagic-pin-spacer {
         padding: 0 !important;
@@ -139,18 +138,17 @@ $sectionSpaceMobile : 60px;
     }
 
     &__text {
-        // @include flexCenter(center);
+        @include flexCenter(center);
         padding-top: $sectionSpace;
-
+        padding-bottom: sectionSpace;
 
         @include mobs {
             padding-top: $sectionSpaceMobile;
+            padding-bottom: $sectionSpaceMobile;
         }
 
         &--box {
             display: inline-block;
-
-            opacity: 0;
         }
 
         &--item+&--item {
@@ -159,16 +157,16 @@ $sectionSpaceMobile : 60px;
 
 
 
-
-        height: calc(var(--vh, 1vh) * 100);
-        border-radius: 20px;
-        transform: scale(0.5);
-        @include positionCenter;
-
-        p {
-            @include positionCenter;
-            font-size: 180px;
-        }
+        // 
+        //         height: calc(var(--vh, 1vh) * 100);
+        //         border-radius: 20px;
+        //         transform: scale(0.5);
+        //         @include positionCenter;
+        // 
+        //         p {
+        //             @include positionCenter;
+        //             font-size: 180px;
+        //         }
     }
 }
 

@@ -41,10 +41,10 @@
 
             <nav class="nav">
                 <ul class="gnb">
-                    <li class="gnb__list"><a href="#home" class="gnb__item">Home</a></li>
-                    <li class="gnb__list"><a href="#howtowork" class="gnb__item">How to work</a></li>
-                    <li class="gnb__list"><a href="#project" class="gnb__item">Project</a></li>
-                    <li class="gnb__list"><a href="#contact" class="gnb__item">Contact</a></li>
+                    <li id="home" class="gnb__list"><a href="javascript:void(0)" class="gnb__item" data-name="home">Home</a></li>
+                    <li id="howtowork" class="gnb__list"><a href="javascript:void(0)" class="gnb__item" data-name="howtowork">How to work</a></li>
+                    <li id="project" class="gnb__list"><a href="javascript:void(0)" class="gnb__item" data-name="project">Project</a></li>
+                    <li id="contact" class="gnb__list"><a href="javascript:void(0)" class="gnb__item" data-name="contact">Contact</a></li>
                     <li class="gnb__list active-bar"></li>
                 </ul>
             </nav>
@@ -60,8 +60,8 @@
             </div>
         </header>
 
-        <div id="home" class="contents">
-            <section class="about section">
+        <div data-name="home" class="contents section">
+            <section class="about">
                 <div class="section__container">
                     <div class="about__intro">
                         <div class="about__visual">
@@ -91,7 +91,6 @@
                     </div>
 
                     <div class="about__text">
-
                         <div class="about__text--box">
                             <p class="about__text--item">
                                 저는 동적 웹사이트 및 사용자가 만족할 수 있는 서비스를 만드는 것에 열정을 가진 3년 차 웹 퍼블리셔입니다.
@@ -116,7 +115,7 @@
                     </div>
             </section>
 
-            <section id="howtowork" class="howtowork section">
+            <section data-name="howtowork" class="howtowork section">
                 <div class="section__container">
                     <h2 class="section__title">이렇게 <span class="font-accent">일</span>합니다<span class="font-accent">.</span></h2>
                     <ul class="howtowork__wrap">
@@ -137,7 +136,7 @@
                                 <h3 class="howtowork__main--tit">Efficiently work</h3>
                             </div>
                             <ul class="howtowork__sub">
-                                <li class="howtowork__list">작업속도 향상을 위해 CSS전처리기(Sass)를 도입, BEM CSS 방법론을 사용합니다.</li>
+                                <li class="howtowork__list">작업속도 향상을 위해 CSS전처리기(SCSS)를 도입, BEM CSS 방법론을 사용합니다.</li>
                                 <li class="howtowork__list">유지보수가 쉽도록 클린코드를 작성합니다.</li>
                             </ul>
                         </li>
@@ -166,7 +165,7 @@
                 </div>
             </section>
 
-            <section id="project" class="project section">
+            <section data-name="project" class="project section">
                 <div class="section__container">
                     <div class="project__wrap">
                         <h2 class="section__title"><span class="font-accent">프로젝트</span>리스트<span class="font-accent"></span></h2>
@@ -463,7 +462,7 @@
                                 </ul>
                             </div>
                             <div class="project__link">
-                                <a class=" btn btn__sm project__link--web" href="https://thepaas.kr/" target="_blank">
+                                <a class=" btn btn__sm project__link--web" href="https://ntlhealthcare.com/" target="_blank">
                                     <span>웹사이트</span>
                                     <span class="link__icon link__icon--link text-hide">아이콘-웹</span>
                                 </a>
@@ -473,7 +472,7 @@
                     <button id="btn-display" class="btn no-icon project__view-more"><span>더보기</span> </button>
             </section>
 
-            <section class="contact">
+            <section data-name="contact" class="contact section">
                 <div class="contact__wrap">
                     <div class="contact__icon text-hide">흥미로운 얼굴</div>
                     <div class="contact__icon text-hide">흥미로운 얼굴</div>

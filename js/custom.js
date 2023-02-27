@@ -1,6 +1,6 @@
 // ios 대응 vh css 변수 설정
-const vh = window.innerHeight * 0.01;
-document.documentElement.style.setProperty('--vh', `${vh}px`);
+const $vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${$vh}px`);
 
 
 // SVG drawing motion path 길이 css 설정
@@ -35,6 +35,7 @@ $path_eye_r.style.cssText = `
 
 
 
+
 const $html = document.querySelector('html'),
     $wrap = document.querySelector('.wrap'),
     $header = document.querySelector('.header'),
@@ -42,13 +43,20 @@ const $html = document.querySelector('html'),
     $toggleBox = document.querySelector('.toggle__box');
 
 
-// scroll magin 초기 선언
-let $controller = new ScrollMagic.Controller({});
 
 
-/**
-* 인트로 (SVG drawing + header size 모션)
+/*
+    TweenMax.to(element, duration, css properties)
+    TweenMax.fromTo(element, duration, css properties(from), css properties(to))
 */
+
+
+// scroll magin 초기 선언
+let $controller = new ScrollMagic.Controller();
+
+
+// 인트로 (SVG drawing + header size 모션)
+
 // $tween_logoDraw = new TimelineMax()
 //     .delay(1)
 //     .add(TweenMax.to($path_k, 0.65, { strokeDashoffset: 0, ease: 'sine.in' }))
@@ -80,33 +88,37 @@ $tween_logoDraw = new TimelineMax()
 
 
 
-/**
- * 로고 클릭 시 리다이렉트 
- */
-
+// 로고 클릭 시 새로고침 
 $logo.addEventListener('click', function (e) {
     if ($wrap.classList.contains('loading')) {
         e.preventDefault();
     } else {
-        window.location.href = 'http://kellyfolio.com/home.html'
+        window.location.reload();
     }
 });
 
-/**
- *  Navigation hover 
- */
+
+/*
+    Navigation  
+*/
+
 const $gnb = document.querySelector('.gnb'),
-    $activeList = document.querySelector('.gnb__list.is-active'),
     $gnbItem = document.querySelectorAll('.gnb__item'),
-    $activeBg = document.querySelector('.active-bar');
+    $activeBg = document.querySelector('.active-bar'),
+    $scrollTarget = document.querySelectorAll('.section[data-name]'),
+    $scrollTopPos = [];
 
-// active bar 넓이 초기세팅
-// $activeBg.style.width = $activeList.offsetWidth + 'px';
+let $activeList = document.querySelector('.gnb__list.is-active');
 
-
-$gnbItem.forEach((item) => {
+// active-bar 위치 
+$gnbItem.forEach((item, idx) => {
+    $scrollTopPos.push($scrollTarget[idx].offsetTop); // 각 섹션 scrollTop값 배열로 출력
 
     item.addEventListener('click', function () {
+        // 클릭한 메뉴로 active-bar 이동
+        $leftPos = this.offsetLeft;
+        $activeBg.style.width = this.offsetWidth + 'px';
+        $activeBg.style.left = $leftPos + 'px';
 
         this.parentNode.classList.add('is-active');
 
@@ -114,22 +126,33 @@ $gnbItem.forEach((item) => {
             el.parentNode.classList.toggle('is-active', this === el);
         })
 
-        leftPos = this.offsetLeft;
+        $menuData = this.getAttribute('data-name');
+        $sectionTopPos = document.querySelector(`.section[data-name="${$menuData}"]`).offsetTop;
 
-        $activeBg.style.width = this.offsetWidth + 'px';
-        $activeBg.style.left = leftPos + 'px';
-
-
+        // 클릭한 메뉴 섹션으로 스크롤 이동
+        window.scroll(top, $sectionTopPos)
     })
 });
 
 
+// 스크롤 시 active-bar 이동
+window.addEventListener('scroll', () => {
+    const $menuList = document.querySelectorAll('.gnb__list');
+    let $activeList = document.querySelector('.gnb__list.is-active');
+
+    $menuList.forEach(el => {
+        if (el.classList.contains('is-active')) {
+            $leftPos = $activeList.offsetLeft;
+
+            $activeBg.style.width = $activeList.offsetWidth + 'px';
+            $activeBg.style.left = $leftPos + 'px';
+        }
+    });
+})
 
 
 
-/**
- * 라이트모드-다크모드 테마 토글 버튼
- */
+// 라이트모드-다크모드 테마 토글 버튼
 const $toggleBtn = document.querySelector('.toggle__item'),
     $themeIcons = document.querySelectorAll('.toggle__icon .item');
 
@@ -143,13 +166,12 @@ $toggleBtn.addEventListener('click', function () {
 
 
 
-/**
+/*
  * 스크롤 애니메이션
  */
 
 
-
-// GNB slide down
+// Navigation slide down
 const $tween_gnb = TweenMax.fromTo('.nav', 0.5, { opacity: 0, y: -50 }, { opacity: 1, y: 0 });
 
 new ScrollMagic.Scene({
@@ -165,9 +187,6 @@ new ScrollMagic.Scene({
 //     colorEnd: 'yellow',
 //     colorTrigger: 'yellow',
 // });
-
-
-
 
 
 
@@ -230,7 +249,6 @@ new ScrollMagic.Scene({
 
 
 //how to work 타이틀 slide left to right (mobile only)
-
 if (window.innerWidth < 500) {
 
     const $tween_howtoTitle = TweenMax.fromTo('.howtowork .section__title', 10, { x: -300 }, { x: 0 });
@@ -257,20 +275,20 @@ if (window.innerWidth < 500) {
 
 //how to work 섹션 pinned 모션
 let pinned = new ScrollMagic.Scene({
-    duration: 900,
+    duration: 1100,
     triggerElement: '.howtowork',
     triggerHook: 0,
 })
     .setPin('.howtowork .section__title')
     .setClassToggle('.section__title', 'is-active')
     .addTo($controller)
-    .addIndicators({
-        indent: 50,
-        name: '이렇게 일합니다',
-        colorStart: 'brown',
-        colorEnd: 'brown',
-        colorTrigger: 'brown',
-    });
+// .addIndicators({
+//     indent: 50,
+//     name: '이렇게 일합니다',
+//     colorStart: 'brown',
+//     colorEnd: 'brown',
+//     colorTrigger: 'brown',
+// });
 
 if (window.innerWidth < 500) {
     pinned.destroy(true);
@@ -278,7 +296,7 @@ if (window.innerWidth < 500) {
 }
 
 
-// project 섹션 slide up
+// project 섹션 타이틀 slide up
 $tween_project = new TimelineMax()
     .add(TweenMax.fromTo('.project__wrap .section__title', 0.5, { opacity: 0, y: 30 }, { opacity: 1, y: 0 }), 'queue')
     .add(TweenMax.fromTo('.project__wrap .btn', 0.5, { opacity: 0, y: 30 }, { opacity: 1, y: 0 }), 'queue+=0.1');
@@ -300,7 +318,7 @@ new ScrollMagic.Scene({
 // });
 
 
-// project 섹션 slide up
+// project 섹션 그리드영역 slide up
 const $tween_grid = TweenMax.fromTo('.project__grid', 0.7, { opacity: 0, y: 50 }, { opacity: 1, y: 0 });
 
 
@@ -361,50 +379,126 @@ new ScrollMagic.Scene({
 // });
 
 
-let box = document.querySelector('.contact__wrap'),
-    items = document.querySelectorAll('.contact__icon'),
-    width = box.offsetWidth - items[0].offsetWidth,
-    height = box.offsetHeight - items[0].offsetHeight;
 
-for (let i = 0; i < items.length; i++) {
-    let x = Math.random() * width;
-    let y = Math.random() * height;
+
+
+
+
+// 스크롤 시  Navigation text active
+
+const $menuController = new ScrollMagic.Controller({ globalSceneOptions: { triggerHook: 0.25 } });
+
+const $home = document.querySelector('.about__text'),
+    $homeHeight = $home.offsetHeight;
+
+new ScrollMagic.Scene({
+    triggerElement: $home,
+    duration: $homeHeight,
+    offset: -200,
+})
+    .setClassToggle('#home', 'is-active')
+    .addTo($menuController)
+// .addIndicators({
+//     name: '11111 home',
+//     colorStart: 'red',
+//     colorEnd: 'red',
+//     indent: 0
+// });
+
+
+const $howtowork = document.querySelector('.howtowork .section__container'),
+    $howtoworkHeight = $howtowork.offsetHeight;
+
+new ScrollMagic.Scene({
+    triggerElement: $howtowork,
+    duration: $howtoworkHeight
+})
+    .setClassToggle('#howtowork', 'is-active')
+    .addTo($menuController)
+// .addIndicators({
+//     name: '22222 how to work',
+//     colorStart: 'yellow',
+//     colorEnd: 'yellow',
+//     indent: 100
+// });
+
+const $project = document.querySelector('.project .section__container'),
+    $projectHeight = $project.offsetHeight;
+
+new ScrollMagic.Scene({
+    triggerElement: $project,
+    duration: $projectHeight
+})
+    .setClassToggle('#project', 'is-active')
+    .addTo($menuController)
+// .addIndicators({
+//     name: '33333 project',
+//     colorStart: 'purple',
+//     colorEnd: 'purple',
+//     indent: 200
+// });
+
+new ScrollMagic.Scene({
+    triggerElement: '.contact'
+})
+    .on('enter', () => { document.querySelector('#project').classList.remove('is-active') })
+    .on('leave', () => { document.querySelector('#project').classList.add('is-active') })
+    .setClassToggle('#contact', 'is-active')
+    .addTo($menuController)
+// .addIndicators({
+//     name: '4444 contact',
+//     colorStart: 'white',
+//     colorEnd: 'white',
+//     indent: 300
+// });
+
+
+
+// contact 이모티콘 move
+let $contactWrap = document.querySelector('.contact__wrap'),
+    $icons = document.querySelectorAll('.contact__icon'),
+    $width = $contactWrap.offsetWidth - $icons[0].offsetWidth,
+    $height = $contactWrap.offsetHeight - $icons[0].offsetHeight;
+
+for (let i = 0; i < $icons.length; i++) {
+    let x = Math.random() * $width;
+    let y = Math.random() * $height;
     let vx = (Math.random() * 2) - (Math.random() * 2);
     let vy = (Math.random() * 2) - (Math.random() * 2);
     let speed = Math.round(Math.random() * 80);
 
-    items[i].style.left = `${x}px`;
-    items[i].style.top = `${y}px`;
+    $icons[i].style.left = `${x}px`;
+    $icons[i].style.top = `${y}px`;
 
     setInterval(() => {
         x += vx;
         y += vy;
 
-        if (x <= 0 || x >= width) {
+        if (x <= 0 || x >= $width) {
             vx = -vx;
         }
-        if (y <= 0 || y >= height) {
+        if (y <= 0 || y >= $height) {
             vy = -vy;
         }
 
-        items[i].style.left = `${x}px`;
-        items[i].style.top = `${y}px`;
+        $icons[i].style.left = `${x}px`;
+        $icons[i].style.top = `${y}px`;
     }, speed);
 }
 
 window.addEventListener('resize', function () {
 
+    $contactWrap = document.querySelector('.contact__wrap');
+    $icons = document.querySelectorAll('.contact__icon');
 
-    box = document.querySelector('.contact__wrap');
-    items = document.querySelectorAll('.contact__icon');
-
-    width = box.offsetWidth - items[0].offsetWidth;
-    height = box.offsetHeight - items[0].offsetHeight;
+    $width = $contactWrap.offsetWidth - $icons[0].offsetWidth;
+    $height = $contactWrap.offsetHeight - $icons[0].offsetHeight;
 });
 
 
 
 
+//project toggle
 const $projectGrid = document.querySelector('.project__grid'),
     $projectItem = document.querySelectorAll('.project__item'),
     $displayBtn = document.getElementById('btn-display');
