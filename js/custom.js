@@ -49,30 +49,15 @@ let $controller = new ScrollMagic.Controller({});
 /**
 * 인트로 (SVG drawing + header size 모션)
 */
-$tween_logoDraw = new TimelineMax()
-    .delay(1)
-    .add(TweenMax.to($path_k, 0.65, { strokeDashoffset: 0, ease: 'sine.in' }))
-    .add(TweenMax.to($path_elly, 2.2, { strokeDashoffset: 0, ease: 'sine.in' }))
-    .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: window.innerWidth < 500 ? 'sine.in' : 'elastic.out(1, 0.3)' }))
-    .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: window.innerWidth < 500 ? 'sine.in' : 'elastic.out(1, 0.3)' }), 'queue')
-    .add(TweenMax.to('.intro-box', 2, { height: 60, ease: 'power1.in' }), 'queue+=0.5')
-    .add(TweenMax.to('#logo', 1.2, { width: 52, height: 'auto', left: window.innerWidth < 500 ? 20 : 40, marginLeft: 26, ease: 'power1.in' }), 'queue+=1.3')
-    .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=2')
-    .call(() => {
-        $wrap.classList.remove('loading');
-        $header.classList.add('end');
-    });
-
-
-
 // $tween_logoDraw = new TimelineMax()
-//     .add(TweenMax.to($path_k, { strokeDashoffset: 0, ease: 'sine.in' }))
-//     .add(TweenMax.to($path_elly, { strokeDashoffset: 0, ease: 'sine.in' }))
-//     .add(TweenMax.to($path_eye_l, { strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
-//     .add(TweenMax.to($path_eye_r, { strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
-//     .add(TweenMax.to('.intro-box', { height: 60, ease: 'power1.in' }))
-//     .add(TweenMax.to('#logo', { width: 52, height: 'auto', left: 40, marginLeft: 26, ease: 'power1.in' }))
-//     .add(TweenMax.fromTo('#toggle_btn', { opacity: 0, x: 100 }, { opacity: 1, x: 0 }))
+//     .delay(1)
+//     .add(TweenMax.to($path_k, 0.65, { strokeDashoffset: 0, ease: 'sine.in' }))
+//     .add(TweenMax.to($path_elly, 2.2, { strokeDashoffset: 0, ease: 'sine.in' }))
+//     .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: window.innerWidth < 500 ? 'sine.in' : 'elastic.out(1, 0.3)' }))
+//     .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: window.innerWidth < 500 ? 'sine.in' : 'elastic.out(1, 0.3)' }), 'queue')
+//     .add(TweenMax.to('.intro-box', 2, { height: 60, ease: 'power1.in' }), 'queue+=0.5')
+//     .add(TweenMax.to('#logo', 1.2, { width: 52, height: 'auto', left: window.innerWidth < 500 ? 20 : 40, marginLeft: 26, ease: 'power1.in' }), 'queue+=1.3')
+//     .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=2')
 //     .call(() => {
 //         $wrap.classList.remove('loading');
 //         $header.classList.add('end');
@@ -80,8 +65,23 @@ $tween_logoDraw = new TimelineMax()
 
 
 
+$tween_logoDraw = new TimelineMax()
+    .add(TweenMax.to($path_k, { strokeDashoffset: 0, ease: 'sine.in' }))
+    .add(TweenMax.to($path_elly, { strokeDashoffset: 0, ease: 'sine.in' }))
+    .add(TweenMax.to($path_eye_l, { strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
+    .add(TweenMax.to($path_eye_r, { strokeDashoffset: 0, ease: 'elastic.out(1, 0.3)' }))
+    .add(TweenMax.to('.intro-box', { height: 60, ease: 'power1.in' }))
+    .add(TweenMax.to('#logo', { width: 52, height: 'auto', left: 40, marginLeft: 26, ease: 'power1.in' }))
+    .add(TweenMax.fromTo('#toggle_btn', { opacity: 0, x: 100 }, { opacity: 1, x: 0 }))
+    .call(() => {
+        $wrap.classList.remove('loading');
+        $header.classList.add('end');
+    });
+
+
+
 /**
- * 로고 클릭 시 새로고침
+ * 로고 클릭 시 리다이렉트 
  */
 
 $logo.addEventListener('click', function (e) {
@@ -91,6 +91,7 @@ $logo.addEventListener('click', function (e) {
         window.location.href = 'http://kellyfolio.com/home.html'
     }
 });
+
 /**
  *  Navigation hover 
  */
@@ -150,19 +151,18 @@ $toggleBtn.addEventListener('click', function () {
 const $tween_gnb = TweenMax.fromTo('.nav', 0.5, { opacity: 0, y: -50 }, { opacity: 1, y: 0 });
 
 new ScrollMagic.Scene({
-    // duration: '100%',
     triggerElement: '.howtowork',
     triggerHook: 1,
 })
     .setTween($tween_gnb)
     .addTo($controller)
-    .addIndicators({
-        indent: 0,
-        name: 'gnb',
-        colorStart: 'yellow',
-        colorEnd: 'yellow',
-        colorTrigger: 'yellow',
-    });
+// .addIndicators({
+//     indent: 0,
+//     name: 'gnb',
+//     colorStart: 'yellow',
+//     colorEnd: 'yellow',
+//     colorTrigger: 'yellow',
+// });
 
 
 
@@ -189,12 +189,12 @@ let $tween_avata = TweenMax.to($img, 0.5, {
 
 new ScrollMagic.Scene({
     duration: 3000,
-    triggerElement: '.about',
+    triggerElement: '.home',
     triggerHook: 0,
     offset: -60,
 })
     .setTween($tween_avata)
-    .setPin('.about')
+    .setPin('.home')
     .addTo($controller)
 // .addIndicators({
 //     name: '이미지시퀀스',
@@ -202,6 +202,52 @@ new ScrollMagic.Scene({
 //     colorEnd: 'red',
 //     indent: 10
 // });
+
+
+
+// about 스크린체인지
+const $tween_aboutChange = TweenMax.fromTo('.about__text', 1, { scale: 0.2, borderRadius: 50, rotate: 0 }, { scale: 1, borderRadius: 0, rotate: 360 });
+new ScrollMagic.Scene({
+    duration: 500,
+    triggerElement: '.about',
+    triggerHook: 0,
+
+})
+    .setPin('.about')
+    .setTween($tween_aboutChange)
+    .addTo($controller)
+    .addIndicators({
+        indent: 0,
+        name: '어바웃 스크링 체인지',
+        colorStart: 'red',
+        colorEnd: 'red',
+        colorTrigger: 'red',
+    });
+
+
+const $tween_aboutChangeText = TweenMax.fromTo('.about__text--box', { opacity: 0 }, { opacity: 1 });
+const $tween_aboutChangeBg = TweenMax.fromTo('.about__text', { backgroundColor: '#89DDFF' }, { backgroundColor: '#1A2744' });
+new ScrollMagic.Scene({
+    duration: 3000,
+    triggerElement: '.about',
+    triggerHook: 0,
+    offset: 499,
+
+})
+    .setClassToggle('.welcome', 'text-hide')
+    .setPin('.about')
+    .setTween([$tween_aboutChangeText, $tween_aboutChangeBg])
+    .addTo($controller)
+    .addIndicators({
+        indent: 0,
+        name: '어바웃 스크링 체인지',
+        colorStart: 'red',
+        colorEnd: 'red',
+        colorTrigger: 'red',
+    });
+
+
+
 
 
 
@@ -224,7 +270,7 @@ new ScrollMagic.Scene({
 // });
 
 
-//how to work 타이틀 slide left to right
+//how to work 타이틀 slide left to right (mobile only)
 
 if (window.innerWidth < 500) {
 
@@ -259,13 +305,13 @@ let pinned = new ScrollMagic.Scene({
     .setPin('.howtowork .section__title')
     .setClassToggle('.section__title', 'is-active')
     .addTo($controller)
-// .addIndicators({
-//     indent: 50,
-//     name: '이렇게 일합니다',
-//     colorStart: 'red',
-//     colorEnd: 'red',
-//     colorTrigger: 'red',
-// });
+    .addIndicators({
+        indent: 50,
+        name: '이렇게 일합니다',
+        colorStart: 'brown',
+        colorEnd: 'brown',
+        colorTrigger: 'brown',
+    });
 
 if (window.innerWidth < 500) {
     pinned.destroy(true);
