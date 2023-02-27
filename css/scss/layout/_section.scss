@@ -33,34 +33,6 @@ $sectionSpaceMobile : 60px;
     }
 }
 
-.home {
-    position: relative;
-    padding-bottom: 100px;
-
-
-    .avata {
-        display: block;
-        width: 85%;
-        max-width: 398px;
-        margin: 0 auto;
-        border-radius: 50%;
-        overflow: hidden;
-
-
-
-        @include mobs {
-            max-width: 250px;
-            // border: 5px solid green;
-        }
-
-
-        &__sequence {
-            width: 100%;
-        }
-    }
-
-}
-
 .about {
     position: relative;
     padding-bottom: 100px;
@@ -163,7 +135,7 @@ $sectionSpaceMobile : 60px;
 
     &__inner {
         height: calc(var(--vh, 1vh) * 100);
-
+        @include get-color(background-color, color-mint);
     }
 
     &__text {
@@ -187,13 +159,13 @@ $sectionSpaceMobile : 60px;
 
 
 
-        @include get-color(background-color, color-mint);
+
         height: calc(var(--vh, 1vh) * 100);
         border-radius: 20px;
         transform: scale(0.5);
-        // @include positionCenter;
+        @include positionCenter;
 
-        .welcome {
+        p {
             @include positionCenter;
             font-size: 180px;
         }

@@ -285,6 +285,16 @@ a:focus {
 	fill: #222222;
 }
 
+.section__title {
+	font-size: 46px;
+	font-weight: 600;
+}
+@media (max-width: 500px) {
+	.section__title {
+		font-size: 26px;
+	}
+}
+
 .font-accent {
 	color: #89DDFF;
 }
@@ -640,27 +650,6 @@ a:focus {
 	}
 }
 
-.home {
-	position: relative;
-	padding-bottom: 100px;
-}
-.home .avata {
-	display: block;
-	width: 85%;
-	max-width: 398px;
-	margin: 0 auto;
-	border-radius: 50%;
-	overflow: hidden;
-}
-@media (max-width: 500px) {
-	.home .avata {
-		max-width: 250px;
-	}
-}
-.home .avata__sequence {
-	width: 100%;
-}
-
 .about {
 	position: relative;
 	padding-bottom: 100px;
@@ -741,13 +730,21 @@ a:focus {
 }
 .about__inner {
 	height: calc(var(--vh, 1vh) * 100);
+	background-color: #89DDFF;
 }
+.light-theme .about__inner {
+	background-color: #39ADB5;
+}
+
 .about__text {
 	padding-top: 100px;
-	background-color: #89DDFF;
 	height: calc(var(--vh, 1vh) * 100);
 	border-radius: 20px;
 	transform: scale(0.5);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 @media (max-width: 500px) {
 	.about__text {
@@ -761,11 +758,7 @@ a:focus {
 .about__text--item + .about__text--item {
 	margin-top: 30px;
 }
-.light-theme .about__text {
-	background-color: #39ADB5;
-}
-
-.about__text .welcome {
+.about__text p {
 	position: absolute;
 	top: 50%;
 	left: 50%;

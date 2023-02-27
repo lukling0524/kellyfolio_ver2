@@ -60,7 +60,7 @@ let $controller = new ScrollMagic.Controller({});
 //     .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=2')
 //     .call(() => {
 //         $wrap.classList.remove('loading');
-//         $header.classList.add('end');
+//$header.classList.add('end');
 //     });
 
 
@@ -126,6 +126,7 @@ $gnbItem.forEach((item) => {
 
 
 
+
 /**
  * 라이트모드-다크모드 테마 토글 버튼
  */
@@ -147,6 +148,7 @@ $toggleBtn.addEventListener('click', function () {
  */
 
 
+
 // GNB slide down
 const $tween_gnb = TweenMax.fromTo('.nav', 0.5, { opacity: 0, y: -50 }, { opacity: 1, y: 0 });
 
@@ -163,6 +165,7 @@ new ScrollMagic.Scene({
 //     colorEnd: 'yellow',
 //     colorTrigger: 'yellow',
 // });
+
 
 
 
@@ -189,12 +192,12 @@ let $tween_avata = TweenMax.to($img, 0.5, {
 
 new ScrollMagic.Scene({
     duration: 3000,
-    triggerElement: '.home',
+    triggerElement: '.about',
     triggerHook: 0,
     offset: -60,
 })
     .setTween($tween_avata)
-    .setPin('.home')
+    .setPin('.about')
     .addTo($controller)
 // .addIndicators({
 //     name: '이미지시퀀스',
@@ -205,62 +208,18 @@ new ScrollMagic.Scene({
 
 
 
-// about 스크린체인지
-const $tween_aboutChange = TweenMax.fromTo('.about__text', 1, { scale: 0.2, borderRadius: 50, rotate: 0 }, { scale: 1, borderRadius: 0, rotate: 360 });
-new ScrollMagic.Scene({
-    duration: 500,
-    triggerElement: '.about',
-    triggerHook: 0,
-
-})
-    .setPin('.about')
-    .setTween($tween_aboutChange)
-    .addTo($controller)
-    .addIndicators({
-        indent: 0,
-        name: '어바웃 스크링 체인지',
-        colorStart: 'red',
-        colorEnd: 'red',
-        colorTrigger: 'red',
-    });
-
-
-const $tween_aboutChangeText = TweenMax.fromTo('.about__text--box', { opacity: 0 }, { opacity: 1 });
-const $tween_aboutChangeBg = TweenMax.fromTo('.about__text', { backgroundColor: '#89DDFF' }, { backgroundColor: '#1A2744' });
-new ScrollMagic.Scene({
-    duration: 3000,
-    triggerElement: '.about',
-    triggerHook: 0,
-    offset: 499,
-
-})
-    .setClassToggle('.welcome', 'text-hide')
-    .setPin('.about')
-    .setTween([$tween_aboutChangeText, $tween_aboutChangeBg])
-    .addTo($controller)
-    .addIndicators({
-        indent: 0,
-        name: '어바웃 스크링 체인지',
-        colorStart: 'red',
-        colorEnd: 'red',
-        colorTrigger: 'red',
-    });
-
-
-
-
 
 
 // about 텍스트 slide up
-// const $tween_about = TweenMax.fromTo('.about__text', 0.5, { opacity: 0, y: 60 }, { opacity: 1, y: 0 });
-// new ScrollMagic.Scene({
-//     // duration: '100%',
-//     triggerElement: '.about__text',
-//     triggerHook: 0.9,
-// 
-// })
-//     .setTween($tween_about)
-//     .addTo($controller)
+const $tween_about = TweenMax.fromTo('.about__text', 0.5, { opacity: 0, y: 60 }, { opacity: 1, y: 0 });
+new ScrollMagic.Scene({
+    // duration: '100%',
+    triggerElement: '.about__text',
+    triggerHook: 0.9,
+
+})
+    .setTween($tween_about)
+    .addTo($controller)
 // .addIndicators({
 //     indent: 0,
 //     name: '자기소개 텍스트',
