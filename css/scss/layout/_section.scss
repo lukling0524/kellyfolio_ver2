@@ -1,22 +1,23 @@
-$sectionSpace: 100px;
+// 섹션간 거리 변수 선언
+$sectionSpace: 160px;
+$sectionLaptop: 100px;
 $sectionSpaceMobile : 60px;
+
 
 .contents {
     position: relative;
     max-width: 1600px;
     margin: 0 auto 0;
-    //     padding: 0 60px;
-    // 
-    //     @include mobs {
-    //         padding: 0 20px;
-    //     }
 }
 
 
 .section {
-
     &__container {
         padding: 0 60px;
+
+        @include tablet {
+            padding: 0 30px;
+        }
 
         @include mobs {
             padding: 0 20px;
@@ -26,6 +27,14 @@ $sectionSpaceMobile : 60px;
     &__title {
         font-size: 46px;
         font-weight: 600;
+
+        @include tablet {
+            font-size: 40px;
+        }
+
+        @include tablet-sm {
+            font-size: 30px;
+        }
 
         @include mobs {
             font-size: 26px;
@@ -44,10 +53,6 @@ $sectionSpaceMobile : 60px;
         position: relative;
         height: calc(var(--vh, 1vh) * 100);
     }
-
-    // @include mobs {
-    //     height: calc(var(--vh, 1vh) * 100);
-    // }
 
     &__intro {
         height: calc(100vh - 60px);
@@ -82,21 +87,9 @@ $sectionSpaceMobile : 60px;
         border-radius: 50%;
         overflow: hidden;
 
-
-
         @include mobs {
             max-width: 250px;
-            // border: 5px solid green;
         }
-
-        //         @include ios {
-        //             border: 5px solid red;
-        //         }
-        // 
-        // 
-        //         @include safariOnly {
-        //             border: 5px solid yellow;
-        //         }
 
 
         &__sequence {
@@ -110,10 +103,6 @@ $sectionSpaceMobile : 60px;
 
         @include mobs {
             flex: auto;
-
-            // @include safariOnly {
-            //     margin-top: 40px;
-            // }
         }
 
         .section__title {
@@ -139,11 +128,10 @@ $sectionSpaceMobile : 60px;
 
     &__text {
         @include flexCenter(center);
-        padding-top: $sectionSpace;
-        padding-bottom: sectionSpace;
+        padding-top: 50px;
+        padding-bottom: $sectionSpace;
 
         @include mobs {
-            padding-top: $sectionSpaceMobile;
             padding-bottom: $sectionSpaceMobile;
         }
 
@@ -154,19 +142,6 @@ $sectionSpaceMobile : 60px;
         &--item+&--item {
             margin-top: 30px;
         }
-
-
-
-        // 
-        //         height: calc(var(--vh, 1vh) * 100);
-        //         border-radius: 20px;
-        //         transform: scale(0.5);
-        //         @include positionCenter;
-        // 
-        //         p {
-        //             @include positionCenter;
-        //             font-size: 180px;
-        //         }
     }
 }
 
@@ -178,14 +153,18 @@ $sectionSpaceMobile : 60px;
             width: 100%;
             display: flex;
             align-items: flex-start;
-            padding-top: 200px;
+            padding-top: $sectionSpace;
             padding-bottom: $sectionSpace;
+
+            @include laptop {
+                padding-top: $sectionLaptop;
+                padding-bottom: $sectionLaptop;
+            }
 
             @include mobs {
                 flex-direction: column;
                 padding-top: 80px;
                 padding-bottom: $sectionSpaceMobile;
-
             }
         }
 
@@ -341,7 +320,6 @@ $sectionSpaceMobile : 60px;
 
         @include mobs {
             margin-left: 20px;
-
         }
     }
 
@@ -377,6 +355,12 @@ $sectionSpaceMobile : 60px;
             padding-top: $sectionSpace;
             padding-bottom: $sectionSpace;
 
+
+            @include laptop {
+                padding-top: $sectionLaptop;
+                padding-bottom: $sectionLaptop;
+            }
+
             @include mobs {
                 padding-top: $sectionSpaceMobile;
                 padding-bottom: $sectionSpaceMobile;
@@ -391,8 +375,6 @@ $sectionSpaceMobile : 60px;
             }
         }
     }
-
-
 
     &__wrap {
         width: 100%;
@@ -409,18 +391,19 @@ $sectionSpaceMobile : 60px;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 28px;
-        margin: 120px 0 100px;
+        margin: 120px 0 80px;
 
-        @include tablet {
+        @media (max-width: 1279px) {
             grid-template-columns: repeat(2, 1fr);
         }
 
-        // @media (max-width: 949px) {
-        //     grid-template-columns: 1fr;
-        // }
+        @media (max-width: 840px) {
+            max-width: 340px;
+            grid-template-columns: 1fr;
+        }
+
 
         @include mobs {
-            grid-template-columns: 1fr;
             margin: 80px 0 $sectionSpaceMobile;
         }
     }
@@ -439,7 +422,6 @@ $sectionSpaceMobile : 60px;
         @media (max-width: 949px) {
             height: 300px;
         }
-
 
         @include mobs {
             height: 280px;
@@ -559,12 +541,65 @@ $sectionSpaceMobile : 60px;
             }
         }
     }
+
+    &__view-more {
+        $size: 50px;
+
+        width: $size;
+        height: $size;
+        @include flexCenter(center);
+        padding: 0;
+        border-radius: 100%;
+        @include get-color(background-color, color-font);
+        transition: 0.5s;
+
+        // [view more]버튼 닫혀있을 때 호버
+        &:hover {
+            @include get-color(background-color, color-mint);
+            transform: scale(1.1);
+
+            .line.rotate {
+                transform: translate(-50%, -50%) rotate(270deg);
+            }
+        }
+
+        // [view more]버튼 열려있을 때 호버
+        &.opened:hover {
+            .line:first-child {
+                transform: translate(-50%, -50%) rotate(180deg);
+            }
+        }
+
+        &--symbol {
+            $size: 26px;
+            position: relative;
+            width: $size;
+            height: $size;
+        }
+
+        .line {
+            display: block;
+            width: 100%;
+            height: 3px;
+            @include positionCenter;
+            @include get-color(background-color, color-bg);
+            transition: 0.3s;
+
+            &.rotate {
+                transform: translate(-50%, -50%) rotate(90deg);
+            }
+        }
+    }
 }
 
 
 .contact {
     padding-top: $sectionSpace;
     overflow: hidden;
+
+    @include laptop {
+        padding-top: $sectionLaptop;
+    }
 
     @include mobs {
         padding-top: $sectionSpaceMobile;
@@ -633,6 +668,7 @@ $sectionSpaceMobile : 60px;
             font-size: 60px;
             font-family: 'Open Sans', sans-serif;
             font-weight: 300;
+            letter-spacing: 2.5px;
             transition: 0.3s;
 
             @include mobs {
@@ -645,9 +681,6 @@ $sectionSpaceMobile : 60px;
             }
         }
     }
-
-
-
 }
 
 @keyframes heartbeat {
@@ -677,7 +710,6 @@ $sectionSpaceMobile : 60px;
         animation-timing-function: ease-out;
     }
 }
-
 
 
 .footer {

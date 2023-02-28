@@ -43,6 +43,15 @@ const $html = document.querySelector('html'),
     $toggleBox = document.querySelector('.toggle__box');
 
 
+// window.addEventListener('resize, scroll', function () {
+//     $header.style.cssText = `
+//         -webkit-backdrop-filter: blur(10px); 
+//         backdrop-filter: blur(10px);
+//     `;
+// 
+//     console.log('test')
+// });
+
 
 
 /*
@@ -68,9 +77,9 @@ let $controller = new ScrollMagic.Controller();
 //     .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=2')
 //     .call(() => {
 //         $wrap.classList.remove('loading');
-//$header.classList.add('end');
+//         $header.classList.add('end');
 //     });
-
+// 
 
 
 $tween_logoDraw = new TimelineMax()
@@ -109,6 +118,10 @@ const $gnb = document.querySelector('.gnb'),
     $scrollTopPos = [];
 
 let $activeList = document.querySelector('.gnb__list.is-active');
+
+// active-bar 초기설정 
+$activeBg.style.width = $activeList.offsetWidth + 'px';
+$activeBg.style.left = 0;
 
 // active-bar 위치 
 $gnbItem.forEach((item, idx) => {
@@ -174,9 +187,11 @@ $toggleBtn.addEventListener('click', function () {
 // Navigation slide down
 const $tween_gnb = TweenMax.fromTo('.nav', 0.5, { opacity: 0, y: -50 }, { opacity: 1, y: 0 });
 
-new ScrollMagic.Scene({
-    triggerElement: '.howtowork',
+
+let navigation = new ScrollMagic.Scene({
+    triggerElement: '.about__text--box',
     triggerHook: 1,
+    offset: 150,
 })
     .setTween($tween_gnb)
     .addTo($controller)
@@ -188,6 +203,21 @@ new ScrollMagic.Scene({
 //     colorTrigger: 'yellow',
 // });
 
+
+if (window.innerWidth < 1100) {
+    navigation.destroy(true);
+    navigation = null;
+
+    console.log('gnb 고정 삭제')
+}
+
+window.addEventListener('resize', function () {
+    if (window.innerWidth < 1100) {
+        $header.classList.remove('end')
+    } else {
+        $header.classList.add('end')
+    }
+});
 
 
 // About section 아바타 이미지 시퀀스
@@ -275,9 +305,10 @@ if (window.innerWidth < 500) {
 
 //how to work 섹션 pinned 모션
 let pinned = new ScrollMagic.Scene({
-    duration: 1100,
+    duration: 1000,
     triggerElement: '.howtowork',
     triggerHook: 0,
+    offset: -150,
 })
     .setPin('.howtowork .section__title')
     .setClassToggle('.section__title', 'is-active')
@@ -294,6 +325,14 @@ if (window.innerWidth < 500) {
     pinned.destroy(true);
     pinned = null;
 }
+
+window.addEventListener('resize', function () {
+    if (window.innerWidth < 500) {
+        pinned.destroy(true);
+        pinned = null;
+    }
+});
+
 
 
 // project 섹션 타이틀 slide up
@@ -394,7 +433,6 @@ const $home = document.querySelector('.about__text'),
 new ScrollMagic.Scene({
     triggerElement: $home,
     duration: $homeHeight,
-    offset: -200,
 })
     .setClassToggle('#home', 'is-active')
     .addTo($menuController)
@@ -501,7 +539,9 @@ window.addEventListener('resize', function () {
 //project toggle
 const $projectGrid = document.querySelector('.project__grid'),
     $projectItem = document.querySelectorAll('.project__item'),
-    $displayBtn = document.getElementById('btn-display');
+    $displayBtn = document.getElementById('btn-display'),
+    $screenTxt = $displayBtn.querySelector('.text-hide'),
+    $toggleLines = $displayBtn.querySelectorAll('.line');
 
 for (let i = 0; i < $projectItem.length; i++) {
     if (i >= 6) {
@@ -517,14 +557,24 @@ $displayBtn.addEventListener('click', function () {
             $projectItem[i].style.display = 'flex';
         }
 
-        this.querySelector('span').textContent = '접기';
+        $screenTxt.textContent = '접기';
+        $toggleLines[0].classList.remove('rotate');
+        this.classList.add('opened');
     } else {
         for (let i = 0; i < $projectItem.length; i++) {
             if (i >= 6) {
                 $projectItem[i].style.display = 'none';
             }
         }
-        this.querySelector('span').textContent = '더보기';
+        $screenTxt.textContent = '더보기';
+        $toggleLines[0].classList.add('rotate');
+        this.classList.remove('opened');
+
+        // 그리드 접었을 때 project 섹샨으로 스크롤 이동
+        $projectTopPos = document.querySelector(`.section[data-name="project"]`).offsetTop;
+        window.scroll(top, $projectTopPos)
     }
     $projectGrid.classList.toggle('default');
 })
+
+

@@ -41,14 +41,18 @@
 
             <nav class="nav">
                 <ul class="gnb">
-                    <li id="home" class="gnb__list"><a href="javascript:void(0)" class="gnb__item" data-name="home">Home</a></li>
+                    <li id="home" class="gnb__list is-active"><a href="javascript:void(0)" class="gnb__item" data-name="home">Home</a></li>
                     <li id="howtowork" class="gnb__list"><a href="javascript:void(0)" class="gnb__item" data-name="howtowork">How to work</a></li>
                     <li id="project" class="gnb__list"><a href="javascript:void(0)" class="gnb__item" data-name="project">Project</a></li>
                     <li id="contact" class="gnb__list"><a href="javascript:void(0)" class="gnb__item" data-name="contact">Contact</a></li>
                     <li class="gnb__list active-bar"></li>
                 </ul>
             </nav>
-
+            <button class="hamburger">
+                <span>메뉴 햄버거 버튼</span>
+                <span></span>
+                <span></span>
+            </button>
 
             <div id="toggle_btn" class="toggle__box">
                 <input type="checkbox" id="theme-toggle" class="toggle__item" checked>
@@ -113,6 +117,7 @@
                         </div>
 
                     </div>
+                </div>
             </section>
 
             <section data-name="howtowork" class="howtowork section">
@@ -168,7 +173,7 @@
             <section data-name="project" class="project section">
                 <div class="section__container">
                     <div class="project__wrap">
-                        <h2 class="section__title"><span class="font-accent">프로젝트</span>리스트<span class="font-accent"></span></h2>
+                        <h2 class="section__title"><span class="font-accent">프로젝트 </span>리스트<span class="font-accent"></span></h2>
                         <a class="btn" href="https://jellykelly.notion.site/45ba3e752aac4b7485a406cec7071b67" target="_blank">
                             <span class="btn__text">경력기술서 바로가기</span>
 
@@ -469,7 +474,14 @@
                             </div>
                         </div>
                     </div>
-                    <button id="btn-display" class="btn no-icon project__view-more"><span>더보기</span> </button>
+                    <button id="btn-display" class="project__view-more ">
+                        <span class="text-hide">더보기</span>
+                        <div class="project__view-more--symbol">
+                            <span class="line rotate"></span>
+                            <span class="line"></span>
+                        </div>
+                    </button>
+                </div>
             </section>
 
             <section data-name="contact" class="contact section">
@@ -485,6 +497,7 @@
                 <div class="contact__email">
                     <a class="contact__email--address" href="mailto:kelly@kellyfolio.com" target="_blank">kelly@kellyfolio.com</a>
                     <span class="contact__email--icon text-hide">아이콘-편지</span>
+                </div>
             </section>
         </div>
         <footer class="footer">&copy;2023 KELLY. ALL RIGHTS RESERVED</footer>

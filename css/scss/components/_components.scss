@@ -6,15 +6,6 @@
     }
 }
 
-.section__title {
-    font-size: 46px;
-    font-weight: 600;
-
-    @include mobs {
-        font-size: 26px;
-    }
-}
-
 .font-accent {
     @include get-color(color, color-mint);
 }
