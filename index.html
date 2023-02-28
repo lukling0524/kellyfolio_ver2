@@ -22,22 +22,36 @@
     <div class="wrap loading">
         <!-- <div class="wrap"> -->
 
-        <div class="intro-box text-hide">
+        <div class="intro-box">
             <!-- animated height area -->
         </div>
 
-        <header class="header intro-box intro-box__header">
-            <h1 class="text-hide">
-                로고-kelly
-                <svg id="logo" class="logo " width="312.38" height="244.039" viewBox="0 0 312.38 244.039">
-                    <g transform="translate(940.297 -1371.172)">
-                        <path class="logo__k svg-color" d="M-920.1,1376.4c2,42.7-2,82-14,123.3" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="8" />
-                        <path class="logo__elly svg-color" d="M-870.1,1391c-4.7,17.3-28,49.3-47.3,53.3,5.3,7.3,30,36,36.7,42,16.7,14.7,35.3-3.3,45.3-18,6.7-9.3,14.7-30-2-32.7-10-1.3-17.3,7.3-20.7,16-8.7,24,.7,58.7,31.3,54,28.7-4,48-32,57.3-57.3,5.3-12.7,12.7-41.3,6-54.7-7.3-14.7-14,.7-16,10-4.7,16-2.7,34-2.7,50.7,0,15.3-2,37.3,9.3,49.3,18.7,22,44-40.7,47.3-54,3.2-12.5,11.3-54.7,8.7-58.7-6.7-10-18,8-20,14.7-6.7,22-2,54.7,4.7,76,11.3,36.7,38-32.7,40.7-45.3a69.91,69.91,0,0,0,1.3-12c-8,16-12,33.3-8,52,7.2,18.8,15.2,16.8,28.7,17.3,21.4-.5,28-32,33.3-53.3,6,32.7,3.6,71.3-6,104-9.3,26-18.7,60.7-50,64.7-22,2.7-46.7,2.7-61.3-17.3-7.3-10-11.3-33.3,0-42" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="8" />
-                        <path class="logo__eye-l svg-color" d="M-714.8,1543v18" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="8" />
-                        <path class="logo__eye-r svg-color" d="M-689.5,1540.4c0,5.3-.7,10,.7,14.7" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="8" />
-                    </g>
-                </svg>
-            </h1>
+        <header class="header intro-box">
+            <div class="header__wrap intro-box">
+                <h1 aria-label="로고">
+                    <svg id="logo" class="logo " width="312.38" height="244.039" viewBox="0 0 312.38 244.039">
+                        <g transform="translate(940.297 -1371.172)">
+                            <path class="logo__k svg-color" d="M-920.1,1376.4c2,42.7-2,82-14,123.3" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="8" />
+                            <path class="logo__elly svg-color" d="M-870.1,1391c-4.7,17.3-28,49.3-47.3,53.3,5.3,7.3,30,36,36.7,42,16.7,14.7,35.3-3.3,45.3-18,6.7-9.3,14.7-30-2-32.7-10-1.3-17.3,7.3-20.7,16-8.7,24,.7,58.7,31.3,54,28.7-4,48-32,57.3-57.3,5.3-12.7,12.7-41.3,6-54.7-7.3-14.7-14,.7-16,10-4.7,16-2.7,34-2.7,50.7,0,15.3-2,37.3,9.3,49.3,18.7,22,44-40.7,47.3-54,3.2-12.5,11.3-54.7,8.7-58.7-6.7-10-18,8-20,14.7-6.7,22-2,54.7,4.7,76,11.3,36.7,38-32.7,40.7-45.3a69.91,69.91,0,0,0,1.3-12c-8,16-12,33.3-8,52,7.2,18.8,15.2,16.8,28.7,17.3,21.4-.5,28-32,33.3-53.3,6,32.7,3.6,71.3-6,104-9.3,26-18.7,60.7-50,64.7-22,2.7-46.7,2.7-61.3-17.3-7.3-10-11.3-33.3,0-42" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="8" />
+                            <path class="logo__eye-l svg-color" d="M-714.8,1543v18" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="8" />
+                            <path class="logo__eye-r svg-color" d="M-689.5,1540.4c0,5.3-.7,10,.7,14.7" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="8" />
+                        </g>
+                    </svg>
+                </h1>
+                <button class="hamburger" aria-label="모바일 메뉴 오픈 버튼">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </button>
+                <div id="toggle_btn" class="toggle__box">
+                    <input type="checkbox" id="theme-toggle" class="toggle__item" checked>
+                    <label for="theme-toggle" class="toggle__btn text-hide" tabindex="0">테마 토글 버튼</label>
+                    <div class="toggle__icon">
+                        <span class="item toggle__icon--dark on text-hide">아이콘-다크모드</span>
+                        <span class="item toggle__icon--light text-hide">아이콘-라이트모드</span>
+                    </div>
+                </div>
+            </div>
 
             <nav class="nav">
                 <ul class="gnb">
@@ -48,26 +62,13 @@
                     <li class="gnb__list active-bar"></li>
                 </ul>
             </nav>
-            <button class="hamburger">
-                <span>메뉴 햄버거 버튼</span>
-                <span></span>
-                <span></span>
-            </button>
 
-            <div id="toggle_btn" class="toggle__box">
-                <input type="checkbox" id="theme-toggle" class="toggle__item" checked>
-                <label for="theme-toggle" class="toggle__btn text-hide">테마 토글 버튼</label>
-                <div class="toggle__icon">
-                    <span class="item toggle__icon--dark on text-hide">아이콘-다크모드</span>
-                    <span class="item toggle__icon--light text-hide">아이콘-라이트모드</span>
-                </div>
-            </div>
         </header>
 
         <div data-name="home" class="contents section">
             <section class="about">
                 <div class="section__container">
-                    <div class="about__intro">
+                    <article class="about__intro">
                         <div class="about__visual">
                             <div class="avata">
                                 <img class="avata__sequence" src="./images/imagesequence/avata-1.png" alt="아바타 캐릭터 이미지 시퀀스">
@@ -79,7 +80,7 @@
                             <a class="btn" href="https://jellykelly.notion.site/6f4f9535fe184d178a17f4619f16eca1" target="_blank">
                                 <span class="btn__text">이력서 바로가기</span>
                                 <div class="ico-link">
-                                    <svg class="svg-color" fill="#000000" viewBox="-5 -5 60.00 60.00" transform="rotate(0)matrix(1, 0, 0, 1, 0, 0)">
+                                    <svg class="svg-color" fill="#000000" viewBox="-5 -5 60.00 60.00">
                                         <title>링크 아이콘</title>
                                         <g stroke-width="0"></g>
                                         <g class="svg-color" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="4"></g>
@@ -92,9 +93,9 @@
                                 </div>
                             </a>
                         </div>
-                    </div>
+                    </article>
 
-                    <div class="about__text">
+                    <article class="about__text">
                         <div class="about__text--box">
                             <p class="about__text--item">
                                 저는 동적 웹사이트 및 사용자가 만족할 수 있는 서비스를 만드는 것에 열정을 가진 3년 차 웹 퍼블리셔입니다.
@@ -116,7 +117,7 @@
                             </p>
                         </div>
 
-                    </div>
+                    </article>
                 </div>
             </section>
 
@@ -172,13 +173,13 @@
 
             <section data-name="project" class="project section">
                 <div class="section__container">
-                    <div class="project__wrap">
+                    <article class="project__wrap">
                         <h2 class="section__title"><span class="font-accent">프로젝트 </span>리스트<span class="font-accent"></span></h2>
                         <a class="btn" href="https://jellykelly.notion.site/45ba3e752aac4b7485a406cec7071b67" target="_blank">
                             <span class="btn__text">경력기술서 바로가기</span>
 
                             <div class="ico-link">
-                                <svg class="svg-color" fill="#000000" viewBox="-5 -5 60.00 60.00" transform="rotate(0)matrix(1, 0, 0, 1, 0, 0)">
+                                <svg class="svg-color" fill="#000000" viewBox="-5 -5 60.00 60.00">
                                     <g stroke-width="0"></g>
                                     <g class="svg-color" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="4"></g>
                                     <g>
@@ -189,9 +190,9 @@
                                 </svg>
                             </div>
                         </a>
-                    </div>
+                    </article>
 
-                    <div class="project__grid default">
+                    <article class="project__grid default">
                         <div class="project__item">
                             <span class="project__icon text-hide">아이콘-폴더</span>
                             <div class="project__info">
@@ -473,31 +474,31 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
-                    <button id="btn-display" class="project__view-more ">
+                    </article>
+                    <div id="btn-display" class="project__view-more" role="button" aria-label="프로젝트 토글 버튼" tabindex="0">
                         <span class="text-hide">더보기</span>
                         <div class="project__view-more--symbol">
                             <span class="line rotate"></span>
                             <span class="line"></span>
                         </div>
-                    </button>
+                    </div>
                 </div>
             </section>
 
             <section data-name="contact" class="contact section">
                 <div class="contact__wrap">
-                    <div class="contact__icon text-hide">흥미로운 얼굴</div>
-                    <div class="contact__icon text-hide">흥미로운 얼굴</div>
-                    <div class="contact__icon text-hide">흥미로운 얼굴</div>
-                    <div class="contact__icon text-hide">흥미로운 얼굴</div>
-                    <div class="contact__icon text-hide">흥미로운 얼굴</div>
-                    <div class="contact__icon text-hide">흥미로운 얼굴</div>
+                    <div class="contact__icon text-hide">흥미로운 얼굴 아이콘</div>
+                    <div class="contact__icon text-hide">흥미로운 얼굴 아이콘</div>
+                    <div class="contact__icon text-hide">흥미로운 얼굴 아이콘</div>
+                    <div class="contact__icon text-hide">흥미로운 얼굴 아이콘</div>
+                    <div class="contact__icon text-hide">흥미로운 얼굴 아이콘</div>
+                    <div class="contact__icon text-hide">흥미로운 얼굴 아이콘</div>
                     <h2 class="section__title">제가 조금 더 <span class="font-accent">궁금</span>하시다면<span class="font-accent">...</span></h2>
                 </div>
-                <div class="contact__email">
+                <article class="contact__email">
                     <a class="contact__email--address" href="mailto:kelly@kellyfolio.com" target="_blank">kelly@kellyfolio.com</a>
                     <span class="contact__email--icon text-hide">아이콘-편지</span>
-                </div>
+                </article>
             </section>
         </div>
         <footer class="footer">&copy;2023 KELLY. ALL RIGHTS RESERVED</footer>

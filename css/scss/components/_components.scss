@@ -1,9 +1,5 @@
 .svg-color {
     @include get-color(stroke, color-font);
-
-    &__fill {
-        @include get-color(fill, color-font);
-    }
 }
 
 .font-accent {
@@ -29,7 +25,9 @@
         transition: 0.3s;
     }
 
-    &:hover {
+    &:hover,
+    &:focus,
+    &:active {
         &::before {
             width: 100%;
         }
@@ -72,12 +70,15 @@
 
         .svg-color {
             @include get-color(stroke, color-bg);
-            @include get-color(fill, color-bg);
         }
     }
 
-    &:hover .ico-link__arrow {
-        animation: arrow 1s infinite both;
+    &:hover,
+    &:focus,
+    &:active {
+        .ico-link__arrow {
+            animation: arrow 1s infinite both;
+        }
     }
 }
 

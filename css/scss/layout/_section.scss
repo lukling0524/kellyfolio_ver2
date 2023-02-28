@@ -554,7 +554,8 @@ $sectionSpaceMobile : 60px;
         transition: 0.5s;
 
         // [view more]버튼 닫혀있을 때 호버
-        &:hover {
+        &:hover,
+        &:focus {
             @include get-color(background-color, color-mint);
             transform: scale(1.1);
 
@@ -564,11 +565,16 @@ $sectionSpaceMobile : 60px;
         }
 
         // [view more]버튼 열려있을 때 호버
-        &.opened:hover {
-            .line:first-child {
-                transform: translate(-50%, -50%) rotate(180deg);
+        &.opened {
+
+            &:hover,
+            &:focus {
+                .line:first-child {
+                    transform: translate(-50%, -50%) rotate(180deg);
+                }
             }
         }
+
 
         &--symbol {
             $size: 26px;
@@ -675,7 +681,9 @@ $sectionSpaceMobile : 60px;
                 font-size: 30px;
             }
 
-            &:hover {
+            &:hover,
+            &:focus,
+            &:active {
                 transform: scale(1.1);
                 @include get-color(color, color-mint);
             }
