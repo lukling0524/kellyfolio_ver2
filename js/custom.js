@@ -146,7 +146,7 @@ $gnbItem.forEach((item, idx) => {
             mobileMenuOpen();
 
         } else {
-            navigation.destroy(true);
+            // navigation.destroy(true);
 
             // 클릭한 메뉴로 active-bar 이동
             $leftPos = this.offsetLeft;
@@ -243,15 +243,15 @@ $themelabel.addEventListener('keydown', (e) => {
 
 
 // Navigation slide down
-const $tween_gnb = TweenMax.fromTo('.nav', 0.5, { opacity: 0, y: '-100%' }, { opacity: 1, y: '-50%' });
-
-let navigation = new ScrollMagic.Scene({
-    triggerElement: '.about__text--box',
-    triggerHook: 0.3,
-    offset: 150,
-})
-    .setTween($tween_gnb)
-    .addTo($controller)
+// const $tween_gnb = TweenMax.fromTo('.nav', 0.5, { opacity: 0, y: '-100%' }, { opacity: 1, y: '-50%' });
+// 
+// let navigation = new ScrollMagic.Scene({
+//     triggerElement: '.about__text--box',
+//     triggerHook: 0.3,
+//     offset: 150,
+// })
+//     .setTween($tween_gnb)
+//     .addTo($controller)
 // .addIndicators({
 //     indent: 0,
 //     name: 'gnb',
@@ -261,12 +261,12 @@ let navigation = new ScrollMagic.Scene({
 // });
 
 
-if (window.innerWidth < $mq_tablet) {
-    navigation.destroy(true);
-    navigation = null;
-
-    console.log('gnb 고정 삭제')
-}
+// if (window.innerWidth < $mq_tablet) {
+//     navigation.destroy(true);
+//     navigation = null;
+// 
+//     console.log('gnb 고정 삭제')
+// }
 
 // window.addEventListener('resize', function () {
 //     if (window.innerWidth < $mq_tablet) {
@@ -487,7 +487,7 @@ new ScrollMagic.Scene({
 
 const $menuController = new ScrollMagic.Controller({ globalSceneOptions: { triggerHook: 0.25 } });
 
-const $home = document.querySelector('.about__text'),
+const $home = document.querySelector('.about .section__container'),
     $homeHeight = $home.offsetHeight;
 
 new ScrollMagic.Scene({
@@ -496,12 +496,12 @@ new ScrollMagic.Scene({
 })
     .setClassToggle('#home', 'is-active')
     .addTo($menuController)
-// .addIndicators({
-//     name: '11111 home',
-//     colorStart: 'red',
-//     colorEnd: 'red',
-//     indent: 0
-// });
+    .addIndicators({
+        name: '11111 home',
+        colorStart: 'red',
+        colorEnd: 'red',
+        indent: 0
+    });
 
 
 const $howtowork = document.querySelector('.howtowork .section__container'),
