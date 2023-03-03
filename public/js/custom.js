@@ -68,34 +68,34 @@ let $controller = new ScrollMagic.Controller();
 
 // 인트로 (SVG drawing + header size 모션)
 
-$tween_logoDraw = new TimelineMax()
-    .delay(1)
-    .add(TweenMax.to($path_k, 0.65, { strokeDashoffset: 0, ease: 'sine.in' }))
-    .add(TweenMax.to($path_elly, 2.2, { strokeDashoffset: 0, ease: 'sine.in' }))
-    .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }))
-    .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }), 'queue')
-    .add(TweenMax.to('.intro-box', 2, { height: 60, ease: 'power1.in' }), 'queue+=0.5')
-    .add(TweenMax.to('#logo', 1.2, { width: 52, height: 'auto', left: window.innerWidth < $mq_tablet_sm ? 20 : 40, marginLeft: 26, ease: 'power1.in' }), 'queue+=1.3')
-    .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=2')
-    .call(() => {
-        $wrap.classList.remove('loading');
-        $header.classList.add('end');
-    });
-// 
-// 
-// 
 // $tween_logoDraw = new TimelineMax()
-//     .add(TweenMax.to($path_k, { strokeDashoffset: 0, ease: 'sine.in' }))
-//     .add(TweenMax.to($path_elly, { strokeDashoffset: 0, ease: 'sine.in' }))
-//     .add(TweenMax.to($path_eye_l, { strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }))
-//     .add(TweenMax.to($path_eye_r, { strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }))
-//     .add(TweenMax.to('.intro-box', { height: 60, ease: 'power1.in' }))
-//     .add(TweenMax.to('#logo', { width: 52, height: 'auto', left: window.innerWidth < $mq_tablet_sm ? 20 : 40, marginLeft: 26, ease: 'power1.in' }))
-//     .add(TweenMax.fromTo('#toggle_btn', { opacity: 0, x: 100 }, { opacity: 1, x: 0 }))
+//     .delay(1)
+//     .add(TweenMax.to($path_k, 0.65, { strokeDashoffset: 0, ease: 'sine.in' }))
+//     .add(TweenMax.to($path_elly, 2.2, { strokeDashoffset: 0, ease: 'sine.in' }))
+//     .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }))
+//     .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }), 'queue')
+//     .add(TweenMax.to('.intro-box', 2, { height: 60, ease: 'power1.in' }), 'queue+=0.5')
+//     .add(TweenMax.to('#logo', 1.2, { width: 52, height: 'auto', left: window.innerWidth < $mq_tablet_sm ? 20 : 40, marginLeft: 26, ease: 'power1.in' }), 'queue+=1.3')
+//     .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=2')
 //     .call(() => {
 //         $wrap.classList.remove('loading');
 //         $header.classList.add('end');
 //     });
+// 
+
+
+$tween_logoDraw = new TimelineMax()
+    .add(TweenMax.to($path_k, { strokeDashoffset: 0, ease: 'sine.in' }))
+    .add(TweenMax.to($path_elly, { strokeDashoffset: 0, ease: 'sine.in' }))
+    .add(TweenMax.to($path_eye_l, { strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }))
+    .add(TweenMax.to($path_eye_r, { strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }))
+    .add(TweenMax.to('.intro-box', { height: 60, ease: 'power1.in' }))
+    .add(TweenMax.to('#logo', { width: 52, height: 'auto', left: window.innerWidth < $mq_tablet_sm ? 20 : 40, marginLeft: 26, ease: 'power1.in' }))
+    .add(TweenMax.fromTo('#toggle_btn', { opacity: 0, x: 100 }, { opacity: 1, x: 0 }))
+    .call(() => {
+        $wrap.classList.remove('loading');
+        $header.classList.add('end');
+    });
 
 
 
@@ -175,6 +175,7 @@ $gnbItem.forEach((item, idx) => {
 });
 
 
+
 // 모바일 메뉴 클릭
 $hamburger.addEventListener('click', () => mobileMenuOpen());
 
@@ -203,6 +204,7 @@ window.addEventListener('scroll', () => {
         }
     });
 })
+
 
 
 // 라이트모드-다크모드 테마 토글 버튼
@@ -241,6 +243,45 @@ $themelabel.addEventListener('keydown', (e) => {
  * 스크롤 애니메이션
  */
 
+
+// Navigation slide down
+// const $tween_gnb = TweenMax.fromTo('.nav', 0.5, { opacity: 0, y: '-100%' }, { opacity: 1, y: '-50%' });
+// 
+// let navigation = new ScrollMagic.Scene({
+//     triggerElement: '.about__text--box',
+//     triggerHook: 0.3,
+//     offset: 150,
+// })
+//     .setTween($tween_gnb)
+//     .addTo($controller)
+// .addIndicators({
+//     indent: 0,
+//     name: 'gnb',
+//     colorStart: 'yellow',
+//     colorEnd: 'yellow',
+//     colorTrigger: 'yellow',
+// });
+
+
+// if (window.innerWidth < $mq_tablet) {
+//     navigation.destroy(true);
+//     navigation = null;
+// 
+//     console.log('gnb 고정 삭제')
+// }
+
+// window.addEventListener('resize', function () {
+//     if (window.innerWidth < $mq_tablet) {
+//         $header.classList.remove('end')
+//     } else {
+//         $header.classList.add('end')
+//     }
+// });
+
+
+
+
+
 // About section 아바타 이미지 시퀀스
 const $avataImgSqc = new Array();
 const $imgTag = document.querySelector('.avata__sequence');
@@ -268,18 +309,35 @@ new ScrollMagic.Scene({
 })
     .setTween($tween_avata)
     .setPin('.about')
-    .addTo($controller);
+    .addTo($controller)
+// .addIndicators({
+//     name: '이미지시퀀스',
+//     colorStart: 'red',
+//     colorEnd: 'red',
+//     indent: 10
+// });
+
+
+
 
 
 // about 텍스트 slide up
 const $tween_about = TweenMax.fromTo('.about__text', 0.5, { opacity: 0, y: 60 }, { opacity: 1, y: 0 });
 new ScrollMagic.Scene({
+    // duration: '100%',
     triggerElement: '.about__text',
     triggerHook: 0.9,
 
 })
     .setTween($tween_about)
-    .addTo($controller);
+    .addTo($controller)
+// .addIndicators({
+//     indent: 0,
+//     name: '자기소개 텍스트',
+//     colorStart: 'blue',
+//     colorEnd: 'blue',
+//     colorTrigger: 'blue',
+// });
 
 
 //how to work 타이틀 slide left to right (mobile only)
@@ -294,8 +352,17 @@ if (window.innerWidth < $mq_tablet_sm) {
         offset: '300%'
     })
         .setTween($tween_howtoTitle)
-        .addTo($controller);
+        .addTo($controller)
+    // .addIndicators({
+    //     indent: 0,
+    //     name: '이렇게일합니다',
+    //     colorStart: 'red',
+    //     colorEnd: 'red',
+    //     colorTrigger: 'red',
+    // });
 }
+
+
 
 
 //how to work 섹션 pinned 모션
@@ -307,7 +374,7 @@ let pinned = new ScrollMagic.Scene({
 })
     .setPin('.howtowork .section__title')
     .setClassToggle('.section__title', 'is-active')
-    .addTo($controller);
+    .addTo($controller)
 
 if (window.innerWidth < $mq_tablet_sm) {
     pinned.destroy(true);
@@ -326,9 +393,14 @@ window.addEventListener('resize', function () {
         })
             .setPin('.howtowork .section__title')
             .setClassToggle('.section__title', 'is-active')
-            .addTo($controller);
+            .addTo($controller)
+
+
+        console.log('리사이징 핀모션')
     }
 });
+
+
 
 
 // project 섹션 타이틀 slide up
@@ -337,23 +409,42 @@ $tween_project = new TimelineMax()
     .add(TweenMax.fromTo('.project__wrap .btn', 0.5, { opacity: 0, y: 30 }, { opacity: 1, y: 0 }), 'queue+=0.1');
 
 new ScrollMagic.Scene({
+    // duration: '100%',
     triggerElement: '.project',
     triggerHook: 0.6,
 
 })
     .setTween($tween_project)
-    .addTo($controller);
+    .addTo($controller)
+// .addIndicators({
+//     indent: 0,
+//     name: '프로젝트 타이틀',
+//     colorStart: 'red',
+//     colorEnd: 'red',
+//     colorTrigger: 'red',
+// });
 
 
 // project 섹션 그리드영역 slide up
 const $tween_grid = TweenMax.fromTo('.project__grid', 0.7, { opacity: 0, y: 50 }, { opacity: 1, y: 0 });
 
+
 new ScrollMagic.Scene({
+    // duration: '100%',
     triggerElement: '.project__wrap',
     triggerHook: 0.5,
 })
     .setTween($tween_grid)
-    .addTo($controller);
+    .addTo($controller)
+// .addIndicators({
+//     indent: 0,
+//     name: '그리드',
+//     colorStart: 'yellow',
+//     colorEnd: 'yellow',
+//     colorTrigger: 'yellow',
+// });
+
+
 
 
 // contact 타이틀 opacity
@@ -366,18 +457,37 @@ new ScrollMagic.Scene({
 
 })
     .setTween($tween_contact)
-    .addTo($controller);
+    .addTo($controller)
+// .addIndicators({
+//     indent: 100,
+//     name: '연락처 타이틀',
+//     colorStart: 'pink',
+//     colorEnd: 'pink',
+//     colorTrigger: 'pink',
+// });
 
 
 // 이메일 텍스트 slide left
 const $tween_email = TweenMax.fromTo('.contact__email', 3, { opacity: 0, x: -100 }, { opacity: 1, x: 0, ease: Elastic.easeOut.config(1, 0.3) });
 new ScrollMagic.Scene({
+    // duration: 500,
     triggerElement: '.contact .section__title',
     triggerHook: 0.5,
     offset: -50,
 })
     .setTween($tween_email)
-    .addTo($controller);
+    .addTo($controller)
+// .addIndicators({
+//     indent: 0,
+//     name: '이메일 타이틀',
+//     colorStart: 'yellow',
+//     colorEnd: 'yellow',
+//     colorTrigger: 'yellow',
+// });
+
+
+
+
 
 
 
@@ -385,7 +495,6 @@ new ScrollMagic.Scene({
 
 const $menuController = new ScrollMagic.Controller({ globalSceneOptions: { triggerHook: 0.25 } });
 
-// home 섹션
 const $home = document.querySelector('.about .section__container'),
     $homeHeight = $home.offsetHeight;
 
@@ -394,10 +503,15 @@ new ScrollMagic.Scene({
     duration: $homeHeight,
 })
     .setClassToggle('#home', 'is-active')
-    .addTo($menuController);
+    .addTo($menuController)
+// .addIndicators({
+//     name: '11111 home',
+//     colorStart: 'red',
+//     colorEnd: 'red',
+//     indent: 0
+// });
 
 
-// how to work 섹션
 const $howtowork = document.querySelector('.howtowork .section__container'),
     $howtoworkHeight = $howtowork.offsetHeight;
 
@@ -406,10 +520,14 @@ new ScrollMagic.Scene({
     duration: $howtoworkHeight
 })
     .setClassToggle('#howtowork', 'is-active')
-    .addTo($menuController);
+    .addTo($menuController)
+// .addIndicators({
+//     name: '22222 how to work',
+//     colorStart: 'yellow',
+//     colorEnd: 'yellow',
+//     indent: 100
+// });
 
-
-// project 섹션
 const $project = document.querySelector('.project .section__container'),
     $projectHeight = $project.offsetHeight;
 
@@ -418,17 +536,28 @@ new ScrollMagic.Scene({
     duration: $projectHeight
 })
     .setClassToggle('#project', 'is-active')
-    .addTo($menuController);
+    .addTo($menuController)
+// .addIndicators({
+//     name: '33333 project',
+//     colorStart: 'purple',
+//     colorEnd: 'purple',
+//     indent: 200
+// });
 
-
-// contact 섹션
 new ScrollMagic.Scene({
     triggerElement: '.project__view-more'
 })
     .on('enter', () => { document.querySelector('#project').classList.remove('is-active') })
     .on('leave', () => { document.querySelector('#project').classList.add('is-active') })
     .setClassToggle('#contact', 'is-active')
-    .addTo($menuController);
+    .addTo($menuController)
+// .addIndicators({
+//     name: '4444 contact',
+//     colorStart: 'white',
+//     colorEnd: 'white',
+//     indent: 300
+// });
+
 
 
 // contact 이모티콘 move
@@ -474,6 +603,7 @@ window.addEventListener('resize', function () {
 
 
 
+
 //project toggle
 const $projectGrid = document.querySelector('.project__grid'),
     $projectItem = document.querySelectorAll('.project__item'),
@@ -506,7 +636,7 @@ $displayBtn.addEventListener('click', function () {
         $toggleLines[0].classList.add('rotate');
         this.classList.remove('opened');
 
-        // 그리드 접었을 때 project 섹션으로 스크롤 이동
+        // 그리드 접었을 때 project 섹샨으로 스크롤 이동
         $projectTopPos = document.querySelector(`.section[data-name="project"]`).offsetTop;
         window.scroll(top, $projectTopPos)
     }
@@ -533,10 +663,11 @@ $displayBtn.addEventListener('keydown', function (e) {
             $toggleLines[0].classList.add('rotate');
             this.classList.remove('opened');
 
-            // 그리드 접었을 때 project 섹션으로 스크롤 이동
+            // 그리드 접었을 때 project 섹샨으로 스크롤 이동
             $projectTopPos = document.querySelector(`.section[data-name="project"]`).offsetTop;
             window.scroll(top, $projectTopPos)
         }
         $projectGrid.classList.toggle('default');
     }
 })
+
