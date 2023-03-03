@@ -64,12 +64,17 @@
         top: 14px;
         right: 20px;
 
+        @include mobs {
+            top: 11px;
+        }
+
         &__arrow {
             transition: 0.2s;
         }
 
         .svg-color {
             @include get-color(stroke, color-bg);
+            @include get-color(fill, color-bg);
         }
     }
 
@@ -95,5 +100,20 @@
     100% {
         transform: translate(0, 0);
     }
+}
 
+
+// 터치하는 기기일 때 스타일 대응
+.touch-device {
+    .btn {
+
+        &:hover,
+        &:focus,
+        &:active {
+            &::before {
+                width: 0;
+            }
+        }
+
+    }
 }

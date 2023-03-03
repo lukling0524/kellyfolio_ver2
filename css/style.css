@@ -345,14 +345,24 @@ a:focus {
 	top: 14px;
 	right: 20px;
 }
+@media (max-width: 500px) {
+	.btn .ico-link {
+		top: 11px;
+	}
+}
 .btn .ico-link__arrow {
 	transition: 0.2s;
 }
 .btn .ico-link .svg-color {
 	stroke: #1A2744;
+	fill: #1A2744;
 }
 .light-theme .btn .ico-link .svg-color {
 	stroke: #FAFAFA;
+}
+
+.light-theme .btn .ico-link .svg-color {
+	fill: #FAFAFA;
 }
 
 .btn:hover .ico-link__arrow, .btn:focus .ico-link__arrow, .btn:active .ico-link__arrow {
@@ -370,6 +380,10 @@ a:focus {
 		transform: translate(0, 0);
 	}
 }
+.touch-device .btn:hover::before, .touch-device .btn:focus::before, .touch-device .btn:active::before {
+	width: 0;
+}
+
 .wrap {
 	position: relative;
 }
@@ -409,6 +423,8 @@ a:focus {
 	-webkit-backdrop-filter: blur(10px);
 	        backdrop-filter: blur(10px);
 	z-index: 1000;
+}
+.header.end {
 	transition: height 0.5s;
 }
 .light-theme .header {
@@ -417,6 +433,7 @@ a:focus {
 
 .header__wrap {
 	width: 100%;
+	height: 100%;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -472,6 +489,10 @@ a:focus {
 	color: #39ADB5;
 }
 
+.header h1 {
+	z-index: 1000;
+}
+
 .top-obj {
 	position: relative;
 	transform: rotate(-24deg);
@@ -483,9 +504,11 @@ a:focus {
 
 .logo {
 	width: 60px;
+	height: 100%;
 	position: absolute;
 	top: 50%;
 	transform: translate(-50%, -50%);
+	z-index: 1000;
 }
 
 .action.logo__eye-l {
@@ -865,16 +888,16 @@ a:focus {
 	.howtowork .section__title {
 		width: 100%;
 		position: sticky;
-		top: 130px;
+		top: 60px;
 		z-index: 100;
 	}
 	.howtowork .section__title::before {
 		content: "";
 		display: block;
 		width: 100%;
-		height: 200px;
+		height: 120px;
 		position: absolute;
-		top: -130px;
+		top: -60px;
 		left: 0;
 		background-color: #1A2744;
 		z-index: -1;
@@ -886,12 +909,12 @@ a:focus {
 .howtowork .section__title::after {
 	content: "";
 	display: block;
-	width: 60px;
-	height: 60px;
-	position: absolute;
-	top: -52px;
-	left: 50%;
-	transform: translateX(-50%);
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+	position: relative;
+	top: 9px;
+	right: 0;
 	background: url("../images/ico-bulb.png") no-repeat center/cover;
 	opacity: 0.4;
 }
@@ -1401,4 +1424,18 @@ a:focus {
 }
 .light-theme .footer {
 	color: #8796B0;
+}
+
+.touch-device .project__view-more:hover, .touch-device .project__view-more:focus {
+	background-color: #FFFFFF;
+}
+.light-theme .touch-device .project__view-more:hover, .light-theme .touch-device .project__view-more:focus {
+	background-color: #222222;
+}
+
+.touch-device .contact__email--address:hover, .touch-device .contact__email--address:focus, .touch-device .contact__email--address:active {
+	color: #FFFFFF;
+}
+.light-theme .touch-device .contact__email--address:hover, .light-theme .touch-device .contact__email--address:focus, .light-theme .touch-device .contact__email--address:active {
+	color: #222222;
 }

@@ -1,5 +1,11 @@
+
 // device sizes
 $mq_tablet = 1100;
+
+// 터치 기기 인 경우 html에 'touch-device' 클래스 추가
+if ('ontouchstart' in document.documentElement) {
+    document.documentElement.className += 'touch-device';
+}
 
 // ios 대응 vh css 변수 설정
 const $vh = window.innerHeight * 0.01;
@@ -386,13 +392,13 @@ if (window.innerWidth < 500) {
     pinned = null;
 }
 
-window.addEventListener('resize', function () {
-    if (window.innerWidth < 500) {
-        pinned.destroy(true);
-        pinned = null;
-    }
-});
-
+// window.addEventListener('resize', function () {
+//     if (window.innerWidth < 500) {
+//         pinned.destroy(true);
+//         pinned = null;
+//     }
+// });
+// 
 
 
 // project 섹션 타이틀 slide up
@@ -496,12 +502,12 @@ new ScrollMagic.Scene({
 })
     .setClassToggle('#home', 'is-active')
     .addTo($menuController)
-    .addIndicators({
-        name: '11111 home',
-        colorStart: 'red',
-        colorEnd: 'red',
-        indent: 0
-    });
+// .addIndicators({
+//     name: '11111 home',
+//     colorStart: 'red',
+//     colorEnd: 'red',
+//     indent: 0
+// });
 
 
 const $howtowork = document.querySelector('.howtowork .section__container'),
