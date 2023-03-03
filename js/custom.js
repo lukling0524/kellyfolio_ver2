@@ -1,11 +1,14 @@
 
 // device sizes
-$mq_tablet = 1100;
+$mq_tablet = 1101;
+$mq_tablet_sm = 769;
 
 // 터치 기기 인 경우 html에 'touch-device' 클래스 추가
 if ('ontouchstart' in document.documentElement) {
     document.documentElement.className += 'touch-device';
 }
+
+
 
 // ios 대응 vh css 변수 설정
 const $vh = window.innerHeight * 0.01;
@@ -52,16 +55,6 @@ const $html = document.querySelector('html'),
     $toggleBox = document.querySelector('.toggle__box');
 
 
-// window.addEventListener('resize, scroll', function () {
-//     $header.style.cssText = `
-//         -webkit-backdrop-filter: blur(10px); 
-//         backdrop-filter: blur(10px);
-//     `;
-// 
-//     console.log('test')
-// });
-
-
 
 /*
     TweenMax.to(element, duration, css properties)
@@ -75,35 +68,35 @@ let $controller = new ScrollMagic.Controller();
 
 // 인트로 (SVG drawing + header size 모션)
 
-$tween_logoDraw = new TimelineMax()
-    .delay(1)
-    .add(TweenMax.to($path_k, 0.65, { strokeDashoffset: 0, ease: 'sine.in' }))
-    .add(TweenMax.to($path_elly, 2.2, { strokeDashoffset: 0, ease: 'sine.in' }))
-    .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: window.innerWidth < 500 ? 'sine.in' : 'elastic.out(1, 0.3)' }))
-    .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: window.innerWidth < 500 ? 'sine.in' : 'elastic.out(1, 0.3)' }), 'queue')
-    .add(TweenMax.to('.intro-box', 2, { height: 60, ease: 'power1.in' }), 'queue+=0.5')
-    .add(TweenMax.to('#logo', 1.2, { width: 52, height: 'auto', left: window.innerWidth < 500 ? 20 : 40, marginLeft: 26, ease: 'power1.in' }), 'queue+=1.3')
-    .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=2')
-    .call(() => {
-        $wrap.classList.remove('loading');
-        $header.classList.add('end');
-    });
-
-
-
 // $tween_logoDraw = new TimelineMax()
-//     .add(TweenMax.to($path_k, { strokeDashoffset: 0, ease: 'sine.in' }))
-//     .add(TweenMax.to($path_elly, { strokeDashoffset: 0, ease: 'sine.in' }))
-//     .add(TweenMax.to($path_eye_l, { strokeDashoffset: 0, ease: window.innerWidth < 500 ? 'sine.in' : 'elastic.out(1, 0.3)' }))
-//     .add(TweenMax.to($path_eye_r, { strokeDashoffset: 0, ease: window.innerWidth < 500 ? 'sine.in' : 'elastic.out(1, 0.3)' }))
-//     .add(TweenMax.to('.intro-box', { height: 60, ease: 'power1.in' }))
-//     .add(TweenMax.to('#logo', { width: 52, height: 'auto', left: window.innerWidth < 500 ? 20 : 40, marginLeft: 26, ease: 'power1.in' }))
-//     .add(TweenMax.fromTo('#toggle_btn', { opacity: 0, x: 100 }, { opacity: 1, x: 0 }))
+//     .delay(1)
+//     .add(TweenMax.to($path_k, 0.65, { strokeDashoffset: 0, ease: 'sine.in' }))
+//     .add(TweenMax.to($path_elly, 2.2, { strokeDashoffset: 0, ease: 'sine.in' }))
+//     .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }))
+//     .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }), 'queue')
+//     .add(TweenMax.to('.intro-box', 2, { height: 60, ease: 'power1.in' }), 'queue+=0.5')
+//     .add(TweenMax.to('#logo', 1.2, { width: 52, height: 'auto', left: window.innerWidth < $mq_tablet_sm ? 20 : 40, marginLeft: 26, ease: 'power1.in' }), 'queue+=1.3')
+//     .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=2')
 //     .call(() => {
 //         $wrap.classList.remove('loading');
 //         $header.classList.add('end');
 //     });
 // 
+
+
+$tween_logoDraw = new TimelineMax()
+    .add(TweenMax.to($path_k, { strokeDashoffset: 0, ease: 'sine.in' }))
+    .add(TweenMax.to($path_elly, { strokeDashoffset: 0, ease: 'sine.in' }))
+    .add(TweenMax.to($path_eye_l, { strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }))
+    .add(TweenMax.to($path_eye_r, { strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }))
+    .add(TweenMax.to('.intro-box', { height: 60, ease: 'power1.in' }))
+    .add(TweenMax.to('#logo', { width: 52, height: 'auto', left: window.innerWidth < $mq_tablet_sm ? 20 : 40, marginLeft: 26, ease: 'power1.in' }))
+    .add(TweenMax.fromTo('#toggle_btn', { opacity: 0, x: 100 }, { opacity: 1, x: 0 }))
+    .call(() => {
+        $wrap.classList.remove('loading');
+        $header.classList.add('end');
+    });
+
 
 
 // 로고 클릭 시 새로고침 
@@ -135,7 +128,8 @@ const $gnb = document.querySelector('.gnb'),
     $gnbItem = document.querySelectorAll('.gnb__item'),
     $activeBg = document.querySelector('.active-bar'),
     $scrollTarget = document.querySelectorAll('.section[data-name]'),
-    $scrollTopPos = [];
+    $scrollTopPos = [],
+    $hamburger = document.querySelector('.hamburger');
 
 let $activeList = document.querySelector('.gnb__list.is-active');
 
@@ -152,7 +146,6 @@ $gnbItem.forEach((item, idx) => {
             mobileMenuOpen();
 
         } else {
-            // navigation.destroy(true);
 
             // 클릭한 메뉴로 active-bar 이동
             $leftPos = this.offsetLeft;
@@ -171,27 +164,30 @@ $gnbItem.forEach((item, idx) => {
 
         // 클릭한 메뉴 섹션으로 스크롤 이동
         window.scroll(top, $sectionTopPos)
+
+        // 모바일 메뉴가 열린채로 PC 사이즈로 변경되었을 때 메뉴 클릭시 
+        if ($hamburger.classList.contains('is-open')) {
+            $hamburger.classList.remove('is-open')
+            $header.classList.remove('menu-open');
+            document.querySelector('body').style.overflow = 'auto';
+        }
     })
 });
 
-const $hamburger = document.querySelector('.hamburger');
 
 
+// 모바일 메뉴 클릭
 $hamburger.addEventListener('click', () => mobileMenuOpen());
-
-
 
 function mobileMenuOpen() {
     $hamburger.classList.toggle('is-open');
     $header.classList.toggle('menu-open');
-
-    if ($header.classList.contains('menu-open')) {
-        document.querySelector('body').style.overflow = 'hidden';
-    } else {
-        document.querySelector('body').style.overflow = 'auto';
-    }
+    $header.classList.contains('menu-open') ? bodyOverflow('hidden') : bodyOverflow('auto');
 }
 
+function bodyOverflow(overflow) {
+    document.querySelector('body').style.overflow = overflow;
+}
 
 
 // 스크롤 시 active-bar 이동
@@ -345,7 +341,7 @@ new ScrollMagic.Scene({
 
 
 //how to work 타이틀 slide left to right (mobile only)
-if (window.innerWidth < 500) {
+if (window.innerWidth < $mq_tablet_sm) {
 
     const $tween_howtoTitle = TweenMax.fromTo('.howtowork .section__title', 10, { x: -300 }, { x: 0 });
 
@@ -379,26 +375,32 @@ let pinned = new ScrollMagic.Scene({
     .setPin('.howtowork .section__title')
     .setClassToggle('.section__title', 'is-active')
     .addTo($controller)
-// .addIndicators({
-//     indent: 50,
-//     name: '이렇게 일합니다',
-//     colorStart: 'brown',
-//     colorEnd: 'brown',
-//     colorTrigger: 'brown',
-// });
 
-if (window.innerWidth < 500) {
+if (window.innerWidth < $mq_tablet_sm) {
     pinned.destroy(true);
-    pinned = null;
 }
 
-// window.addEventListener('resize', function () {
-//     if (window.innerWidth < 500) {
-//         pinned.destroy(true);
-//         pinned = null;
-//     }
-// });
-// 
+window.addEventListener('resize', function () {
+    if (window.innerWidth < $mq_tablet_sm) {
+        pinned.destroy(true);
+    } else {
+        pinned.destroy(true);
+        pinned = new ScrollMagic.Scene({
+            duration: 1000,
+            triggerElement: '.howtowork',
+            triggerHook: 0,
+            offset: -150,
+        })
+            .setPin('.howtowork .section__title')
+            .setClassToggle('.section__title', 'is-active')
+            .addTo($controller)
+
+
+        console.log('리사이징 핀모션')
+    }
+});
+
+
 
 
 // project 섹션 타이틀 slide up
@@ -543,7 +545,7 @@ new ScrollMagic.Scene({
 // });
 
 new ScrollMagic.Scene({
-    triggerElement: '.contact'
+    triggerElement: '.project__view-more'
 })
     .on('enter', () => { document.querySelector('#project').classList.remove('is-active') })
     .on('leave', () => { document.querySelector('#project').classList.add('is-active') })

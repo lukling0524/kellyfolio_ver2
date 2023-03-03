@@ -64,12 +64,21 @@
     }
 
     &.end {
+        h1 {
+            @include safariOnly {
+                width: 52px;
+                height: 41px;
+                background-color: transparent;
+            }
+        }
+
         .logo {
             position: static;
             transform: translate(0);
             margin-left: 0 !important;
             cursor: pointer;
         }
+
 
         .nav {
             display: block;
@@ -107,10 +116,6 @@
                 }
             }
         }
-    }
-
-    h1 {
-        z-index: 1000;
     }
 }
 
@@ -258,7 +263,15 @@
         display: flex;
         justify-content: space-between;
         flex-direction: column;
+    }
 
+    @include safariOnly {
+        display: block;
+        flex-direction: unset;
+
+        .line+.line {
+            margin-top: 5px;
+        }
     }
 
     &.is-open {
@@ -274,6 +287,10 @@
 
             &:nth-child(3) {
                 transform: translateY(-9px) rotate(-46deg);
+
+                @include safariOnly {
+                    transform: translateY(-7px) rotate(-46deg);
+                }
             }
         }
     }

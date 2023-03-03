@@ -161,48 +161,66 @@ $sectionSpaceMobile : 60px;
                 padding-bottom: $sectionLaptop;
             }
 
-            @include mobs {
+            @include tablet-sm {
                 flex-direction: column;
+            }
+
+            @include mobs {
                 padding-top: 80px;
                 padding-bottom: $sectionSpaceMobile;
             }
         }
 
         &__title {
-            $height: 60px;
-
             position: relative;
             flex: 2;
             text-align: center;
 
-            @include mobs {
+            @include tablet-sm {
                 width: 100%;
                 position: sticky;
-                top: $height;
+                top: 90px;
                 z-index: 100;
 
                 &::before {
-                    @include pseudo('', 100%, $height*2);
+                    @include pseudo('', 100%, 160px);
                     position: absolute;
-                    top: -$height;
+                    top: -90px;
                     left: 0;
                     @include get-color(background-color, color-bg);
                     z-index: -1;
                 }
             }
 
+            @include mobs {
+                top: 60px;
+
+                &::before {
+                    height: 120px;
+                    top: -60px;
+                }
+            }
+
             &::after {
-                $size: 40px;
+                $size: 60px;
 
                 @include pseudo('', $size, $size);
-                display: inline-block;
-                position: relative;
-                top: 9px;
-                right: 0;
+                position: absolute;
+                top: -52px;
+                left: 50%;
+                transform: translateX(-50%);
                 background: url('#{$path-image}/ico-bulb.png') no-repeat center / cover;
                 opacity: 0.4;
 
-                @include mobs {
+                @include tablet-sm {
+                    $size: 40px;
+                    @include pseudo('', $size, $size);
+                    display: inline-block;
+                    position: relative;
+                    top: 9px;
+                    right: 0;
+                    left: unset;
+                    transform: translateX(0);
                     opacity: 1;
                     animation: flick 1.5s linear infinite both;
                 }
@@ -382,7 +400,7 @@ $sectionSpaceMobile : 60px;
         width: 100%;
         @include flexCenter(space-evenly);
 
-        @include mobs {
+        @include tablet-sm {
             flex-direction: column;
             gap: 30px;
         }
@@ -557,7 +575,7 @@ $sectionSpaceMobile : 60px;
 
         // [view more]버튼 닫혀있을 때 호버
         &:hover,
-        &:focus {
+        &:focus-visible {
             @include get-color(background-color, color-mint);
             transform: scale(1.1);
 
@@ -571,7 +589,7 @@ $sectionSpaceMobile : 60px;
         &.opened {
 
             &:hover,
-            &:focus {
+            &:focus-visible {
                 .line:first-child {
                     transform: translate(-50%, -50%) rotate(180deg);
                 }
@@ -680,12 +698,12 @@ $sectionSpaceMobile : 60px;
             letter-spacing: 2.5px;
             transition: 0.3s;
 
-            @include mobs {
+            @include tablet-sm {
                 font-size: 30px;
             }
 
             &:hover,
-            &:focus,
+            &:focus-visible,
             &:active {
                 transform: scale(1.1);
                 @include get-color(color, color-mint);

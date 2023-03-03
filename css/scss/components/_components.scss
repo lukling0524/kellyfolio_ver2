@@ -26,7 +26,7 @@
     }
 
     &:hover,
-    &:focus,
+    &:focus-visible,
     &:active {
         &::before {
             width: 100%;
@@ -79,7 +79,7 @@
     }
 
     &:hover,
-    &:focus,
+    &:focus-visible,
     &:active {
         .ico-link__arrow {
             animation: arrow 1s infinite both;
