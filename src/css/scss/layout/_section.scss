@@ -147,6 +147,8 @@ $sectionSpaceMobile : 60px;
 
 
 .howtowork {
+    $howtowork: &;
+
     .section {
         &__container {
             position: relative;
@@ -299,14 +301,28 @@ $sectionSpaceMobile : 60px;
         display: block;
         width: $size;
         height: $size;
-        background-repeat: no-repeat;
-        background-size: cover;
+        background: url('#{$path-image}/ico-howtowork.png') no-repeat top / cover;
+
+        // how to work 섹션의 리스트 타이틀 불렛 아이콘
+        @for $i from 1 through 4 {
+
+            // result : .howtowork__item:nth-child(1) .howtowork__icon...
+            @at-root #{$howtowork}__item:nth-child(#{$i}) #{$howtowork}__icon {
+                background-position-y: -$size*($i - 1);
+            }
+        }
 
         @include mobs {
             $size: 24px;
 
             width: $size;
             height: $size;
+
+            @for $i from 1 through 4 {
+                @at-root #{$howtowork}__item:nth-child(#{$i}) #{$howtowork}__icon {
+                    background-position-y: -$size*($i - 1);
+                }
+            }
         }
 
         @include safariOnly {
@@ -315,22 +331,6 @@ $sectionSpaceMobile : 60px;
             @include mobs {
                 margin-right: 8px;
             }
-        }
-
-        &--pencil {
-            background-image: url('#{$path-image}/ico-pencil.png')
-        }
-
-        &--keyboard {
-            background-image: url('#{$path-image}/ico-keyboard.png')
-        }
-
-        &--user {
-            background-image: url('#{$path-image}/ico-user.png')
-        }
-
-        &--chat {
-            background-image: url('#{$path-image}/ico-chat.png')
         }
     }
 
@@ -532,20 +532,16 @@ $sectionSpaceMobile : 60px;
             height: $size;
             position: absolute;
             right: $size;
-            background-repeat: no-repeat;
-            background-size: cover;
+
+            background: url('#{$path-image}/ico-project.png') no-repeat top / cover;
+
 
             @include mobs {
                 right: 15px;
             }
 
-
-            &--more {
-                background-image: url('#{$path-image}/ico-magnifying_glass.png');
-            }
-
             &--link {
-                background-image: url('#{$path-image}/ico-link.png');
+                background-position-y: bottom;
             }
         }
 

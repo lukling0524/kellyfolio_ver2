@@ -723,19 +723,14 @@ a:focus {
 .toggle__icon .item {
 	width: 18px;
 	height: 18px;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: contain;
+	background: url("../images/ico-toggle.png") no-repeat top/cover;
 	opacity: 0;
+}
+.toggle__icon .item.dark {
+	background-position-y: bottom;
 }
 .toggle__icon .item.on {
 	opacity: 1;
-}
-.toggle__icon--dark {
-	background-image: url("../images/toggle-icon_light.png");
-}
-.toggle__icon--light {
-	background-image: url("../images/toggle-icon_dark.png");
 }
 
 .contents {
@@ -1030,13 +1025,40 @@ a:focus {
 	display: block;
 	width: 32px;
 	height: 32px;
-	background-repeat: no-repeat;
-	background-size: cover;
+	background: url("../images/ico-howtowork.png") no-repeat top/cover;
 }
+.howtowork__item:nth-child(1) .howtowork__icon {
+	background-position-y: 0px;
+}
+
+.howtowork__item:nth-child(2) .howtowork__icon {
+	background-position-y: -32px;
+}
+
+.howtowork__item:nth-child(3) .howtowork__icon {
+	background-position-y: -64px;
+}
+
+.howtowork__item:nth-child(4) .howtowork__icon {
+	background-position-y: -96px;
+}
+
 @media (max-width: 500px) {
 	.howtowork__icon {
 		width: 24px;
 		height: 24px;
+	}
+	.howtowork__item:nth-child(1) .howtowork__icon {
+		background-position-y: 0px;
+	}
+	.howtowork__item:nth-child(2) .howtowork__icon {
+		background-position-y: -24px;
+	}
+	.howtowork__item:nth-child(3) .howtowork__icon {
+		background-position-y: -48px;
+	}
+	.howtowork__item:nth-child(4) .howtowork__icon {
+		background-position-y: -72px;
 	}
 }
 @media not all and (-webkit-min-device-pixel-ratio: 0), not all and (min-resolution: 0.001dpcm) {
@@ -1050,18 +1072,6 @@ a:focus {
 			}
 		}
 	}
-}
-.howtowork__icon--pencil {
-	background-image: url("../images/ico-pencil.png");
-}
-.howtowork__icon--keyboard {
-	background-image: url("../images/ico-keyboard.png");
-}
-.howtowork__icon--user {
-	background-image: url("../images/ico-user.png");
-}
-.howtowork__icon--chat {
-	background-image: url("../images/ico-chat.png");
 }
 .howtowork__sub {
 	margin-top: 14px;
@@ -1265,19 +1275,15 @@ a:focus {
 	height: 20px;
 	position: absolute;
 	right: 20px;
-	background-repeat: no-repeat;
-	background-size: cover;
+	background: url("../images/ico-project.png") no-repeat top/cover;
 }
 @media (max-width: 500px) {
 	.project__link .link__icon {
 		right: 15px;
 	}
 }
-.project__link .link__icon--more {
-	background-image: url("../images/ico-magnifying_glass.png");
-}
 .project__link .link__icon--link {
-	background-image: url("../images/ico-link.png");
+	background-position-y: bottom;
 }
 .project__link .btn__sm {
 	display: flex;

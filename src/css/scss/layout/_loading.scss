@@ -354,22 +354,17 @@
             $size: 18px;
             width: $size;
             height: $size;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
+            background: url('#{$path-image}/ico-toggle.png') no-repeat top / cover;
             opacity: 0;
+
+            &.dark {
+                // background-image: url('#{$path-image}/toggle-icon_light.png');
+                background-position-y: bottom;
+            }
 
             &.on {
                 opacity: 1;
             }
-        }
-
-        &--dark {
-            background-image: url('#{$path-image}/toggle-icon_light.png');
-        }
-
-        &--light {
-            background-image: url('#{$path-image}/toggle-icon_dark.png');
         }
     }
 }
