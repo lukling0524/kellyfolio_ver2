@@ -9,7 +9,6 @@ if ('ontouchstart' in document.documentElement) {
 }
 
 
-
 // ios 대응 vh css 변수 설정
 const $vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${$vh}px`);
@@ -241,17 +240,30 @@ $themelabel.addEventListener('keydown', (e) => {
  * 스크롤 애니메이션
  */
 
-// About section 아바타 이미지 시퀀스
+// 이미지 시퀀스 배열 생성
 const $avataImgSqc = new Array();
 const $imgTag = document.querySelector('.avata__sequence');
 
 for (let i = 1; i < 48; i++) {
-    $avataImgSqc.push(`./images/imagesequence/avata-${i}.png`);
+    $avataImgSqc.push(`https://storage.googleapis.com/kellyfolio0524.appspot.com/avata-${i}.png`);
 }
 
+// 시퀀스 이미지 프리로드
+function preloading(preImgs) {
+    let imgTotal = preImgs.length;
+    for (let i = 0; i < imgTotal; i++) {
+        let img = new Image();
+        img.src = preImgs[i];
+    }
+}
+
+preloading($avataImgSqc)
+
+
+// About section 아바타 이미지 시퀀스
 const $img = { crntImg: 0 };
 
-let $tween_avata = TweenMax.to($img, 0.5, {
+let $tween_avata = TweenMax.to($img, 1, {
     crntImg: $avataImgSqc.length - 1,
     roundProps: 'crntImg',
     immediateRender: true,
@@ -261,7 +273,7 @@ let $tween_avata = TweenMax.to($img, 0.5, {
 });
 
 new ScrollMagic.Scene({
-    duration: 3000,
+    duration: 4700,
     triggerElement: '.about',
     triggerHook: 0,
     offset: -60,
@@ -405,6 +417,8 @@ new ScrollMagic.Scene({
     triggerElement: $howtowork,
     duration: $howtoworkHeight
 })
+    .on('enter', () => { console.log('enter') })
+    .on('leave', () => { console.log('leave') })
     .setClassToggle('#howtowork', 'is-active')
     .addTo($menuController);
 
