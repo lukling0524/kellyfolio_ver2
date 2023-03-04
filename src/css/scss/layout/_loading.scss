@@ -1,6 +1,5 @@
 .wrap {
     position: relative;
-    // background: url(#{$path-image}/bg-intro_obj.png) no-repeat top -12% center;
 
     &.loading {
         height: calc(var(--vh, 1vh) * 100);
@@ -229,6 +228,10 @@
             transition: $transition;
         }
 
+        &.is-active {
+            @include get-color(color, color-bg);
+        }
+
         #{$gnb}__list.is-active & {
             @include get-color(color, color-bg);
             opacity: 1;
@@ -358,7 +361,6 @@
             opacity: 0;
 
             &.dark {
-                // background-image: url('#{$path-image}/toggle-icon_light.png');
                 background-position-y: bottom;
             }
 
