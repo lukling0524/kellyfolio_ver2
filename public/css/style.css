@@ -591,6 +591,13 @@ a:focus {
 	opacity: 0.5;
 	transition: 0.4s;
 }
+.gnb__item.is-active {
+	color: #1A2744;
+}
+.light-theme .gnb__item.is-active {
+	color: #FAFAFA;
+}
+
 .gnb__list.is-active .gnb__item {
 	color: #1A2744;
 	opacity: 1;

@@ -80,9 +80,9 @@ $tween_logoDraw = new TimelineMax()
         $wrap.classList.remove('loading');
         $header.classList.add('end');
     });
-// 
-// 
-// 
+
+
+
 // $tween_logoDraw = new TimelineMax()
 //     .add(TweenMax.to($path_k, { strokeDashoffset: 0, ease: 'sine.in' }))
 //     .add(TweenMax.to($path_elly, { strokeDashoffset: 0, ease: 'sine.in' }))
@@ -122,7 +122,6 @@ $logo.addEventListener('keydown', (e) => {
 /*
     Navigation  
 */
-
 const $gnb = document.querySelector('.gnb'),
     $gnbItem = document.querySelectorAll('.gnb__item'),
     $activeBg = document.querySelector('.active-bar'),
@@ -406,6 +405,7 @@ new ScrollMagic.Scene({
     duration: $homeHeight,
 })
     .setClassToggle('#home', 'is-active')
+    .on('enter', () => document.querySelector('#home .gnb__item').classList.add('is-active'))
     .addTo($menuController);
 
 
@@ -417,8 +417,7 @@ new ScrollMagic.Scene({
     triggerElement: $howtowork,
     duration: $howtoworkHeight
 })
-    .on('enter', () => { console.log('enter') })
-    .on('leave', () => { console.log('leave') })
+    .on('enter', () => document.querySelector('#home .gnb__item').classList.remove('is-active'))
     .setClassToggle('#howtowork', 'is-active')
     .addTo($menuController);
 
@@ -442,7 +441,14 @@ new ScrollMagic.Scene({
     .on('enter', () => { document.querySelector('#project').classList.remove('is-active') })
     .on('leave', () => { document.querySelector('#project').classList.add('is-active') })
     .setClassToggle('#contact', 'is-active')
-    .addTo($menuController);
+    .addTo($menuController)
+// .addIndicators({
+//     indent: 100,
+//     name: "connnnnnnntact 섹션",
+//     colorStart: 'yellow',
+//     colorEnd: 'yellow',
+//     colorTrigger: 'yellow',
+// });
 
 
 // contact 이모티콘 move
