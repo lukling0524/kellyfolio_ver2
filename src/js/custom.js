@@ -67,34 +67,34 @@ let $controller = new ScrollMagic.Controller();
 
 // 인트로 (SVG drawing + header size 모션)
 
-$tween_logoDraw = new TimelineMax()
-    .delay(1)
-    .add(TweenMax.to($path_k, 0.65, { strokeDashoffset: 0, ease: 'sine.in' }))
-    .add(TweenMax.to($path_elly, 2.2, { strokeDashoffset: 0, ease: 'sine.in' }))
-    .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }))
-    .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }), 'queue')
-    .add(TweenMax.to('.intro-box', 2, { height: 60, ease: 'power1.in' }), 'queue+=0.5')
-    .add(TweenMax.to('#logo', 1.2, { width: 52, height: 'auto', left: window.innerWidth < $mq_tablet_sm ? 20 : 40, marginLeft: 26, ease: 'power1.in' }), 'queue+=1.3')
-    .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=2')
-    .call(() => {
-        $wrap.classList.remove('loading');
-        $header.classList.add('end');
-    });
-// 
-// 
-// 
 // $tween_logoDraw = new TimelineMax()
-//     .add(TweenMax.to($path_k, { strokeDashoffset: 0, ease: 'sine.in' }))
-//     .add(TweenMax.to($path_elly, { strokeDashoffset: 0, ease: 'sine.in' }))
-//     .add(TweenMax.to($path_eye_l, { strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }))
-//     .add(TweenMax.to($path_eye_r, { strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }))
-//     .add(TweenMax.to('.intro-box', { height: 60, ease: 'power1.in' }))
-//     .add(TweenMax.to('#logo', { width: 52, height: 'auto', left: window.innerWidth < $mq_tablet_sm ? 20 : 40, marginLeft: 26, ease: 'power1.in' }))
-//     .add(TweenMax.fromTo('#toggle_btn', { opacity: 0, x: 100 }, { opacity: 1, x: 0 }))
+//     .delay(1)
+//     .add(TweenMax.to($path_k, 0.65, { strokeDashoffset: 0, ease: 'sine.in' }))
+//     .add(TweenMax.to($path_elly, 2.2, { strokeDashoffset: 0, ease: 'sine.in' }))
+//     .add(TweenMax.to($path_eye_l, 0.6, { delay: 0.4, strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }))
+//     .add(TweenMax.to($path_eye_r, 0.7, { delay: 0.1, strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }), 'queue')
+//     .add(TweenMax.to('.intro-box', 2, { height: 60, ease: 'power1.in' }), 'queue+=0.5')
+//     .add(TweenMax.to('#logo', 1.2, { width: 52, height: 'auto', left: window.innerWidth < $mq_tablet_sm ? 20 : 40, marginLeft: 26, ease: 'power1.in' }), 'queue+=1.3')
+//     .add(TweenMax.fromTo('#toggle_btn', 0.5, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }), 'queue+=2')
 //     .call(() => {
 //         $wrap.classList.remove('loading');
 //         $header.classList.add('end');
 //     });
+
+
+
+$tween_logoDraw = new TimelineMax()
+    .add(TweenMax.to($path_k, { strokeDashoffset: 0, ease: 'sine.in' }))
+    .add(TweenMax.to($path_elly, { strokeDashoffset: 0, ease: 'sine.in' }))
+    .add(TweenMax.to($path_eye_l, { strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }))
+    .add(TweenMax.to($path_eye_r, { strokeDashoffset: 0, ease: window.innerWidth < $mq_tablet_sm ? 'sine.in' : 'elastic.out(1, 0.3)' }))
+    .add(TweenMax.to('.intro-box', { height: 60, ease: 'power1.in' }))
+    .add(TweenMax.to('#logo', { width: 52, height: 'auto', left: window.innerWidth < $mq_tablet_sm ? 20 : 40, marginLeft: 26, ease: 'power1.in' }))
+    .add(TweenMax.fromTo('#toggle_btn', { opacity: 0, x: 100 }, { opacity: 1, x: 0 }))
+    .call(() => {
+        $wrap.classList.remove('loading');
+        $header.classList.add('end');
+    });
 
 
 
@@ -122,7 +122,6 @@ $logo.addEventListener('keydown', (e) => {
 /*
     Navigation  
 */
-
 const $gnb = document.querySelector('.gnb'),
     $gnbItem = document.querySelectorAll('.gnb__item'),
     $activeBg = document.querySelector('.active-bar'),
@@ -406,6 +405,7 @@ new ScrollMagic.Scene({
     duration: $homeHeight,
 })
     .setClassToggle('#home', 'is-active')
+    .on('enter', () => document.querySelector('#home .gnb__item').classList.add('is-active'))
     .addTo($menuController);
 
 
@@ -417,8 +417,7 @@ new ScrollMagic.Scene({
     triggerElement: $howtowork,
     duration: $howtoworkHeight
 })
-    .on('enter', () => { console.log('enter') })
-    .on('leave', () => { console.log('leave') })
+    .on('enter', () => document.querySelector('#home .gnb__item').classList.remove('is-active'))
     .setClassToggle('#howtowork', 'is-active')
     .addTo($menuController);
 
@@ -442,7 +441,14 @@ new ScrollMagic.Scene({
     .on('enter', () => { document.querySelector('#project').classList.remove('is-active') })
     .on('leave', () => { document.querySelector('#project').classList.add('is-active') })
     .setClassToggle('#contact', 'is-active')
-    .addTo($menuController);
+    .addTo($menuController)
+// .addIndicators({
+//     indent: 100,
+//     name: "connnnnnnntact 섹션",
+//     colorStart: 'yellow',
+//     colorEnd: 'yellow',
+//     colorTrigger: 'yellow',
+// });
 
 
 // contact 이모티콘 move
