@@ -1433,7 +1433,7 @@ body::-webkit-scrollbar-button:start:decrement, body::-webkit-scrollbar-button:e
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xml:space='preserve' width='24' height='24' baseProfile='tiny' version='1.2'%3E%3Cpath fill='%231A2744' d='M13.293 7.293a.999.999 0 0 0 0 1.414L15.586 11H8a1 1 0 0 0 0 2h7.586l-2.293 2.293a.999.999 0 1 0 1.414 1.414L19.414 12l-4.707-4.707a.999.999 0 0 0-1.414 0z'/%3E%3C/svg%3E");
 }
 
-.codepen .carousel__arrow:hover {
+.codepen .carousel__arrow:hover, .codepen .carousel__arrow:focus-visible, .codepen .carousel__arrow:active {
 	opacity: 1;
 }
 .codepen .carousel__arrow.prev {
@@ -1454,12 +1454,16 @@ body::-webkit-scrollbar-button:start:decrement, body::-webkit-scrollbar-button:e
 	border-radius: 15px;
 	opacity: 0.7;
 	overflow: hidden;
+	cursor: pointer;
 }
-.codepen .slide:hover {
+.codepen .slide:hover, .codepen .slide:focus-visible, .codepen .slide:active {
 	opacity: 0.8;
 }
-.codepen .slide:hover .slide__detail {
+.codepen .slide:hover .slide__detail, .codepen .slide:focus-visible .slide__detail, .codepen .slide:active .slide__detail {
 	opacity: 1;
+}
+.codepen .slide:hover .btn::before, .codepen .slide:focus-visible .btn::before, .codepen .slide:active .btn::before {
+	width: 100%;
 }
 .codepen .slide.is-active {
 	position: relative;
