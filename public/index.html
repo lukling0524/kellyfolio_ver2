@@ -25,7 +25,7 @@
         <header class="header intro-box">
             <div class="header__wrap intro-box">
                 <h1 aria-label="로고">
-                    <svg id="logo" class="logo " width="312.38" height="244.039" viewBox="0 0 312.38 244.039">
+                    <svg id="logo" class="logo " width="312.38" height="244.039" viewBox="0 0 312.38 244.039" tabindex="0">
                         <g transform="translate(940.297 -1371.172)">
                             <path class="logo__k svg-color" d="M-920.1,1376.4c2,42.7-2,82-14,123.3" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="8" />
                             <path class="logo__elly svg-color" d="M-870.1,1391c-4.7,17.3-28,49.3-47.3,53.3,5.3,7.3,30,36,36.7,42,16.7,14.7,35.3-3.3,45.3-18,6.7-9.3,14.7-30-2-32.7-10-1.3-17.3,7.3-20.7,16-8.7,24,.7,58.7,31.3,54,28.7-4,48-32,57.3-57.3,5.3-12.7,12.7-41.3,6-54.7-7.3-14.7-14,.7-16,10-4.7,16-2.7,34-2.7,50.7,0,15.3-2,37.3,9.3,49.3,18.7,22,44-40.7,47.3-54,3.2-12.5,11.3-54.7,8.7-58.7-6.7-10-18,8-20,14.7-6.7,22-2,54.7,4.7,76,11.3,36.7,38-32.7,40.7-45.3a69.91,69.91,0,0,0,1.3-12c-8,16-12,33.3-8,52,7.2,18.8,15.2,16.8,28.7,17.3,21.4-.5,28-32,33.3-53.3,6,32.7,3.6,71.3-6,104-9.3,26-18.7,60.7-50,64.7-22,2.7-46.7,2.7-61.3-17.3-7.3-10-11.3-33.3,0-42" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="8" />
@@ -53,7 +53,6 @@
                 <ul class="gnb">
                     <li id="home" class="gnb__list is-active"><a href="javascript:void(0)" class="gnb__item" data-name="home">Home</a></li>
                     <li id="howtowork" class="gnb__list"><a href="javascript:void(0)" class="gnb__item" data-name="howtowork">How to work</a></li>
-                    <!-- <li id="process" class="gnb__list"><a href="javascript:void(0)" class="gnb__item" data-name="process">Process</a></li> -->
                     <li id="project" class="gnb__list"><a href="javascript:void(0)" class="gnb__item" data-name="project">Project</a></li>
                     <li id="contact" class="gnb__list"><a href="javascript:void(0)" class="gnb__item" data-name="contact">Contact</a></li>
                     <li class="gnb__list active-bar"></li>
@@ -113,7 +112,6 @@
                                 꾸준히 성장하고 발전하며 함께 일하고 싶은 동료가 되기를 바랍니다.
                             </p>
                         </div>
-
                     </article>
                 </div>
             </section>
@@ -167,12 +165,6 @@
                     </ul>
                 </div>
             </section>
-
-            <!-- <section data-name="process" class="process section">
-                <div class="section__container">
-                    <h2 class="section__title">이렇게 <span class="font-accent">만들었어요</span></h2>
-                </div>
-            </section> -->
 
             <section data-name="project" class="project section">
                 <div class="section__container">
@@ -487,6 +479,106 @@
                     </div>
                 </div>
             </section>
+
+            <section data-name="codepen" class="codepen">
+                <div class="section__container">
+                    <h2 class="section__title">뚝딱뚝딱 <span class="font-accent">만들어보기</span></h2>
+                    <div class="codepen__wrap">
+                        <div class="codepen__inner">
+                            <div class="carousel">
+                                <div class="carousel__wrap">
+                                    <div class="slide" data-name="infinityCarousel" tabindex="0">
+                                        <img class="slide__img" src="./images/codepen-01.png" alt="무한 carousel 썸네일">
+                                        <div class="slide__detail">
+                                            <p class="slide__detail--text">무한 carousel<br>Center mode</p>
+                                            <button class="btn no-icon"><span>View code</span></button>
+                                        </div>
+                                    </div>
+                                    <div class="slide" data-name="signup" tabindex="0">
+                                        <img class="slide__img" src="./images/codepen-02.png" alt="회원가입 UI 썸네일">
+                                        <div class="slide__detail">
+                                            <p class="slide__detail--text">회원가입 form<br>유효성 검사 UI</p>
+                                            <button class="btn no-icon"><span>View code</span></button>
+                                        </div>
+                                    </div>
+                                    <div class="slide" data-name="tab" tabindex="0">
+                                        <img class="slide__img" src="./images/codepen-03.png" alt="탭 메뉴 썸네일">
+                                        <div class="slide__detail">
+                                            <p class="slide__detail--text">Animated Tab menu</p>
+                                            <button class="btn no-icon"><span>View code</span></button>
+                                        </div>
+                                    </div>
+                                    <div class="slide" data-name="slide" tabindex="0">
+                                        <img class="slide__img" src="./images/codepen-04.png" alt="슬라이드 썸네일">
+                                        <div class="slide__detail">
+                                            <p class="slide__detail--text">Animated slide</p>
+                                            <button class="btn no-icon"><span>View code</span></button>
+                                        </div>
+                                    </div>
+                                    <div class="slide" data-name="footer" tabindex="0">
+                                        <img class="slide__img" src="./images/codepen-05.png" alt="반응형 footer 썸네일">
+                                        <div class="slide__detail">
+                                            <p class="slide__detail--text">반응형 footer</p>
+                                            <button class="btn no-icon"><span>View code</span></button>
+                                        </div>
+                                    </div>
+                                    <div class="slide" data-name="carousel" tabindex="0">
+                                        <img class="slide__img" src="./images/codepen-06.png" alt="carousel 썸네일">
+                                        <div class="slide__detail">
+                                            <p class="slide__detail--text">carousel</p>
+                                            <button class="btn no-icon"><span>View code</span></button>
+                                        </div>
+                                    </div>
+                                    <div class="slide" data-name="datepicker" tabindex="0">
+                                        <img class="slide__img" src="./images/codepen-07.png" alt="datepicker 썸네일">
+                                        <div class="slide__detail">
+                                            <p class="slide__detail--text">modal style datepicker<br>(jQuery UI custom)</p>
+                                            <button class="btn no-icon"><span>View code</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel__arrow prev text-hide">이전</button>
+                        <button class="carousel__arrow next text-hide">다음</button>
+                    </div>
+
+                    <div class="modal" tabindex="0">
+                        <div class="modal__layer"></div>
+                        <div class="modal__wrap">
+                            <div class="modal__item" data-name="infinityCarousel">
+                                <p class="codepen" date-height="100%" data-default-tab="js,result" data-slug-hash="OJwxyae" data-user="kelly0524"></p>
+                                <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+                            </div>
+                            <div class="modal__item" data-name="signup">
+                                <p class="codepen" data-height="100%" data-default-tab="js,result" data-slug-hash="XWmGeNy" data-user="kelly0524"></p>
+                                <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+                            </div>
+                            <div class="modal__item" data-name="datepicker">
+                                <p class="codepen" data-height="100%" data-default-tab="js,result" data-slug-hash="WNMMPRg" data-user="kelly0524"></p>
+                                <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+                            </div>
+                            <div class="modal__item" data-name="footer">
+                                <p class="codepen" data-height="100%" data-default-tab="js,result" data-slug-hash="xxweoBE" data-user="kelly0524"></p>
+                                <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+                            </div>
+                            <div class="modal__item" data-name="carousel">
+                                <p class="codepen" data-height="100%" data-default-tab="js,result" data-slug-hash="qBOgyMp" data-user="kelly0524"></p>
+                                <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+                            </div>
+                            <div class="modal__item" data-name="tab">
+                                <p class="codepen" data-height="100%" data-default-tab="js,result" data-slug-hash="GRZrrdE" data-user="kelly0524"></p>
+                                <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+                            </div>
+                            <div class="modal__item" data-name="slide">
+                                <p class="codepen" data-height="100%" data-default-tab="js,result" data-slug-hash="vYNpzwG" data-user="kelly0524"></p>
+                                <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
 
             <section data-name="contact" class="contact section">
                 <div class="contact__wrap">

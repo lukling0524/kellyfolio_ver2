@@ -854,12 +854,14 @@ $slide.forEach((slide) => {
         $modal.style.display = 'block';
         $modal.focus();
         $modalItem.style.display = 'block';
+        document.querySelector('body').classList.add('overflow');
     }
 
     function modalClose() {
         $modal.classList.remove('is-open');
         $modal.style.display = 'none'
         $modalItem.style.display = 'none'
+        document.querySelector('body').classList.remove('overflow');
 
         autoCarousel();
     }

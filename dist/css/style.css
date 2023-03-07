@@ -274,6 +274,10 @@ body::-webkit-scrollbar-button:start:decrement, body::-webkit-scrollbar-button:e
 		line-height: 1.6;
 	}
 }
+body.overflow {
+	overflow-y: hidden;
+	padding-right: 8px;
+}
 
 .svg-color {
 	stroke: #FFFFFF;
@@ -390,6 +394,7 @@ body::-webkit-scrollbar-button:start:decrement, body::-webkit-scrollbar-button:e
 
 .wrap {
 	position: relative;
+	overflow-x: hidden;
 }
 .wrap.loading {
 	height: calc(var(--vh, 1vh) * 100);
