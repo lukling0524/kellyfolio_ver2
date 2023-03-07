@@ -618,43 +618,226 @@ $sectionSpaceMobile : 60px;
 
 // 코드펜 작업울 섹션
 .codepen {
+
+    .section__title {
+        padding-top: $sectionSpace;
+        padding-bottom: $sectionSpace;
+
+
+        @include laptop {
+            padding-top: $sectionLaptop;
+            padding-bottom: $sectionLaptop;
+        }
+
+        @include mobs {
+            padding-top: $sectionSpaceMobile;
+            padding-bottom: $sectionSpaceMobile;
+        }
+    }
+
+
+
+
+    &__wrap {
+        position: relative;
+    }
+
+    &__inner {
+        position: relative;
+        width: calc(100% - 100px);
+        margin: 0 auto;
+        padding: 50px 0;
+        overflow: hidden;
+    }
+
     .carousel {
+        position: relative;
         width: 100%;
         height: 100%;
-        overflow: hidden;
+
+        &.is-mobile {
+            .slide {
+                border-radius: 0;
+                opacity: 1;
+                animation: none;
+
+                &.is-active {
+                    box-shadow: none;
+                }
+
+                &__img {
+                    border-radius: 15px;
+                }
+
+                &__detail {
+                    position: relative;
+                    padding: 20px;
+                    border-radius: 15px;
+                    background-color: transparent;
+                    opacity: 1;
+                }
+            }
+        }
 
         &__wrap {
             position: relative;
             left: 0;
             height: 100%;
             display: flex;
+
+            &.moving {
+                transition: 0.5s;
+            }
+        }
+
+        &__arrow {
+            $size: 40px;
+            $svgColor: 'FFFFFF';
+
+            width: $size;
+            height: $size;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.5;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xml:space='preserve' width='24' height='24' baseProfile='tiny' version='1.2'%3E%3Cpath fill='%23#{$svgColor}' d='M13.293 7.293a.999.999 0 0 0 0 1.414L15.586 11H8a1 1 0 0 0 0 2h7.586l-2.293 2.293a.999.999 0 1 0 1.414 1.414L19.414 12l-4.707-4.707a.999.999 0 0 0-1.414 0z'/%3E%3C/svg%3E") no-repeat center / cover;
+            transition: opacity 0.3s;
+
+            @at-root .light-theme & {
+                $svgColor: '1A2744';
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xml:space='preserve' width='24' height='24' baseProfile='tiny' version='1.2'%3E%3Cpath fill='%23#{$svgColor}' d='M13.293 7.293a.999.999 0 0 0 0 1.414L15.586 11H8a1 1 0 0 0 0 2h7.586l-2.293 2.293a.999.999 0 1 0 1.414 1.414L19.414 12l-4.707-4.707a.999.999 0 0 0-1.414 0z'/%3E%3C/svg%3E");
+            }
+
+            &:hover {
+                opacity: 1;
+            }
+
+            &.prev {
+                left: 0px;
+                transform: translateY(-50%) rotate(180deg);
+            }
+
+            &.next {
+                right: 0px;
+            }
         }
     }
 
     .slide {
+        $slide: &;
+
+        position: relative;
         width: 100%;
         height: 100%;
         @include flexCenter(center);
         flex-direction: column;
-        padding: 20px;
+        border-radius: 15px;
+        opacity: 0.7;
+        overflow: hidden;
+
+        &:hover {
+            opacity: 0.8;
+
+            .slide__detail {
+                opacity: 1;
+            }
+        }
 
         &.is-active {
-            .slide__img {
-                opacity: 1;
+            position: relative;
+            box-shadow: 4px 4px 14px 4px rgba(20, 20, 20, 0.4);
+            z-index: 10;
+            animation: activeSlide 0.3s 0.3s both;
+        }
+
+        @keyframes activeSlide {
+            from {
+                opacity: 0.7;
                 transform: scale(1);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1.15);
             }
         }
 
         &__img {
             width: 100%;
-            // max-width: 300px;
-            transform: scale(0.5);
-            opacity: 0.6;
-            transition: 0.5s;
+        }
+
+        &__detail {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            @include flexCenter(center);
+            flex-direction: column;
+            background-color: rgba($color: #000000, $alpha: 0.7);
+            opacity: 0;
+            transition: 0.3s;
+            color: #fff;
+
+
+            &--text {
+                font-weight: 600;
+                line-height: 1.5;
+                text-align: center;
+            }
+
+            .btn {
+                margin-top: 30px;
+                font-size: 14px;
+                padding: 10px 24px;
+                border-radius: 6px;
+                color: #1A2744;
+                border-radius: 10px;
+                background-color: #fff;
+            }
+        }
+    }
+
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba($color: #000000, $alpha: 0.7);
+        z-index: 1000;
+
+        display: none;
+
+        &__layer {
+            height: 100%;
+        }
+
+        &__wrap {
+            width: 100%;
+            max-width: 800px;
+            height: 70%;
+            max-height: 600px;
+            padding: 20px;
+            @include positionCenter;
+        }
+
+        &__item {
+            height: 100%;
+
+            display: none;
+        }
+    }
+
+    .cp_embed_wrapper {
+        width: 100%;
+        max-width: 800px;
+        height: 100%;
+        max-height: 600px;
+
+        iframe {
+            height: 100% !important;
         }
     }
 }
-
 
 // 연락처 섹션
 .contact {

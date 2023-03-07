@@ -1361,10 +1361,54 @@ body::-webkit-scrollbar-button:start:decrement, body::-webkit-scrollbar-button:e
 	transform: translate(-50%, -50%) rotate(90deg);
 }
 
+.codepen .section__title {
+	padding-top: 160px;
+	padding-bottom: 160px;
+}
+@media (max-width: 1400px) {
+	.codepen .section__title {
+		padding-top: 100px;
+		padding-bottom: 100px;
+	}
+}
+@media (max-width: 500px) {
+	.codepen .section__title {
+		padding-top: 60px;
+		padding-bottom: 60px;
+	}
+}
+.codepen__wrap {
+	position: relative;
+}
+.codepen__inner {
+	position: relative;
+	width: calc(100% - 100px);
+	margin: 0 auto;
+	padding: 50px 0;
+	overflow: hidden;
+}
 .codepen .carousel {
+	position: relative;
 	width: 100%;
 	height: 100%;
-	overflow: hidden;
+}
+.codepen .carousel.is-mobile .slide {
+	border-radius: 0;
+	opacity: 1;
+	animation: none;
+}
+.codepen .carousel.is-mobile .slide.is-active {
+	box-shadow: none;
+}
+.codepen .carousel.is-mobile .slide__img {
+	border-radius: 15px;
+}
+.codepen .carousel.is-mobile .slide__detail {
+	position: relative;
+	padding: 20px;
+	border-radius: 15px;
+	background-color: transparent;
+	opacity: 1;
 }
 .codepen .carousel__wrap {
 	position: relative;
@@ -1372,24 +1416,133 @@ body::-webkit-scrollbar-button:start:decrement, body::-webkit-scrollbar-button:e
 	height: 100%;
 	display: flex;
 }
+.codepen .carousel__wrap.moving {
+	transition: 0.5s;
+}
+.codepen .carousel__arrow {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	opacity: 0.5;
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xml:space='preserve' width='24' height='24' baseProfile='tiny' version='1.2'%3E%3Cpath fill='%23FFFFFF' d='M13.293 7.293a.999.999 0 0 0 0 1.414L15.586 11H8a1 1 0 0 0 0 2h7.586l-2.293 2.293a.999.999 0 1 0 1.414 1.414L19.414 12l-4.707-4.707a.999.999 0 0 0-1.414 0z'/%3E%3C/svg%3E") no-repeat center/cover;
+	transition: opacity 0.3s;
+}
+.light-theme .codepen .carousel__arrow {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xml:space='preserve' width='24' height='24' baseProfile='tiny' version='1.2'%3E%3Cpath fill='%231A2744' d='M13.293 7.293a.999.999 0 0 0 0 1.414L15.586 11H8a1 1 0 0 0 0 2h7.586l-2.293 2.293a.999.999 0 1 0 1.414 1.414L19.414 12l-4.707-4.707a.999.999 0 0 0-1.414 0z'/%3E%3C/svg%3E");
+}
+
+.codepen .carousel__arrow:hover {
+	opacity: 1;
+}
+.codepen .carousel__arrow.prev {
+	left: 0px;
+	transform: translateY(-50%) rotate(180deg);
+}
+.codepen .carousel__arrow.next {
+	right: 0px;
+}
 .codepen .slide {
+	position: relative;
 	width: 100%;
 	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	padding: 20px;
+	border-radius: 15px;
+	opacity: 0.7;
+	overflow: hidden;
 }
-.codepen .slide.is-active .slide__img {
+.codepen .slide:hover {
+	opacity: 0.8;
+}
+.codepen .slide:hover .slide__detail {
 	opacity: 1;
-	transform: scale(1);
+}
+.codepen .slide.is-active {
+	position: relative;
+	box-shadow: 4px 4px 14px 4px rgba(20, 20, 20, 0.4);
+	z-index: 10;
+	animation: activeSlide 0.3s 0.3s both;
+}
+@keyframes activeSlide {
+	from {
+		opacity: 0.7;
+		transform: scale(1);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1.15);
+	}
 }
 .codepen .slide__img {
 	width: 100%;
-	transform: scale(0.5);
-	opacity: 0.6;
-	transition: 0.5s;
+}
+.codepen .slide__detail {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background-color: rgba(0, 0, 0, 0.7);
+	opacity: 0;
+	transition: 0.3s;
+	color: #fff;
+}
+.codepen .slide__detail--text {
+	font-weight: 600;
+	line-height: 1.5;
+	text-align: center;
+}
+.codepen .slide__detail .btn {
+	margin-top: 30px;
+	font-size: 14px;
+	padding: 10px 24px;
+	border-radius: 6px;
+	color: #1A2744;
+	border-radius: 10px;
+	background-color: #fff;
+}
+.codepen .modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 1000;
+	display: none;
+}
+.codepen .modal__layer {
+	height: 100%;
+}
+.codepen .modal__wrap {
+	width: 100%;
+	max-width: 800px;
+	height: 70%;
+	max-height: 600px;
+	padding: 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.codepen .modal__item {
+	height: 100%;
+	display: none;
+}
+.codepen .cp_embed_wrapper {
+	width: 100%;
+	max-width: 800px;
+	height: 100%;
+	max-height: 600px;
+}
+.codepen .cp_embed_wrapper iframe {
+	height: 100% !important;
 }
 
 .contact {

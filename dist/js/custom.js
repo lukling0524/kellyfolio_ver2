@@ -1,5 +1,8 @@
+/* =================================================================
+초기설정
+================================================================= */
 
-// device sizes
+//device sizes
 $mq_tablet = 1101;
 $mq_tablet_sm = 769;
 
@@ -46,7 +49,15 @@ $path_eye_r.style.cssText = `
 `;
 
 
-//===============================================
+
+
+/* =================================================================
+intro 화면 animtaion
+================================================================= */
+
+// scroll magic controller 선언
+let $controller = new ScrollMagic.Controller();
+
 
 
 const $html = document.querySelector('html'),
@@ -56,15 +67,13 @@ const $html = document.querySelector('html'),
     $toggleBox = document.querySelector('.toggle__box');
 
 
+/**
+ *  TweenMax 정의
+ * 
+ *  TweenMax.to(element, duration, css properties)
+ *  TweenMax.fromTo(element, duration, css properties(from), css properties(to))
+ */
 
-/*
-    TweenMax.to(element, duration, css properties)
-    TweenMax.fromTo(element, duration, css properties(from), css properties(to))
-*/
-
-
-// scroll magin 초기 선언
-let $controller = new ScrollMagic.Controller();
 
 
 // 인트로 (SVG drawing + header size 모션)
@@ -100,30 +109,33 @@ $tween_logoDraw = new TimelineMax()
 
 
 
+/* =================================================================
+로고 새로고침
+================================================================= */
+
 // 로고 클릭 시 새로고침 
-$logo.addEventListener('click', (e) => {
+$logo.addEventListener('click', reload);
+
+// 로고 focus일 때 엔터키로 새로고침
+$logo.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        reload();
+    }
+});
+
+function reload(e) {
     if ($wrap.classList.contains('loading')) {
         e.preventDefault();
     } else {
         window.location.reload();
     }
-});
-
-$logo.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-        if ($wrap.classList.contains('loading')) {
-            e.preventDefault();
-        } else {
-            window.location.reload();
-        }
-    }
-});
+}
 
 
+/* =================================================================
+메뉴 active bar
+================================================================= */
 
-/*
-    Navigation  
-*/
 const $gnb = document.querySelector('.gnb'),
     $gnbItem = document.querySelectorAll('.gnb__item'),
     $activeBg = document.querySelector('.active-bar'),
@@ -169,24 +181,10 @@ $gnbItem.forEach((item, idx) => {
         if ($hamburger.classList.contains('is-open')) {
             $hamburger.classList.remove('is-open')
             $header.classList.remove('menu-open');
-            document.querySelector('body').style.overflow = 'auto';
+            bodyOverflow('auto');
         }
     })
 });
-
-
-// 모바일 메뉴 클릭
-$hamburger.addEventListener('click', () => mobileMenuOpen());
-
-function mobileMenuOpen() {
-    $hamburger.classList.toggle('is-open');
-    $header.classList.toggle('menu-open');
-    $header.classList.contains('menu-open') ? bodyOverflow('hidden') : bodyOverflow('auto');
-}
-
-function bodyOverflow(overflow) {
-    document.querySelector('body').style.overflow = overflow;
-}
 
 
 // 스크롤 시 active-bar 이동
@@ -205,7 +203,25 @@ window.addEventListener('scroll', () => {
 })
 
 
-// 라이트모드-다크모드 테마 토글 버튼
+// 모바일 햄버거 버튼 클릭시 모바일 메뉴 오픈
+$hamburger.addEventListener('click', () => mobileMenuOpen());
+
+function mobileMenuOpen() {
+    $hamburger.classList.toggle('is-open');
+    $header.classList.toggle('menu-open');
+    $header.classList.contains('menu-open') ? bodyOverflow('hidden') : bodyOverflow('auto'); // 모바일 메뉴 열릴 때 스크롤 고정
+}
+
+function bodyOverflow(overflow) {
+    document.querySelector('body').style.overflow = overflow;
+}
+
+
+
+/* =================================================================
+라이트모드-다크모드 테마 토글 버튼
+================================================================= */
+
 const $themeCheckBox = document.querySelector('.toggle__item'),
     $themelabel = document.querySelector('.toggle__btn'),
     $themeIcons = document.querySelectorAll('.toggle__icon .item');
@@ -237,103 +253,104 @@ $themelabel.addEventListener('keydown', (e) => {
 });
 
 
-//project toggle 버튼
+
+
+/* =================================================================
+project 섹션 toggle(더보기) 버튼
+================================================================= */
+
 const $projectGrid = document.querySelector('.project__grid'),
     $projectItem = document.querySelectorAll('.project__item'),
     $displayBtn = document.getElementById('btn-display'),
     $screenTxt = $displayBtn.querySelector('.text-hide'),
-    $toggleLines = $displayBtn.querySelectorAll('.line');
+    $toggleLines = $displayBtn.querySelectorAll('.line'),
+    $showProjectItem = 6; //기본으로 보여질 아이템 개수
 
+// $showProjectItem(6)개 이상 아이템 숨기기
 for (let i = 0; i < $projectItem.length; i++) {
-    if (i >= 6) {
+    if (i >= $showProjectItem) {
         $projectItem[i].style.display = 'none';
     }
 }
 
-$displayBtn.addEventListener('click', function () {
-    if ($projectGrid.classList.contains('default')) {
-        for (let i = 0; i < $projectItem.length; i++) {
-            $projectItem[i].style.display = 'flex';
-        }
-
-        $screenTxt.textContent = '접기';
-        $toggleLines[0].classList.remove('rotate');
-        this.classList.add('opened');
-    } else {
-        for (let i = 0; i < $projectItem.length; i++) {
-            if (i >= 6) {
-                $projectItem[i].style.display = 'none';
-            }
-        }
-        $screenTxt.textContent = '더보기';
-        $toggleLines[0].classList.add('rotate');
-        this.classList.remove('opened');
-
-        // 그리드 접었을 때 project 섹션으로 스크롤 이동
-        $projectTopPos = document.querySelector(`.section[data-name="project"]`).offsetTop;
-        window.scroll(top, $projectTopPos)
-    }
-    $projectGrid.classList.toggle('default');
-})
+$displayBtn.addEventListener('click', toggleProjects);
 
 $displayBtn.addEventListener('keydown', function (e) {
     if (e.key === 'Enter') {
-        if ($projectGrid.classList.contains('default')) {
-            for (let i = 0; i < $projectItem.length; i++) {
-                $projectItem[i].style.display = 'flex';
-            }
-
-            $screenTxt.textContent = '접기';
-            $toggleLines[0].classList.remove('rotate');
-            this.classList.add('opened');
-        } else {
-            for (let i = 0; i < $projectItem.length; i++) {
-                if (i >= 6) {
-                    $projectItem[i].style.display = 'none';
-                }
-            }
-            $screenTxt.textContent = '더보기';
-            $toggleLines[0].classList.add('rotate');
-            this.classList.remove('opened');
-
-            // 그리드 접었을 때 project 섹션으로 스크롤 이동
-            $projectTopPos = document.querySelector(`.section[data-name="project"]`).offsetTop;
-            window.scroll(top, $projectTopPos)
-        }
-        $projectGrid.classList.toggle('default');
+        toggleProjects();
     }
-})
+});
 
 
-// contact 이모티콘 move
+// 프로젝트 영역 토글 - 확장
+function projectOpen() {
+    for (let i = 0; i < $projectItem.length; i++) {
+        $projectItem[i].style.display = 'flex';
+    }
+    $screenTxt.textContent = '접기';
+    $toggleLines[0].classList.remove('rotate');
+    $displayBtn.classList.add('opened');
+}
+
+// 프로젝트 영역 토글 - 축소
+function projectClose() {
+    for (let i = 0; i < $projectItem.length; i++) {
+        if (i >= $showProjectItem) {
+            $projectItem[i].style.display = 'none';
+        }
+    }
+    $screenTxt.textContent = '더보기';
+    $toggleLines[0].classList.add('rotate');
+    $displayBtn.classList.remove('opened');
+
+    // 그리드 접었을 때 project 섹션으로 스크롤 이동
+    $projectTopPos = document.querySelector(`.section[data-name="project"]`).offsetTop;
+    window.scroll(top, $projectTopPos);
+}
+
+function toggleProjects() {
+    if ($projectGrid.classList.contains('default')) {
+        projectOpen();
+    } else {
+        projectClose();
+    }
+    $projectGrid.classList.toggle('default');
+}
+
+
+
+/* =================================================================
+contact 이모티콘 move
+================================================================= */
+
 let $contactWrap = document.querySelector('.contact__wrap'),
     $icons = document.querySelectorAll('.contact__icon'),
     $width = $contactWrap.offsetWidth - $icons[0].offsetWidth,
     $height = $contactWrap.offsetHeight - $icons[0].offsetHeight;
 
 for (let i = 0; i < $icons.length; i++) {
-    let x = Math.random() * $width;
-    let y = Math.random() * $height;
-    let vx = (Math.random() * 2) - (Math.random() * 2);
-    let vy = (Math.random() * 2) - (Math.random() * 2);
+    let posX = Math.random() * $width;
+    let posY = Math.random() * $height;
+    let posVX = (Math.random() * 2) - (Math.random() * 2);
+    let posVY = (Math.random() * 2) - (Math.random() * 2);
     let speed = Math.round(Math.random() * 80);
 
-    $icons[i].style.left = `${x}px`;
-    $icons[i].style.top = `${y}px`;
+    $icons[i].style.left = `${posX}px`;
+    $icons[i].style.top = `${posY}px`;
 
     setInterval(() => {
-        x += vx;
-        y += vy;
+        posX += posVX;
+        posY += posVY;
 
-        if (x <= 0 || x >= $width) {
-            vx = -vx;
+        if (posX <= 0 || posX >= $width) {
+            posVX = -posVX;
         }
-        if (y <= 0 || y >= $height) {
-            vy = -vy;
+        if (posY <= 0 || posY >= $height) {
+            posVY = -posVY;
         }
 
-        $icons[i].style.left = `${x}px`;
-        $icons[i].style.top = `${y}px`;
+        $icons[i].style.left = `${posX}px`;
+        $icons[i].style.top = `${posY}px`;
     }, speed);
 }
 
@@ -349,10 +366,9 @@ window.addEventListener('resize', function () {
 
 
 
-
-/*
- * 스크롤 애니메이션
- */
+/* =================================================================
+스크롤 애니메이션
+================================================================= */
 
 // 이미지 시퀀스 배열 생성
 const $avataImgSqc = new Array();
@@ -570,74 +586,216 @@ new ScrollMagic.Scene({
 
 
 
-
-
-
-
-
-
-const carouselArea = document.querySelector('.carousel__wrap');
-const time = 5000;
-let slide = document.querySelectorAll('.slide');
-const slideLength = slide.length;
-const lastSlideIdx = slideLength - 1;
-const showSlide = 3;
-let left = 100 / showSlide;
-if (showSlide === 1) {
-    left = 200;
-}
-
 /* =================================================================
-initialized
+Carousel
 ================================================================= */
 
-// UI setting
-carouselArea.style.width = `${(100 * slideLength) / showSlide}%`;
 
-if (showSlide === 1) {
-    carouselArea.style.cssText = `
-        width: ${(100 * slideLength) / showSlide}%;
-        left: ${-100}%;
+const $carousel = document.querySelector('.carousel'),
+    $carouselWrap = document.querySelector('.carousel__wrap'),
+    $time = 5000;
+
+let $slide = document.querySelectorAll('.slide');
+
+const $slideLength = $slide.length,
+    $lastSlideIdx = $slideLength - 1;
+
+let $showSlide = 3,
+    $left = 100 / $showSlide;
+
+
+
+// UI setting
+$carouselWrap.style.width = `${(100 * $slideLength) / $showSlide}%`;
+
+let $clonedSlide = $slide[$lastSlideIdx].cloneNode(true);
+
+$slide[$lastSlideIdx].remove();
+$carouselWrap.insertBefore($clonedSlide, $slide[0]);
+$slide[0].classList.add('is-active');
+
+autoCarousel();
+
+
+// 모바일에서 센터모드 해제 (슬라이드 1개씩)
+window.addEventListener('resize', function () {
+    if (window.innerWidth <= 768) {
+        carouselMobile();
+        $carousel.classList.add('is-mobile');
+    } else {
+
+        $showSlide = 3;
+        $left = 100 / $showSlide;
+        $carouselWrap.style.cssText = `
+            width: ${(100 * $slideLength) / $showSlide}%;
+            left: 0%;
+        `;
+        $carousel.classList.remove('is-mobile');
+    }
+});
+
+if (window.innerWidth <= 768) {
+    carouselMobile();
+
+    $carousel.classList.toggle('is-mobile');
+}
+
+// 모바일화면에서 carousel 세팅
+function carouselMobile() {
+    $showSlide = 1;
+    $left = 200;
+    $carouselWrap.style.cssText = `
+        width: ${(100 * $slideLength) / $showSlide}%;
+        left: -100%;
     `;
 }
 
-let clonedSlide = slide[lastSlideIdx].cloneNode(true);
 
-slide[lastSlideIdx].remove();
-carouselArea.insertBefore(clonedSlide, slide[0]);
+// carousel 영역 위에 마우스 hover시 슬라이드 멈춤
+$carousel.addEventListener('mouseenter', () => {
+    stopCarousel();
+})
 
-// autoCarousel();  // auto rolling
-// document.querySelectorAll('.tab')[0].classList.add('next');
-slide[0].classList.add('is-active');
+$carousel.addEventListener('mouseleave', () => {
+    if ($modal.classList.contains('is-open')) {
+        stopCarousel();
+    } else {
+        autoCarousel();
+    }
+})
 
-/* =================================================================
-auto rolling setting
-================================================================= */
+
+// 화살표 클릭
+const $carouselArw = document.querySelectorAll('.carousel__arrow');
+
+$carouselArw.forEach((arwBtn) => {
+    arwBtn.addEventListener('click', function () {
+
+        $slide = document.querySelectorAll('.slide');
+
+        // 슬라이드 이동 transition
+        if ($carouselWrap.classList.contains('moving')) {
+            $carouselWrap.classList.remove('moving');
+        } else {
+            $carouselWrap.classList.add('moving');
+        }
+
+        // [다음] 버튼 클릭
+        if (this.classList.contains('next')) {
+            $carousel.classList.remove('prev');
+            stopCarousel();
+            slideMove(0, $lastSlideIdx);
+            autoCarousel();
+
+        } else {
+            // [이전] 버튼 클릭
+            $carousel.classList.add('prev');
+            stopCarousel();
+            slideMove($lastSlideIdx, 0);
+            autoCarousel();
+        }
+    })
+})
+
+
+// 오토 슬라이드
 function autoCarousel() {
-    let auto = setInterval(function () {
-        slideMove(-left, 600, 0, lastSlideIdx);
-        document.querySelectorAll('.slide__img').forEach(function (item) {
-            item.style.transition = '';
-        });
-    }, time);
+    $auto = setInterval(function () {
+        $carousel.classList.remove('prev');
+        slideMove(0, $lastSlideIdx);
+    }, $time);
 }
 
-function slideMove(movePos, duration, removeIdx, insertIdx) {
-    const slide = carouselArea.querySelectorAll('.slide');
-    carouselArea.style.left = movePos + '%';
-    const clonedSlide = slide[removeIdx].cloneNode(true);
-    slide[removeIdx].remove();
-    // if (document.querySelectorAll('.tab')[0].classList.contains('next')) {
-    //     carouselArea.insertBefore(clonedSlide, slide[insertIdx + 1]);
-    // } else {
-    carouselArea.insertBefore(clonedSlide, slide[insertIdx]);
-    // }
-    carouselArea.style.left = '0%';
-    if (showSlide === 1) {
-        carouselArea.style.left = '-100%';
+
+// 슬라이드 멈춤
+function stopCarousel() {
+    clearInterval($auto);
+}
+
+
+// 슬라이드 이동
+function slideMove(removeIdx, insertIdx) {
+
+    let $slide = $carouselWrap.querySelectorAll('.slide');
+
+    let $clonedSlide = $slide[removeIdx].cloneNode(true);
+    $slide[removeIdx].remove();
+
+    $slideWidth = $slide[1].offsetWidth;
+
+    // [이전] 버튼 클릭시
+    if ($carousel.classList.contains('prev')) {
+        $carouselWrap.insertBefore($clonedSlide, $slide[insertIdx]);
+
+        $carousel.style.transform = `translateX(-${$slideWidth}px)`;
+        $carouselWrap.style.transform = `translateX(${$slideWidth}px)`;
+
+    } else {
+        $carouselWrap.insertBefore($clonedSlide, $slide[insertIdx + 1]);
+
+        $carousel.style.transform = `translateX(${$slideWidth}px)`;
+        $carouselWrap.style.transform = `translateX(-${$slideWidth}px)`;
     }
-    slide.forEach(function (item) {
+
+    $carouselWrap.classList.add('moving');
+
+    setTimeout(() => {
+        $carouselWrap.classList.remove('moving');
+        $carousel.style.transform = `translateX(0)`;
+        $carouselWrap.style.transform = `translateX(0)`;
+    }, 700);
+
+
+    $slide = $carouselWrap.querySelectorAll('.slide');
+
+    $slide.forEach(function (item) {
         item.classList.remove('is-active');
     });
-    slide[1].classList.add('is-active');
+    $slide[1].classList.add('is-active');
+}
+
+
+
+/* =================================================================
+Carousel 각 아이템 클릭 시 모달 오픈
+================================================================= */
+
+const $modelOpenBtn = document.querySelectorAll('.slide button'),
+    $modal = document.querySelector('.modal'),
+    $layer = document.querySelector('.modal__layer'),
+    $codeItem = document.querySelectorAll('.modal__item');
+
+
+$modelOpenBtn.forEach((btn) => {
+    btn.addEventListener('click', function () {
+        getData = this.getAttribute('data-name');
+
+        $modalItem = document.querySelector(`.modal__item[data-name="${getData}"]`);
+
+        $modal.classList.add('is-open');
+        $modal.style.display = 'block';
+        $modal.focus();
+        $modalItem.style.display = 'block';
+
+
+        // 배경 레이어 클릭해서 모달창 닫기
+        $layer.addEventListener('click', modalClose)
+
+        // esc키로 모달창 닫기
+        $modal.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                modalClose();
+            }
+        });
+
+    })
+});
+
+
+function modalClose() {
+    $modal.classList.remove('is-open');
+    $modal.style.display = 'none'
+    $modalItem.style.display = 'none'
+
+    autoCarousel();
 }
