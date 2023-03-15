@@ -619,18 +619,17 @@ $sectionSpaceMobile : 60px;
 // 코드펜 작업울 섹션
 .codepen {
 
+    display: block !important;
+
     .section__title {
-        padding-top: $sectionSpace;
         padding-bottom: $sectionSpace;
 
 
         @include laptop {
-            padding-top: $sectionLaptop;
             padding-bottom: $sectionLaptop;
         }
 
         @include mobs {
-            padding-top: $sectionSpaceMobile;
             padding-bottom: $sectionSpaceMobile;
         }
     }
@@ -738,7 +737,7 @@ $sectionSpaceMobile : 60px;
         &:hover,
         &:focus-visible,
         &:active {
-            opacity: 0.8;
+            opacity: 1;
 
             .slide__detail {
                 opacity: 1;
@@ -788,6 +787,14 @@ $sectionSpaceMobile : 60px;
                 font-weight: 600;
                 line-height: 1.5;
                 text-align: center;
+
+                @include tablet {
+                    font-size: 16px;
+                }
+
+                @include tablet-sm {
+                    @include get-color(color, color-font);
+                }
             }
 
             .btn {
@@ -798,9 +805,16 @@ $sectionSpaceMobile : 60px;
                 color: #1A2744;
                 border-radius: 10px;
                 background-color: #fff;
+
+                @include tablet-sm {
+                    @include get-color(color, color-bg);
+                    @include get-color(background-color, color-font);
+                }
             }
         }
     }
+
+    $modalWidth: 1600px;
 
     .modal {
         position: fixed;
@@ -818,12 +832,19 @@ $sectionSpaceMobile : 60px;
         }
 
         &__wrap {
-            width: 100%;
-            max-width: 800px;
-            height: 70%;
-            max-height: 600px;
+            width: calc(100% - (100px*2));
+            max-width: $modalWidth;
+            height: 80%;
             padding: 20px;
             @include positionCenter;
+
+            @include tablet {
+                width: calc(100% - (60px*2));
+            }
+
+            @include tablet-sm {
+                width: calc(100% - (20px*2));
+            }
         }
 
         &__item {
@@ -835,9 +856,10 @@ $sectionSpaceMobile : 60px;
 
     .cp_embed_wrapper {
         width: 100%;
-        max-width: 800px;
+        max-width: $modalWidth;
         height: 100%;
-        max-height: 600px;
+        overflow: hidden;
+        resize: both;
 
         iframe {
             height: 100% !important;

@@ -255,14 +255,15 @@ let $showProjectItem = 6;
 // $showProjectItem(6)개 아이템 show
 projectCardDisplay();
 
+// project toggle버튼 클릭 시 아이템 토글
 $displayBtn.addEventListener('click', toggleProjects);
 
-$displayBtn.addEventListener('keydown', function (e) {
+// project focus 시 엔터키로 토글
+$displayBtn.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         toggleProjects();
     }
 });
-
 
 
 if (window.innerWidth < $mq_tablet_sm) {
@@ -272,7 +273,8 @@ if (window.innerWidth < $mq_tablet_sm) {
     $displayBtn.addEventListener('click', toggleProjects);
 }
 
-window.addEventListener('resize', function () {
+
+window.addEventListener('resize', () => {
     if (window.innerWidth < $mq_tablet_sm) {
         $showProjectItem = 3;
 
@@ -294,7 +296,6 @@ function projectCardDisplay() {
             $projectItem[i].style.display = 'flex';
         }
     }
-
 }
 
 
@@ -370,7 +371,8 @@ for (let i = 0; i < $icons.length; i++) {
     }, speed);
 }
 
-window.addEventListener('resize', function () {
+
+window.addEventListener('resize', () => {
 
     $contactWrap = document.querySelector('.contact__wrap');
     $icons = document.querySelectorAll('.contact__icon');
@@ -471,7 +473,7 @@ if (window.innerWidth < $mq_tablet_sm) {
     pinned.destroy(true);
 }
 
-window.addEventListener('resize', function () {
+window.addEventListener('resize', () => {
     if (window.innerWidth < $mq_tablet_sm) {
         pinned.destroy(true);
     } else {
@@ -581,36 +583,26 @@ new ScrollMagic.Scene({
 
 
 // project 섹션
-const $project = document.querySelector('.project .section__container'),
+const $project = document.querySelector('.project'),
     $projectHeight = $project.offsetHeight;
 
 new ScrollMagic.Scene({
     triggerElement: $project,
     duration: $projectHeight
 })
+    .on('enter', () => document.querySelector('#howtowork .gnb__item').classList.remove('is-active'))
     .setClassToggle('#project', 'is-active')
     .addTo($menuController);
 
 
 // contact 섹션
 new ScrollMagic.Scene({
-    triggerElement: '.project__view-more'
+    triggerElement: '.carousel__arrow',
 })
     .on('enter', () => { document.querySelector('#project').classList.remove('is-active') })
     .on('leave', () => { document.querySelector('#project').classList.add('is-active') })
     .setClassToggle('#contact', 'is-active')
-    .addTo($menuController)
-// .addIndicators({
-//     indent: 100,
-//     name: "connnnnnnntact 섹션",
-//     colorStart: 'yellow',
-//     colorEnd: 'yellow',
-//     colorTrigger: 'yellow',
-// });
-
-
-
-
+    .addTo($menuController);
 
 
 
@@ -642,18 +634,21 @@ $slide[$lastSlideIdx].remove();
 $carouselWrap.insertBefore($clonedSlide, $slide[0]);
 $slide[0].classList.add('is-active');
 
-// codepen 섹션에 스크롤이 들어왔을 때 autoCarousel 실행
+
+
+// codepen 섹션에 스크롤이 들어왔을 때 autoCarousel 실행, 벗어나면 멈춤
 new ScrollMagic.Scene({
-    // duration: '3000',
     triggerElement: '.codepen__wrap',
+    duration: '100%',
     triggerHook: 0.8,
 })
     .on('enter', () => autoCarousel())
-    .addTo($controller);
+    .on('leave', () => stopCarousel())
+    .addTo($controller)
 
 
-// 모바일에서 센터모드 해제 (슬라이드 1개씩)
-window.addEventListener('resize', function () {
+// 모바일에서 센터모드 해제 (슬라이드 1개씩 이동)
+window.addEventListener('resize', () => {
     if (window.innerWidth <= 768) {
         carouselMobile();
         $carousel.classList.add('is-mobile');
@@ -674,6 +669,7 @@ if (window.innerWidth <= 768) {
 
     $carousel.classList.toggle('is-mobile');
 }
+
 
 // 모바일화면에서 carousel 세팅
 function carouselMobile() {
@@ -739,6 +735,7 @@ function slideMove(removeIdx, insertIdx) {
 
     $slideWidth = $slide[1].offsetWidth;
 
+
     // [이전] 버튼 클릭시
     if ($carousel.classList.contains('prev')) {
         $carouselWrap.insertBefore($clonedSlide, $slide[insertIdx]);
@@ -764,10 +761,13 @@ function slideMove(removeIdx, insertIdx) {
 
     $slide = $carouselWrap.querySelectorAll('.slide');
 
-    $slide.forEach(function (item) {
+    $slide.forEach((item) => {
         item.classList.remove('is-active');
+        modal(item);
     });
+
     $slide[1].classList.add('is-active');
+
 }
 
 // 슬라이드 이동 시 transition 세팅
@@ -811,57 +811,67 @@ function carouselHandler() {
 Carousel 각 슬라이드 클릭 시 모달 오픈
 ================================================================= */
 
-$slide = document.querySelectorAll('.slide');
-
 const $modal = document.querySelector('.modal'),
     $layer = document.querySelector('.modal__layer'),
     $codeItem = document.querySelectorAll('.modal__item');
 
 
-$slide.forEach((slide) => {
+$slide = $carouselWrap.querySelectorAll('.slide');
+
+$slide.forEach((item) => {
+    modal(item);
+});
+
+
+function modal(el) {
+
     // 슬라이드 클릭 시 모달 오픈
-    slide.addEventListener('click', modalHandler);
+    el.addEventListener('click', () => {
+        modalHandler(el);
+    });
 
     // 슬라이드 focus일 때 모달 오픈
-    slide.addEventListener('keydown', (e) => {
+    el.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             modalHandler();
         }
     })
+}
 
-    function modalOpen() {
-        getData = slide.getAttribute('data-name');
 
-        $modalItem = document.querySelector(`.modal__item[data-name="${getData}"]`);
+function modalOpen(el) {
+    getData = el.getAttribute('data-name');
 
-        $modal.classList.add('is-open');
-        $modal.style.display = 'block';
-        $modal.focus();
-        $modalItem.style.display = 'block';
-        document.querySelector('body').classList.add('overflow');
-    }
+    $modalItem = document.querySelector(`.modal__item[data-name="${getData}"]`);
 
-    function modalClose() {
-        $modal.classList.remove('is-open');
-        $modal.style.display = 'none'
-        $modalItem.style.display = 'none'
-        document.querySelector('body').classList.remove('overflow');
+    $modal.classList.add('is-open');
+    $modal.style.display = 'block';
+    $modal.focus();
+    $modalItem.style.display = 'block';
+    document.querySelector('body').classList.add('overflow');
+}
 
-        autoCarousel();
-    }
+function modalClose() {
+    $modal.classList.remove('is-open');
+    $modal.style.display = 'none'
+    $modalItem.style.display = 'none'
+    document.querySelector('body').classList.remove('overflow');
 
-    function modalHandler() {
-        //모달창 오픈
-        modalOpen();
+    stopCarousel();
+    autoCarousel();
+}
 
-        // 배경 레이어 클릭해서 모달창 닫기
-        $layer.addEventListener('click', modalClose)
+function modalHandler(el) {
+    //모달창 오픈
+    modalOpen(el);
 
-        // esc키로 모달창 닫기
-        $modal.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                modalClose();
-            }
-        });
-    }
-});
+    // 배경 레이어 클릭해서 모달창 닫기
+    $layer.addEventListener('click', modalClose)
+
+    // esc키로 모달창 닫기
+    $modal.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            modalClose();
+        }
+    });
+}

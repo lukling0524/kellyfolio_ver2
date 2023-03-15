@@ -335,6 +335,7 @@
         height: 26px;
         position: relative;
         z-index: 100;
+        cursor: pointer;
 
         &::after {
             @include pseudo('', 20px, 20px);
