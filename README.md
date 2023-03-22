@@ -1,2 +1,2 @@
 # kellyfolio
-포트폴리오 2023
+portfolio 2023
